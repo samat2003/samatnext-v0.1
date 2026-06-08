@@ -108,7 +108,7 @@ def train():
         labels = labels.to(local_rank)
         
         # Forward pass
-        logits = model(input_ids)
+        logits, _ = model(input_ids)
         
         # Calculate cross-entropy manually to avoid padding tokens since packed tokens are dense
         loss_fct = nn.CrossEntropyLoss()
@@ -116,7 +116,15 @@ def train():
         
         # Scale loss by grad accum steps
         loss = loss / grad_accum_steps
-        loss.backward()
+        
+        # DDP optimization: only sync gradients on the last accumulation step
+        is_last_accum_step = ((step + 1) % grad_accum_steps == 0)
+        
+        if is_last_accum_step:
+            loss.backward()
+        else:
+            with model.no_sync():
+                loss.backward()
         
         running_loss += loss.item() * grad_accum_steps
         
