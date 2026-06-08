@@ -1,0 +1,16 @@
+**/*.pt
+**/*.pth
+**/*.bin
+wandb/
+logs/
+runs/
+__pycache__/
+.env
+.cache/
+.venv/
+hf_token*
+*.log
+**/*.jsonl
+archive/**/checkpoints/
+checkpoints/epoch*/
+checkpoints/final/
