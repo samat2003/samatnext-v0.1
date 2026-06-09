@@ -36,8 +36,7 @@ def stream_and_pack_dataset(tokenizer, rank, world_size, seq_len=2048, batch_siz
     """
     # Stream the dataset, sharding it so each GPU sees unique data
     ds = load_dataset(
-        "HuggingFaceTB/smollm-corpus", 
-        "python-edu", 
+        "codeparrot/codeparrot-clean", 
         split="train", 
         streaming=True
     ).shard(num_shards=world_size, index=rank)
@@ -45,7 +44,7 @@ def stream_and_pack_dataset(tokenizer, rank, world_size, seq_len=2048, batch_siz
     buffer = []
     
     for row in ds:
-        text = row["text"]
+        text = row["content"]
         # Tokenize and append the EOS token as a natural separator
         tokens = tokenizer.encode(text, add_special_tokens=False) + [tokenizer.eos_token_id]
         buffer.extend(tokens)
