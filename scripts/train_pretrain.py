@@ -215,8 +215,8 @@ def train():
             
             running_loss = 0.0
             
-            # Save Checkpoint every 250 steps (~1.5 hours) because Studio restarts every 4 hours
-            if is_main_process and global_step % 250 == 0:
+            # Save Checkpoint every 500 steps
+            if is_main_process and global_step % 500 == 0:
                 ckpt_path = os.path.join(CKPT_DIR, f"step_{global_step}.pt")
                 torch.save({
                     'global_step': global_step,
