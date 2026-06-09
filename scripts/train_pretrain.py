@@ -11,6 +11,7 @@ import torch.distributed as dist
 from torch.nn.parallel import DistributedDataParallel as DDP
 from transformers import AutoTokenizer
 from datasets import load_dataset
+from transformers import get_cosine_schedule_with_warmup
 
 from models.samat_next.config import SamatNextConfig
 from models.samat_next.model import SamatNextForCausalLM
@@ -90,8 +91,16 @@ def train():
     # Wrap in DDP
     model = DDP(model, device_ids=[local_rank], output_device=local_rank, find_unused_parameters=True)
     
-    # 3. Setup Optimizer
+    # 3. Setup Optimizer & Scheduler
     optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4, weight_decay=0.1)
+    
+    # Standard LLM Warmup (2000 steps warmup, then cosine decay)
+    total_steps = 45000  # Our ~24 hour early stopping target
+    scheduler = get_cosine_schedule_with_warmup(
+        optimizer, 
+        num_warmup_steps=2000, 
+        num_training_steps=total_steps
+    )
     
     # 4. Training Loop
     batch_size = 1  # Micro-batch size per GPU. Global = batch_size * world_size * grad_accum
@@ -124,17 +133,19 @@ def train():
         
         if is_last_accum_step:
             loss.backward()
+            # Add gradient clipping to prevent explosion
+            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+            
+            optimizer.step()
+            scheduler.step()
+            optimizer.zero_grad()
         else:
             with model.no_sync():
                 loss.backward()
         
         running_loss += loss.item() * grad_accum_steps
         
-        if (step + 1) % grad_accum_steps == 0:
-            torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
-            optimizer.step()
-            optimizer.zero_grad()
-            
+        if is_last_accum_step:
             global_step = (step + 1) // grad_accum_steps
             
             if is_main_process:
