@@ -110,15 +110,16 @@ def train():
         input_ids = input_ids.to(local_rank)
         labels = labels.to(local_rank)
         
-        # Forward pass
-        logits, _ = model(input_ids)
-        
-        # Calculate cross-entropy manually to avoid padding tokens since packed tokens are dense
-        loss_fct = nn.CrossEntropyLoss()
-        loss = loss_fct(logits.view(-1, config.vocab_size), labels.view(-1))
-        
-        # Scale loss by grad accum steps
-        loss = loss / grad_accum_steps
+        # Forward pass with Automatic Mixed Precision (Bfloat16) to slash memory by 50%
+        with torch.autocast("cuda", dtype=torch.bfloat16):
+            logits, _ = model(input_ids)
+            
+            # Calculate cross-entropy manually to avoid padding tokens since packed tokens are dense
+            loss_fct = nn.CrossEntropyLoss()
+            loss = loss_fct(logits.view(-1, config.vocab_size), labels.view(-1))
+            
+            # Scale loss by grad accum steps
+            loss = loss / grad_accum_steps
         
         # DDP optimization: only sync gradients on the last accumulation step
         is_last_accum_step = ((step + 1) % grad_accum_steps == 0)
