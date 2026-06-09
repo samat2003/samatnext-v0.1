@@ -154,6 +154,14 @@ def train():
                 torch.save(model.module.state_dict(), ckpt_path)
                 print(f"Saved checkpoint to {ckpt_path}")
                 
+            # Early stopping after ~24 hours on a single L4 GPU (45,000 global steps = ~2.9B tokens)
+            if global_step >= 45000:
+                if is_main_process:
+                    print("Reached 45,000 steps (~24 hours). Stopping early for quality verification!")
+                    ckpt_path = os.path.join(CKPT_DIR, "step_45000_final.pt")
+                    torch.save(model.module.state_dict(), ckpt_path)
+                break
+                
         step += 1
 
     cleanup_ddp()
