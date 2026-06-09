@@ -94,9 +94,9 @@ def train():
     optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4, weight_decay=0.1)
     
     # 4. Training Loop
-    batch_size = 2  # Micro-batch size per GPU. Global = batch_size * world_size * grad_accum
+    batch_size = 1  # Micro-batch size per GPU. Global = batch_size * world_size * grad_accum
     seq_len = 2048
-    grad_accum_steps = 16
+    grad_accum_steps = 32
     
     data_stream = stream_and_pack_dataset(tokenizer, rank, world_size, seq_len, batch_size)
     
