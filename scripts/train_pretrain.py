@@ -172,7 +172,8 @@ def train():
             with model.no_sync():
                 loss.backward()
         
-        running_loss += loss.item() * grad_accum_steps
+        # running_loss accumulates the scaled loss, which will sum up to the true average loss over the accum steps
+        running_loss += loss.item()
         
         if is_last_accum_step:
             global_step = (step + 1) // grad_accum_steps
