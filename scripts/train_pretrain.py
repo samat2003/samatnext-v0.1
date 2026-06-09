@@ -71,11 +71,6 @@ def train():
     rank, local_rank, world_size = setup_ddp()
     is_main_process = (rank == 0)
     
-    # 3. Setup DataLoader
-    BATCH_SIZE = 4
-    SEQ_LEN = 2048
-    GRADIENT_ACCUMULATION_STEPS = 8
-    
     # Configuration
     ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     CONFIG_PATH = os.path.join(ROOT_DIR, "configs", "samat_next_v0_1.json")
@@ -101,9 +96,9 @@ def train():
     optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4, weight_decay=0.1)
     
     # 4. Training Loop
-    batch_size = 4  # Micro-batch size per GPU. Global = batch_size * world_size * grad_accum
+    batch_size = 2  # Micro-batch size per GPU. Global = batch_size * world_size * grad_accum
     seq_len = 2048
-    grad_accum_steps = 8
+    grad_accum_steps = 16
     
     data_stream = stream_and_pack_dataset(tokenizer, rank, world_size, seq_len, batch_size)
     
