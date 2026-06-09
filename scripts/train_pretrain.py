@@ -77,7 +77,10 @@ def train():
     CKPT_DIR = os.path.join(ROOT_DIR, "checkpoints", "pretrain")
     if is_main_process:
         os.makedirs(CKPT_DIR, exist_ok=True)
-        wandb.init(project="samatnext-pretrain", name="python-edu-14B")
+        try:
+            wandb.init(project="samatnext-pretrain", name="python-edu-14B")
+        except Exception as e:
+            print(f"Wandb init failed: {e}. Continuing offline.")
         print(f"Starting Multi-GPU Pre-training with {world_size} GPUs.")
 
     # 2. Setup Model & Tokenizer
@@ -171,4 +174,10 @@ def train():
     cleanup_ddp()
 
 if __name__ == "__main__":
-    train()
+    try:
+        train()
+    except Exception as e:
+        import traceback
+        with open("CRASH_REPORT.txt", "w") as f:
+            traceback.print_exc(file=f)
+        raise
