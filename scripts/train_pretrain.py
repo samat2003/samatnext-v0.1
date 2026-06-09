@@ -11,7 +11,6 @@ import torch.distributed as dist
 from torch.nn.parallel import DistributedDataParallel as DDP
 from transformers import AutoTokenizer
 from datasets import load_dataset
-import wandb
 
 from models.samat_next.config import SamatNextConfig
 from models.samat_next.model import SamatNextForCausalLM
@@ -77,10 +76,6 @@ def train():
     CKPT_DIR = os.path.join(ROOT_DIR, "checkpoints", "pretrain")
     if is_main_process:
         os.makedirs(CKPT_DIR, exist_ok=True)
-        try:
-            wandb.init(project="samatnext-pretrain", name="python-edu-14B")
-        except Exception as e:
-            print(f"Wandb init failed: {e}. Continuing offline.")
         print(f"Starting Multi-GPU Pre-training with {world_size} GPUs.")
 
     # 2. Setup Model & Tokenizer
@@ -147,11 +142,6 @@ def train():
                 tokens_per_step = batch_size * seq_len * world_size * grad_accum_steps
                 
                 print(f"Step {global_step} | Loss: {running_loss:.4f} | Tokens/Step: {tokens_per_step}")
-                wandb.log({
-                    "loss": running_loss,
-                    "global_step": global_step,
-                    "tokens_processed": global_step * tokens_per_step
-                })
             
             running_loss = 0.0
             
