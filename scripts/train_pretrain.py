@@ -71,6 +71,11 @@ def train():
     rank, local_rank, world_size = setup_ddp()
     is_main_process = (rank == 0)
     
+    # 3. Setup DataLoader
+    BATCH_SIZE = 4
+    SEQ_LEN = 2048
+    GRADIENT_ACCUMULATION_STEPS = 8
+    
     # Configuration
     ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     CONFIG_PATH = os.path.join(ROOT_DIR, "configs", "samat_next_v0_1.json")
