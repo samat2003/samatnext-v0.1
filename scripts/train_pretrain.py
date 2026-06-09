@@ -37,13 +37,11 @@ def _init_weights(module):
             torch.nn.init.zeros_(module.bias)
     elif isinstance(module, nn.Embedding):
         torch.nn.init.normal_(module.weight, mean=0.0, std=0.02)
-        
-    # Zero-init the final projection of each block to guarantee 
-    # the initial loss is exactly 11.9 (ln(vocab_size))
-    if hasattr(module, 'o_proj'):
-        torch.nn.init.zeros_(module.o_proj.weight)
-    if hasattr(module, 'down_proj'):
-        torch.nn.init.zeros_(module.down_proj.weight)
+
+def _apply_zero_init(model):
+    for name, param in model.named_parameters():
+        if "o_proj.weight" in name or "down_proj.weight" in name:
+            torch.nn.init.zeros_(param)
 
 def cleanup_ddp():
     dist.destroy_process_group()
@@ -109,6 +107,7 @@ def train():
     
     # Apply stable initialization
     model.apply(_init_weights)
+    _apply_zero_init(model)
     
     model = model.to(local_rank)
     
