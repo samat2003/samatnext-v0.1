@@ -125,7 +125,30 @@ def train():
         num_training_steps=total_steps
     )
     
-    # 4. Training Loop
+    # 4. Auto-Resume Checkpoint Logic
+    global_step = 0
+    if os.path.exists(CKPT_DIR):
+        import glob
+        import re
+        ckpts = glob.glob(os.path.join(CKPT_DIR, "step_*.pt"))
+        if ckpts:
+            # Find latest checkpoint
+            def get_step(p):
+                match = re.search(r'step_(\d+)', p)
+                return int(match.group(1)) if match else -1
+            latest_ckpt = max(ckpts, key=get_step)
+            global_step = get_step(latest_ckpt)
+            
+            if is_main_process:
+                print(f"Resuming from checkpoint: {latest_ckpt} at step {global_step}")
+                
+            checkpoint = torch.load(latest_ckpt, map_location=f"cuda:{local_rank}")
+            model.module.load_state_dict(checkpoint['model_state_dict'])
+            optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
+            scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
+            del checkpoint
+    
+    # 5. Training Loop
     batch_size = 1  # Micro-batch size per GPU. Global = batch_size * world_size * grad_accum
     seq_len = 2048
     grad_accum_steps = 32
@@ -133,8 +156,14 @@ def train():
     data_stream = stream_and_pack_dataset(tokenizer, rank, world_size, seq_len, batch_size)
     
     model.train()
-    step = 0
+    step = global_step * grad_accum_steps
     running_loss = 0.0
+    
+    # Fast-forward dataloader
+    if is_main_process and global_step > 0:
+        print(f"Fast-forwarding dataset to step {global_step}...")
+    for _ in range(step):
+        next(data_stream)
     
     for input_ids, labels in data_stream:
         input_ids = input_ids.to(local_rank)
@@ -186,10 +215,15 @@ def train():
             
             running_loss = 0.0
             
-            # Save Checkpoint every 5000 steps
-            if is_main_process and global_step % 5000 == 0:
+            # Save Checkpoint every 250 steps (~1.5 hours) because Studio restarts every 4 hours
+            if is_main_process and global_step % 250 == 0:
                 ckpt_path = os.path.join(CKPT_DIR, f"step_{global_step}.pt")
-                torch.save(model.module.state_dict(), ckpt_path)
+                torch.save({
+                    'global_step': global_step,
+                    'model_state_dict': model.module.state_dict(),
+                    'optimizer_state_dict': optimizer.state_dict(),
+                    'scheduler_state_dict': scheduler.state_dict()
+                }, ckpt_path)
                 print(f"Saved checkpoint to {ckpt_path}")
                 
             # Early stopping after ~24 hours on a single L4 GPU (45,000 global steps = ~2.9B tokens)
