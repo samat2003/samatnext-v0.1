@@ -73,8 +73,9 @@ def train():
     is_main_process = (rank == 0)
     
     # Configuration
-    CONFIG_PATH = os.path.join("configs", "samat_next_v0_1.json")
-    CKPT_DIR = os.path.join("checkpoints", "pretrain")
+    ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    CONFIG_PATH = os.path.join(ROOT_DIR, "configs", "samat_next_v0_1.json")
+    CKPT_DIR = os.path.join(ROOT_DIR, "checkpoints", "pretrain")
     if is_main_process:
         os.makedirs(CKPT_DIR, exist_ok=True)
         wandb.init(project="samatnext-pretrain", name="python-edu-14B")
