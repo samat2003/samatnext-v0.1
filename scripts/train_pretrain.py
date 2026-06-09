@@ -88,7 +88,7 @@ def train():
     model = SamatNextForCausalLM(config).to(local_rank)
     
     # Wrap in DDP
-    model = DDP(model, device_ids=[local_rank], output_device=local_rank)
+    model = DDP(model, device_ids=[local_rank], output_device=local_rank, find_unused_parameters=True)
     
     # 3. Setup Optimizer
     optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4, weight_decay=0.1)
