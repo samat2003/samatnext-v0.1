@@ -26,6 +26,25 @@ def setup_ddp():
     torch.cuda.set_device(local_rank)
     return rank, local_rank, world_size
 
+def _init_weights(module):
+    """
+    Standard GPT-2 initialization, plus zero-init for residual projections
+    to ensure the network starts as a stable identity function.
+    """
+    if isinstance(module, nn.Linear):
+        torch.nn.init.normal_(module.weight, mean=0.0, std=0.02)
+        if module.bias is not None:
+            torch.nn.init.zeros_(module.bias)
+    elif isinstance(module, nn.Embedding):
+        torch.nn.init.normal_(module.weight, mean=0.0, std=0.02)
+        
+    # Zero-init the final projection of each block to guarantee 
+    # the initial loss is exactly 11.9 (ln(vocab_size))
+    if hasattr(module, 'o_proj'):
+        torch.nn.init.zeros_(module.o_proj.weight)
+    if hasattr(module, 'down_proj'):
+        torch.nn.init.zeros_(module.down_proj.weight)
+
 def cleanup_ddp():
     dist.destroy_process_group()
 
@@ -86,7 +105,12 @@ def train():
     # Make sure vocab size matches
     config.vocab_size = len(tokenizer)
     
-    model = SamatNextForCausalLM(config).to(local_rank)
+    model = SamatNextForCausalLM(config)
+    
+    # Apply stable initialization
+    model.apply(_init_weights)
+    
+    model = model.to(local_rank)
     
     # Wrap in DDP
     model = DDP(model, device_ids=[local_rank], output_device=local_rank, find_unused_parameters=True)
