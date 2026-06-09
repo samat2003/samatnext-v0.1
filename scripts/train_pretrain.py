@@ -144,6 +144,12 @@ def train():
         with torch.autocast("cuda", dtype=torch.bfloat16):
             logits, _ = model(input_ids)
             
+            if step == 0 and is_main_process:
+                print(f"[DEBUG] Logits mean: {logits.mean().item():.4f}, std: {logits.std().item():.4f}, max: {logits.max().item():.4f}, min: {logits.min().item():.4f}")
+                o_proj_std = model.module.model.layers[0].mixer.o_proj.weight.std().item()
+                print(f"[DEBUG] Layer 0 o_proj.weight std: {o_proj_std:.6f}")
+                print(f"[DEBUG] lm_head.weight std: {model.module.lm_head.weight.std().item():.6f}")
+            
             # Calculate cross-entropy manually to avoid padding tokens since packed tokens are dense
             loss_fct = nn.CrossEntropyLoss()
             loss = loss_fct(logits.view(-1, config.vocab_size), labels.view(-1))
