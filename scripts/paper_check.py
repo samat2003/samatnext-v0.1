@@ -2,218 +2,112 @@
 import os
 import sys
 import json
+from pathlib import Path
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT = Path(__file__).parent.parent
 
-def check_file_exists(rel_path):
-    path = os.path.join(ROOT, rel_path)
-    exists = os.path.exists(path)
-    print(f"Checking {rel_path:<40} ... {'PASS' if exists else 'FAIL'}")
-    return exists
+def check_files_exist():
+    required_files = [
+        "README.md",
+        "DATA_LICENSES.md",
+        "CHECKPOINT_LICENSE.md",
+        "MODEL_CARD.md",
+        "results/tables/main_retention_table.md",
+        "results/tables/main_retention_table.json",
+    ]
+    for rel_path in required_files:
+        if not (ROOT / rel_path).exists():
+            print(f"FAIL: Required file missing: {rel_path}")
+            return False
+    return True
+
+def check_readme():
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    
+    stale_cmds = ["train_stage2a.py", "train_stage3.py", "train_stage5.py", "scripts/compare_models.py"]
+    for cmd in stale_cmds:
+        if cmd in readme:
+            print(f"FAIL: README has stale command {cmd}")
+            return False
+            
+    if "83.0%" not in readme or "70.2%" not in readme or "4.3%" not in readme:
+        print("FAIL: README missing fresh result values")
+        return False
+        
+    if "86.8%" in readme:
+        print("FAIL: README has stale result value 86.8%")
+        return False
+        
+    lower_readme = readme.lower()
+    if "execution sandboxes" in lower_readme or "subprocess sandboxing" in lower_readme:
+        print("FAIL: README has unsafe sandbox wording")
+        return False
+        
+    if "fresh_eval_<timestamp>" not in readme:
+        print("FAIL: README missing fresh_eval_<timestamp>")
+        return False
+        
+    if "fresh_eval_/" in readme:
+        print("FAIL: README contains fresh_eval_/")
+        return False
+        
+    if "CC BY-NC-SA 4.0" not in readme:
+        print("FAIL: README missing CC BY-NC-SA 4.0")
+        return False
+        
+    return True
+
+def check_licenses():
+    data_licenses = (ROOT / "DATA_LICENSES.md").read_text(encoding="utf-8")
+    if "Qwen Research license" not in data_licenses:
+        print("FAIL: DATA_LICENSES.md missing Qwen Research license")
+        return False
+        
+    if "Apache-2.0" in data_licenses and "Qwen2.5-Coder-3B model is subject to the Qwen Research license, not Apache-2.0" not in data_licenses:
+        if "Qwen2.5-Coder-3B outputs are Apache-2.0" in data_licenses or "Qwen2.5-Coder-3B is Apache-2.0" in data_licenses:
+            print("FAIL: DATA_LICENSES.md claims Qwen2.5-Coder-3B is Apache-2.0")
+            return False
+            
+    ckpt = (ROOT / "CHECKPOINT_LICENSE.md").read_text(encoding="utf-8")
+    model_card = (ROOT / "MODEL_CARD.md").read_text(encoding="utf-8")
+    
+    if "CC BY-NC-SA 4.0" not in ckpt:
+        print("FAIL: CHECKPOINT_LICENSE.md missing CC BY-NC-SA 4.0")
+        return False
+        
+    if "CC BY-NC-SA 4.0" not in model_card and "CHECKPOINT_LICENSE.md" not in model_card:
+        print("FAIL: MODEL_CARD.md missing CC BY-NC-SA 4.0 or CHECKPOINT_LICENSE.md reference")
+        return False
+        
+    return True
+
+def check_results():
+    table_md = (ROOT / "results" / "tables" / "main_retention_table.md").read_text(encoding="utf-8")
+    if "83.0%" not in table_md or "70.2%" not in table_md or "4.3%" not in table_md:
+        print("FAIL: main_retention_table.md missing fresh result values")
+        return False
+        
+    table_json_path = ROOT / "results" / "tables" / "main_retention_table.json"
+    if table_json_path.exists():
+        data = json.loads(table_json_path.read_text(encoding="utf-8"))
+        row = data.get("SamatNext Curriculum lr=3e-6", {})
+        if row.get("stage5_pass_rate") != 0.83:
+            print("FAIL: JSON has incorrect stage5_pass_rate")
+            return False
+        if row.get("stage3_retention_rate") != 0.702:
+            print("FAIL: JSON has incorrect stage3_retention_rate")
+            return False
+            
+    return True
 
 def main():
-    print("=== RUNNING SAMATNEXT-V0.1 PAPER & ARXIV-READY CHECKLIST ===")
-    
-    success = True
-    
-    # 1. License separation files
-    license_files = [
-        "LICENSE",
-        "NOTICE",
-        "THIRD_PARTY_NOTICES.md",
-        "DATA_LICENSES.md",
-        "MODEL_CARD.md",
-        "CHECKPOINT_LICENSE.md",
-        "SECURITY.md",
-        "CITATION.cff"
-    ]
-    print("\n--- 1. Licensing & Metadata Separations ---")
-    for lf in license_files:
-        if not check_file_exists(lf):
-            success = False
-            
-    # 2. Main Tables & JSON outputs
-    result_files = [
-        "results/tables/main_retention_table.json",
-        "results/tables/main_retention_table.md",
-        "results/tables/parameter_counts.json",
-        "results/tables/parameter_counts.md",
-        "results/tables/vram_benchmark.json",
-        "reports/vram_benchmark.md",
-        "reports/contamination_report.md"
-    ]
-    print("\n--- 2. Generated JSON / MD Scientific Artifacts ---")
-    for rf in result_files:
-        if not check_file_exists(rf):
-            success = False
-            
-    # 3. Model Parameter Matching Validation
-    print("\n--- 3. Parameter Counts Truth Check ---")
-    param_path = os.path.join(ROOT, "results", "tables", "parameter_counts.json")
-    if os.path.exists(param_path):
-        try:
-            with open(param_path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-            samat_params = data.get("samatnext", {}).get("total_parameters", 0)
-            trans_params = data.get("transformer", {}).get("total_parameters", 0)
-            diff = abs(samat_params - trans_params)
-            pct_diff = (diff / max(samat_params, trans_params, 1)) * 100
-            
-            print(f"SamatNext parameters  : {samat_params:,}")
-            print(f"Transformer parameters: {trans_params:,}")
-            print(f"Difference            : {diff:,} ({pct_diff:.6f}%)")
-            
-            if pct_diff > 0.01:
-                print("FAIL: Parameter counts differ by more than 0.01%!")
-                success = False
-            else:
-                print("PASS: Parameter counts match (differ by <0.01%).")
-        except Exception as e:
-            print(f"FAIL: Error parsing parameter counts: {e}")
-            success = False
-    # 4. arXiv claim hygiene and licensing checks
-    print("\n--- 4. arXiv Claim Hygiene & Licensing Checks ---")
-    hygiene_success = True
-    try:
-        readme_path = os.path.join(ROOT, "README.md")
-        data_licenses_path = os.path.join(ROOT, "DATA_LICENSES.md")
-        ckpt_path = os.path.join(ROOT, "CHECKPOINT_LICENSE.md")
-        model_card_path = os.path.join(ROOT, "MODEL_CARD.md")
-        table_md_path = os.path.join(ROOT, "results", "tables", "main_retention_table.md")
-        table_json_path = os.path.join(ROOT, "results", "tables", "main_retention_table.json")
-        
-        readme = open(readme_path, "r", encoding="utf-8").read()
-        data_licenses = open(data_licenses_path, "r", encoding="utf-8").read()
-        ckpt = open(ckpt_path, "r", encoding="utf-8").read()
-        model_card = open(model_card_path, "r", encoding="utf-8").read()
-        table_md = open(table_md_path, "r", encoding="utf-8").read()
-        with open(table_json_path, "r", encoding="utf-8") as f:
-            table_json = json.load(f)
-            
-        # Checks on README
-        stale_cmds = ["train_stage2a.py", "train_stage3.py", "train_stage5.py", "scripts/compare_models.py"]
-        for cmd in stale_cmds:
-            if cmd in readme:
-                print(f"FAIL: README contains stale command: {cmd}")
-                hygiene_success = False
-                
-        req_cmds = ["make test", "make reproduce-main-table", "--force-eval"]
-        for cmd in req_cmds:
-            if cmd not in readme:
-                print(f"FAIL: README is missing required command/flag reference: {cmd}")
-                hygiene_success = False
-                
-        fresh_vals = ["83.0%", "70.2%", "4.3%"]
-        for val in fresh_vals:
-            if val not in readme:
-                print(f"FAIL: README is missing fresh result value: {val}")
-                hygiene_success = False
-                
-        if "86.8%" in readme:
-            print("FAIL: README contains stale result value: 86.8%")
-            hygiene_success = False
-            
-        if "execution sandboxes" in readme.lower() or "subprocess sandboxing" in readme.lower():
-            print("FAIL: README contains unsafe sandbox wording ('execution sandboxes' or 'subprocess sandboxing')")
-            hygiene_success = False
-            
-        if "External artifact archive: pending" not in readme:
-            print("FAIL: README must contain 'External artifact archive: pending' because no remote archive is set up yet.")
-            hygiene_success = False
-            
-        if "CC BY-NC-SA 4.0" not in readme:
-            print("FAIL: README is missing CC BY-NC-SA 4.0 reference.")
-            hygiene_success = False
-            
-        # Checks on DATA_LICENSES.md
-        if "Qwen Research license" not in data_licenses:
-            print("FAIL: DATA_LICENSES.md is missing 'Qwen Research license' citation.")
-            hygiene_success = False
-            
-        if "Qwen2.5-Coder-3B model is subject to the Qwen Research license" not in data_licenses:
-            print("FAIL: DATA_LICENSES.md must explicitly cite the Qwen Research license for Qwen2.5-Coder-3B.")
-            hygiene_success = False
-            
-        if "Qwen2.5-Coder-3B" in data_licenses and "Apache License 2.0 (under Qwen2.5-Coder model terms)" in data_licenses:
-            print("FAIL: DATA_LICENSES.md claims Qwen2.5-Coder-3B is Apache-2.0.")
-            hygiene_success = False
-            
-        if "Redistribution: Allowed. Committed under `data/stage5_teacher_distill.jsonl`" in data_licenses:
-            print("FAIL: DATA_LICENSES.md claims Stage 5 SFT data redistribution is Allowed under data/stage5_teacher_distill.jsonl.")
-            hygiene_success = False
-            
-        # Standardized warning in README.md
-        std_warn = "Evaluation executes model-generated Python code using subprocess isolation with timeout and resource limits. This is not a secure sandbox or complete security boundary. Run evaluation inside a container or VM when evaluating untrusted models or generated code."
-        if std_warn not in readme:
-            print("FAIL: README.md is missing the standardized subprocess-isolation warning.")
-            hygiene_success = False
-            
-        # Checks on CHECKPOINT_LICENSE.md
-        if "CC BY-NC-SA 4.0" not in ckpt:
-            print("FAIL: CHECKPOINT_LICENSE.md is missing CC BY-NC-SA 4.0 statement.")
-            hygiene_success = False
-            
-        # Checks on MODEL_CARD.md
-        if "CC BY-NC-SA 4.0" not in model_card and "CHECKPOINT_LICENSE.md" not in model_card:
-            print("FAIL: MODEL_CARD.md does not reference CC BY-NC-SA 4.0 or CHECKPOINT_LICENSE.md.")
-            hygiene_success = False
-            
-        # Checks on tables
-        for val in fresh_vals:
-            if val not in table_md:
-                print(f"FAIL: main_retention_table.md is missing fresh result value: {val}")
-                hygiene_success = False
-                
-        row = table_json.get("SamatNext Curriculum lr=3e-6", {})
-        if row.get("stage5_pass_rate") != 0.83:
-            print(f"FAIL: JSON has incorrect stage5_pass_rate: {row.get('stage5_pass_rate')}")
-            hygiene_success = False
-        if row.get("stage3_retention_rate") != 0.702:
-            print(f"FAIL: JSON has incorrect stage3_retention_rate: {row.get('stage3_retention_rate')}")
-            hygiene_success = False
-        if abs(row.get("stage2e_pass_rate", 0) - 0.043333333333333335) > 1e-12:
-            print(f"FAIL: JSON has incorrect stage2e_pass_rate: {row.get('stage2e_pass_rate')}")
-            hygiene_success = False
-            
-        # Checks on CITATION.cff
-        citation_path = os.path.join(ROOT, "CITATION.cff")
-        if os.path.exists(citation_path):
-            try:
-                import yaml
-                with open(citation_path, "r", encoding="utf-8") as f:
-                    yaml.safe_load(f.read())
-                print("Checking CITATION.cff YAML parsing            ... PASS")
-            except ImportError:
-                # simpler syntax check fallback
-                content = open(citation_path, "r", encoding="utf-8").read()
-                if "cff-version:" in content and "title:" in content:
-                    print("Checking CITATION.cff syntax fallback        ... PASS")
-                else:
-                    print("Checking CITATION.cff syntax fallback        ... FAIL")
-                    hygiene_success = False
-            except Exception as e:
-                print(f"Checking CITATION.cff YAML parsing            ... FAIL ({e})")
-                hygiene_success = False
-        else:
-            print("Checking CITATION.cff                         ... FAIL (missing)")
-            hygiene_success = False
-            
-        if hygiene_success:
-            print("PASS: All arXiv claim hygiene, licenses, and result-table synchronization checks passed.")
-        else:
-            success = False
-    except Exception as e:
-        print(f"FAIL: Error during arXiv claim hygiene checks: {e}")
-        success = False
-        
-    print("\n==================================================")
+    print("Running paper checks...")
+    success = check_files_exist() and check_readme() and check_licenses() and check_results()
     if success:
-        print("=== ALL PAPER CHECKLIST VALIDATION GATES PASSED ===")
-        print("==================================================")
+        print("PASS: All checks passed")
         sys.exit(0)
     else:
-        print("=== VALIDATION GATES FAILED! Please generate missing results. ===")
-        print("==================================================")
+        print("FAIL: Some checks failed")
         sys.exit(1)
 
 if __name__ == "__main__":

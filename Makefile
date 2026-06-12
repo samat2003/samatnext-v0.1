@@ -1,19 +1,18 @@
 # SPDX-License-Identifier: Apache-2.0
-# Makefile for SamatNext-v0.1 reproducibility pipeline
 
 .PHONY: setup test prepare-data-smoke prepare-data bench-vram reproduce-smoke reproduce-main-table reproduce-main-table-fresh paper-check help
 
 help:
 	@echo "SamatNext-v0.1 Makefile targets:"
-	@echo "  setup                 Install requirements"
-	@echo "  test                  Run pytest test suite"
-	@echo "  prepare-data-smoke    Build tiny smoke dataset, manifests, and hashes"
-	@echo "  prepare-data          Build processed datasets and manifest"
-	@echo "  bench-vram            Profile VRAM usage for SamatNext and Transformer"
-	@echo "  reproduce-smoke       Run fast end-to-end smoke test"
-	@echo "  reproduce-main-table  Generate tables from active checkpoints"
-	@echo "  reproduce-main-table-fresh Run full fresh evaluation and output detail files"
-	@echo "  paper-check           Verify paper draft, outline, checklists, and README tables"
+	@echo "  setup                       Install requirements"
+	@echo "  test                        Run pytest test suite"
+	@echo "  prepare-data-smoke          Build tiny smoke dataset, manifests, and hashes"
+	@echo "  prepare-data                Build processed datasets and manifest"
+	@echo "  bench-vram                  Profile VRAM usage"
+	@echo "  reproduce-smoke             Run fast end-to-end smoke test"
+	@echo "  reproduce-main-table        Generate tables from cached/active results"
+	@echo "  reproduce-main-table-fresh  Run full fresh evaluation with timestamped output"
+	@echo "  paper-check                 Verify paper/repo claim hygiene"
 
 setup:
 	pip install -r requirements.txt
