@@ -34,9 +34,19 @@ def check_readme():
         print("FAIL: README missing fresh result values")
         return False
         
-    if "86.8%" in readme:
-        print("FAIL: README has stale result value 86.8%")
-        return False
+    forbidden = [
+        "86.8%",
+        "Transformer killer",
+        "solves catastrophic forgetting",
+        "proves",
+        "superior long-term memory",
+        "Curriculum Rescue",
+        "fresh_eval_/"
+    ]
+    for word in forbidden:
+        if word in readme:
+            print(f"FAIL: README contains forbidden hype or stale word: {word}")
+            return False
         
     lower_readme = readme.lower()
     if "execution sandboxes" in lower_readme or "subprocess sandboxing" in lower_readme:
@@ -47,9 +57,7 @@ def check_readme():
         print("FAIL: README missing fresh_eval_<timestamp>")
         return False
         
-    if "fresh_eval_/" in readme:
-        print("FAIL: README contains fresh_eval_/")
-        return False
+
         
     if "CC BY-NC-SA 4.0" not in readme:
         print("FAIL: README missing CC BY-NC-SA 4.0")

@@ -10,9 +10,19 @@ def test_no_stale_commands_in_readme():
     for cmd in stale_cmds:
         assert cmd not in readme, f"Stale command {cmd} found in README"
 
-def test_no_stale_result_values_in_readme():
+def test_no_hype_words_in_readme():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    assert "86.8%" not in readme, "Stale result 86.8% found in README"
+    forbidden = [
+        "86.8%",
+        "Transformer killer",
+        "solves catastrophic forgetting",
+        "proves",
+        "superior long-term memory",
+        "Curriculum Rescue",
+        "fresh_eval_/"
+    ]
+    for word in forbidden:
+        assert word not in readme, f"Forbidden phrase '{word}' found in README"
 
 def test_fresh_values_present_in_readme():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
