@@ -9,6 +9,4 @@
 | **Transformer** | Curriculum Rescue lr=3e-5 | 97.6% | 3.2% | 2.0% |
 | **SamatNext** | Curriculum lr=3e-6 | 83.0% | **70.2%** | **4.3%** |
 
-Note: This table was generated from a fresh evaluation run. Full per-example artifacts are stored locally under results/runs/ and are gitignored because they may be large. To reproduce them, run: python scripts/reproduce_main_table.py --force-eval --timeout-seconds 5 --output results/runs/fresh_eval_<timestamp>/.
-
-External artifact archive: pending.
+Full per-example artifacts are stored locally under `results/runs/` and are gitignored because they may be large. To reproduce them, run `make reproduce-main-table-fresh`. External artifact archive: pending.

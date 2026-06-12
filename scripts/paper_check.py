@@ -138,6 +138,16 @@ def main():
             print("FAIL: DATA_LICENSES.md claims Qwen2.5-Coder-3B is Apache-2.0.")
             hygiene_success = False
             
+        if "Redistribution: Allowed. Committed under `data/stage5_teacher_distill.jsonl`" in data_licenses:
+            print("FAIL: DATA_LICENSES.md claims Stage 5 SFT data redistribution is Allowed under data/stage5_teacher_distill.jsonl.")
+            hygiene_success = False
+            
+        # Standardized warning in README.md
+        std_warn = "Evaluation executes model-generated Python code using subprocess isolation with timeout and resource limits. This is not a secure sandbox or complete security boundary. Run evaluation inside a container or VM when evaluating untrusted models or generated code."
+        if std_warn not in readme:
+            print("FAIL: README.md is missing the standardized subprocess-isolation warning.")
+            hygiene_success = False
+            
         # Checks on CHECKPOINT_LICENSE.md
         if "CC BY-NC-SA 4.0" not in ckpt:
             print("FAIL: CHECKPOINT_LICENSE.md is missing CC BY-NC-SA 4.0 statement.")
@@ -163,6 +173,29 @@ def main():
             hygiene_success = False
         if abs(row.get("stage2e_pass_rate", 0) - 0.043333333333333335) > 1e-12:
             print(f"FAIL: JSON has incorrect stage2e_pass_rate: {row.get('stage2e_pass_rate')}")
+            hygiene_success = False
+            
+        # Checks on CITATION.cff
+        citation_path = os.path.join(ROOT, "CITATION.cff")
+        if os.path.exists(citation_path):
+            try:
+                import yaml
+                with open(citation_path, "r", encoding="utf-8") as f:
+                    yaml.safe_load(f.read())
+                print("Checking CITATION.cff YAML parsing            ... PASS")
+            except ImportError:
+                # simpler syntax check fallback
+                content = open(citation_path, "r", encoding="utf-8").read()
+                if "cff-version:" in content and "title:" in content:
+                    print("Checking CITATION.cff syntax fallback        ... PASS")
+                else:
+                    print("Checking CITATION.cff syntax fallback        ... FAIL")
+                    hygiene_success = False
+            except Exception as e:
+                print(f"Checking CITATION.cff YAML parsing            ... FAIL ({e})")
+                hygiene_success = False
+        else:
+            print("Checking CITATION.cff                         ... FAIL (missing)")
             hygiene_success = False
             
         if hygiene_success:

@@ -46,9 +46,7 @@ To ensure a fair baseline comparison, the Transformer baseline is parameter-matc
 | **Transformer** | Curriculum Rescue lr=3e-5 | 97.6% | 3.2% | 2.0% |
 | **SamatNext** | Curriculum lr=3e-6 | 83.0% | **70.2%** | **4.3%** |
 
-Note: This table was generated from a fresh evaluation run. Full per-example artifacts are stored locally under results/runs/ and are gitignored because they may be large. To reproduce them, run: python scripts/reproduce_main_table.py --force-eval --timeout-seconds 5 --output results/runs/fresh_eval_<timestamp>/.
-
-External artifact archive: pending.
+Full per-example artifacts are stored locally under `results/runs/` and are gitignored because they may be large. To reproduce them, run `make reproduce-main-table-fresh`. External artifact archive: pending.
 
 
 ## Parameter Matching
@@ -84,12 +82,16 @@ make reproduce-main-table
 make paper-check
 ```
 
-To run a fresh evaluation run on model checkpoints and output full detailed artifacts:
+To run a fresh evaluation run on model checkpoints and output full detailed artifacts, run:
+```bash
+make reproduce-main-table-fresh
+```
+Or directly:
 ```bash
 python scripts/reproduce_main_table.py --force-eval --timeout-seconds 5 --output results/runs/fresh_eval_<timestamp>/
 ```
 
-Full fresh evaluation artifacts can be regenerated locally using `python scripts/reproduce_main_table.py --force-eval --timeout-seconds 5 --output results/runs/fresh_eval_<timestamp>/`. The `results/runs/` directory is gitignored because per-example artifacts may be large. External artifact archive: pending.
+Full fresh evaluation artifacts can be regenerated locally using `python scripts/reproduce_main_table.py --force-eval --timeout-seconds 5 --output results/runs/fresh_eval_<timestamp>/` (or via `make reproduce-main-table-fresh`). The `results/runs/` directory is gitignored because per-example artifacts may be large. External artifact archive: pending.
 
 ## Data and Contamination Control
 Training data is strictly filtered for contamination against HumanEval and MBPP via AST-level subtree matching and exact string overlays.

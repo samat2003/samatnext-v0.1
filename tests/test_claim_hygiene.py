@@ -31,6 +31,7 @@ def test_data_licenses_qwen_claims():
     assert "Qwen Research license" in data_licenses, "DATA_LICENSES.md is missing 'Qwen Research license' citation"
     assert "Qwen2.5-Coder-3B model is subject to the Qwen Research license" in data_licenses
     assert "Apache License 2.0 (under Qwen2.5-Coder model terms)" not in data_licenses, "DATA_LICENSES.md wrongly claims Qwen2.5-Coder-3B outputs are Apache-2.0"
+    assert "Redistribution: Allowed. Committed under `data/stage5_teacher_distill.jsonl`" not in data_licenses, "DATA_LICENSES.md wrongly claims Stage 5 SFT data redistribution is Allowed"
 
 def test_checkpoint_license_consistency():
     readme_path = os.path.join(ROOT, "README.md")

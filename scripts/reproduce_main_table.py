@@ -470,7 +470,7 @@ def main():
             f.write(f"| {m_name} | {t_path} | {s5_rate} | {s3_rate} | {s2_rate} |\n")
             
         # Output the required fresh-evaluation note and pending external archive notice
-        f.write("\nNote: This table was generated from a fresh evaluation run. Full per-example artifacts are stored locally under results/runs/ and are gitignored because they may be large. To reproduce them, run: python scripts/reproduce_main_table.py --force-eval --timeout-seconds 5 --output results/runs/fresh_eval_<timestamp>/.\n\nExternal artifact archive: pending.\n")
+        f.write("\nFull per-example artifacts are stored locally under `results/runs/` and are gitignored because they may be large. To reproduce them, run `make reproduce-main-table-fresh`. External artifact archive: pending.\n")
             
     print(f"Saved main retention table Markdown report to {md_path}")
     
