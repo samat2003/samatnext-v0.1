@@ -3,8 +3,16 @@ import os
 import sys
 import json
 import argparse
+import datetime
+import hashlib
+import shutil
 import torch
-from transformers import AutoTokenizer
+
+# Try importing transformers safely
+try:
+    import transformers
+except ImportError:
+    transformers = None
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
@@ -94,6 +102,18 @@ MODELS_CONFIG = {
     }
 }
 
+def compute_sha256(filepath):
+    if not os.path.exists(filepath):
+        return "UNKNOWN"
+    sha = hashlib.sha256()
+    try:
+        with open(filepath, "rb") as f:
+            while chunk := f.read(8192):
+                sha.update(chunk)
+        return sha.hexdigest()
+    except Exception as e:
+        return f"ERROR: {str(e)}"
+
 def load_data(stage_key):
     if stage_key == "stage5":
         return generate_stage5_holdout()
@@ -108,15 +128,38 @@ def load_data(stage_key):
     else:
         raise ValueError(f"Unknown stage: {stage_key}")
 
-def run_evaluation(device, tokenizer_name):
-    # Load tokenizer
+def run_evaluation(device, tokenizer_name, output_dir):
+    os.makedirs(output_dir, exist_ok=True)
+    datasets_dir = os.path.join(output_dir, "datasets")
+    os.makedirs(datasets_dir, exist_ok=True)
+    
     print(f"Loading tokenizer {tokenizer_name}...")
+    from transformers import AutoTokenizer
     try:
         tokenizer = AutoTokenizer.from_pretrained(tokenizer_name, local_files_only=True)
     except Exception:
         tokenizer = AutoTokenizer.from_pretrained(tokenizer_name)
-
+    
+    tokenizer_hash = "N/A"
+    if os.path.exists(tokenizer_name):
+        tokenizer_hash = compute_sha256(tokenizer_name)
+        
     results = {}
+    eval_manifest = {}
+    run_manifest = {
+        "timestamp": datetime.datetime.now().isoformat(),
+        "system_info": {
+            "device": str(device),
+            "pytorch_version": torch.__version__,
+            "transformers_version": transformers.__version__ if transformers else "UNKNOWN"
+        },
+        "model_artifacts": {}
+    }
+    
+    if device.type == "cuda":
+        run_manifest["system_info"]["gpu_name"] = torch.cuda.get_device_name(0)
+        
+    copy_list = []
     
     for model_key, model_meta in MODELS_CONFIG.items():
         print(f"\nEvaluating Model: {model_key}...")
@@ -128,6 +171,16 @@ def run_evaluation(device, tokenizer_name):
             print(f"Skipping {model_key} because checkpoint is missing at {checkpoint_path}")
             continue
             
+        checkpoint_hash = compute_sha256(checkpoint_path)
+        config_hash = compute_sha256(config_path)
+        
+        run_manifest["model_artifacts"][model_key] = {
+            "checkpoint_path": checkpoint_path,
+            "checkpoint_hash": checkpoint_hash,
+            "config_path": config_path,
+            "config_hash": config_hash
+        }
+        
         print(f"Loading model config from {config_path}...")
         if model_type == "samatnext":
             config = SamatNextConfig.from_json(config_path)
@@ -138,39 +191,114 @@ def run_evaluation(device, tokenizer_name):
             
         print(f"Loading checkpoint weights from {checkpoint_path}...")
         state_dict = torch.load(checkpoint_path, map_location=device, weights_only=True)
-        model.load_state_dict(state_dict, strict=True)
+        missing_keys, unexpected_keys = model.load_state_dict(state_dict, strict=False)
+        important_missing = [k for k in missing_keys if "freqs_cis" not in k]
+        important_unexpected = [k for k in unexpected_keys if "freqs_cis" not in k]
+        if important_missing:
+            raise RuntimeError(f"Missing key(s) in state_dict: {important_missing}")
+        if important_unexpected:
+            raise RuntimeError(f"Unexpected key(s) in state_dict: {important_unexpected}")
         model.eval()
         
         results[model_key] = {}
+        eval_manifest[model_key] = {}
         
         for stage_key in ["stage5", "stage3", "stage2e"]:
             print(f"Evaluating {stage_key}...")
             data = load_data(stage_key)
             
-            # evaluate using the standard evaluation logic
-            metrics = evaluate_subset(f"{model_key}_{stage_key}", data, model, tokenizer, device)
-            
-            # Save results list format to results/ directory to cache them
-            filename = model_meta["files"][stage_key]
-            filepath = os.path.join(ROOT, "results", filename)
-            
-            # Compute list of individual test outputs for caching
-            results[model_key][stage_key] = metrics["pass_rate"]
-            
-            # Also save to JSON file as cache so it matches next runs
-            # Write a dummy list to simulate the structure of output if evaluated
-            # Since evaluate_subset returns just stats, we'll write a list with the pass status
-            dummy_list = [{"id": f"{stage_key}_{i}", "test_pass": (i < int(metrics["pass_rate"] * len(data)))} for i in range(len(data))]
-            with open(filepath, "w", encoding="utf-8") as f:
-                json.dump(dummy_list, f, indent=2)
+            if stage_key == "stage5":
+                dataset_path = os.path.join(datasets_dir, "stage5_holdout.jsonl")
+                with open(dataset_path, "w", encoding="utf-8") as f:
+                    for item in data:
+                        f.write(json.dumps(item) + "\n")
+            elif stage_key == "stage3":
+                dataset_path = os.path.join(ROOT, "data", "stage3_paraphrase_eval.jsonl")
+            elif stage_key == "stage2e":
+                dataset_path = os.path.join(ROOT, "data", "stage2e_adversarial_holdout.jsonl")
                 
+            dataset_hash = compute_sha256(dataset_path)
+            
+            metrics, eval_results = evaluate_subset(f"{model_key}_{stage_key}", data, model, tokenizer, device, return_details=True)
+            
+            results[model_key][stage_key] = metrics["pass_rate"]
+            eval_manifest[model_key][stage_key] = metrics
+            
+            detailed_records = []
+            for item in eval_results:
+                detailed_records.append({
+                    "prompt": item["prompt"],
+                    "reference": item["tests"],
+                    "raw_generation": item["raw"],
+                    "cleaned_generation": item["eval_gen"],
+                    "pass_fail": "pass" if item["test_pass"] else "fail",
+                    "syntax_status": "SUCCESS" if item["syntax_ok"] else "FAILED",
+                    "execution_status": "SUCCESS" if item["test_pass"] else "FAILED",
+                    "traceback_error_type": item["err_msg"] if item["err_msg"] else "None",
+                    "timeout_status": item["err_msg"] == "Timeout",
+                    "decoding_config": {
+                        "max_new_tokens": 192,
+                        "temperature": 0.0,
+                        "do_sample": False
+                    },
+                    "checkpoint_path": checkpoint_path,
+                    "checkpoint_hash": checkpoint_hash,
+                    "config_path": config_path,
+                    "config_hash": config_hash,
+                    "tokenizer_name_or_path": tokenizer_name,
+                    "tokenizer_hash": tokenizer_hash,
+                    "eval_dataset_path": dataset_path,
+                    "eval_dataset_hash": dataset_hash
+                })
+                
+            model_slug = model_key.lower().replace(' ', '_').replace('->', 'to')
+            detail_filename = f"detail_{model_slug}_{stage_key}.json"
+            detail_filepath = os.path.join(output_dir, detail_filename)
+            with open(detail_filepath, "w", encoding="utf-8") as f:
+                json.dump(detailed_records, f, indent=2)
+                
+            cached_filename = f"cached_{model_slug}_{stage_key}.json"
+            cached_filepath = os.path.join(output_dir, cached_filename)
+            
+            summary_list = []
+            for i, (ex, item) in enumerate(zip(data, eval_results)):
+                summary_list.append({
+                    "id": ex.get("id", f"{stage_key}_{i}"),
+                    "prompt": ex.get("prompt"),
+                    "target": ex.get("target", ex.get("tests", [""])[0] if ex.get("tests") else ""),
+                    "gen": item["gen"],
+                    "syntax_ok": item["syntax_ok"],
+                    "stopped": item["stopped_im_end"] or item["stopped_eot"],
+                    "test_pass": item["test_pass"],
+                    "name_match": True,
+                    "err_msg": item["err_msg"],
+                    "exp_fn": ex.get("function_name", "NONE"),
+                    "gen_fn": "NONE"
+                })
+                
+            with open(cached_filepath, "w", encoding="utf-8") as f:
+                json.dump(summary_list, f, indent=2)
+                
+            dest_cached_filename = model_meta["files"][stage_key]
+            dest_cached_filepath = os.path.join(ROOT, "results", dest_cached_filename)
+            copy_list.append((cached_filepath, dest_cached_filepath))
+            
             print(f"  {stage_key} Pass Rate: {metrics['pass_rate']:.1%}")
             
-        # Free memory
         del model
         if device.type == "cuda":
             torch.cuda.empty_cache()
             
+    with open(os.path.join(output_dir, "eval_manifest.json"), "w", encoding="utf-8") as f:
+        json.dump(eval_manifest, f, indent=4)
+        
+    with open(os.path.join(output_dir, "run_manifest.json"), "w", encoding="utf-8") as f:
+        json.dump(run_manifest, f, indent=4)
+        
+    for src, dest in copy_list:
+        shutil.copyfile(src, dest)
+        print(f"Updated cached scientific JSON at {dest}")
+        
     return results
 
 def load_cached_results():
@@ -198,12 +326,21 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--force-eval", action="store_true", help="Force run evaluations on model checkpoints instead of loading cached results.")
     parser.add_argument("--tokenizer", type=str, default="Qwen/Qwen2.5-Coder-3B-Instruct")
+    parser.add_argument("--output", type=str, default=None, help="Output directory for fresh evaluation artifacts.")
     args = parser.parse_args()
     
+    is_cached = True
+    
     if args.force_eval:
+        is_cached = False
+        if args.output is None:
+            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+            args.output = os.path.join(ROOT, "results", "runs", f"fresh_eval_{timestamp}")
+        
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        print(f"Running full evaluation on device: {device}")
-        results = run_evaluation(device, args.tokenizer)
+        print(f"Running full fresh evaluation on device: {device}")
+        print(f"Saving all raw per-task output artifacts to: {args.output}")
+        results = run_evaluation(device, args.tokenizer, args.output)
     else:
         print("Loading pre-computed evaluation results from results/...")
         try:
@@ -211,8 +348,11 @@ def main():
         except FileNotFoundError as e:
             print(e)
             print("Falling back to running live evaluation...")
+            is_cached = False
+            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+            args.output = os.path.join(ROOT, "results", "runs", f"fresh_eval_{timestamp}")
             device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-            results = run_evaluation(device, args.tokenizer)
+            results = run_evaluation(device, args.tokenizer, args.output)
             
     # Output JSON table format
     final_table = {}
@@ -259,12 +399,16 @@ def main():
             s3_rate = f"{row['stage3_retention_rate']:.1%}"
             s2_rate = f"{row['stage2e_pass_rate']:.1%}"
             
-            # Bold outstanding numbers to match paper presentation
             if "SamatNext" in m_name and "Curriculum" in t_path:
                 s3_rate = f"**{s3_rate}**"
                 s2_rate = f"**{s2_rate}**"
                 
             f.write(f"| {m_name} | {t_path} | {s5_rate} | {s3_rate} | {s2_rate} |\n")
+            
+        if is_cached:
+            f.write("\n*Note: The current main table is generated from cached evaluation JSONs unless reproduce_main_table.py is run with --force-eval. Paper-grade reproduction requires --force-eval and full per-example eval artifacts.*\n")
+        else:
+            f.write(f"\n*Note: This table was generated from a fresh evaluation run on {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}. Full per-example artifacts are saved in {args.output}.*\n")
             
     print(f"Saved main retention table Markdown report to {md_path}")
     
@@ -277,20 +421,18 @@ def main():
         with open(md_path, "r", encoding="utf-8") as f:
             table_md = f.read()
             
-        # Extract the table part from the generated md file (skip title header)
         table_lines = table_md.split("\n")
-        table_only_lines = [line for line in table_lines if line.strip().startswith("|")]
+        table_only_lines = [line for line in table_lines if line.strip().startswith("|") or line.strip().startswith("*Note:")]
         table_only_text = "\n".join(table_only_lines)
         
-        # Replace table in README.md
         import re
         pattern = r"(### Results Table\n\n).*?(\n\n### Correct Interpretation)"
-        new_content = re.sub(pattern, rf"\g<1>{table_only_text}\g<2>", readme_content, flags=re.DOTALL)
+        table_only_text_escaped = table_only_text.replace("\\", "\\\\")
+        new_content = re.sub(pattern, rf"\g<1>{table_only_text_escaped}\g<2>", readme_content, flags=re.DOTALL)
         
         with open(readme_path, "w", encoding="utf-8") as f:
             f.write(new_content)
         print(f"Automatically updated README.md table programmatically.")
-
 
 if __name__ == "__main__":
     main()

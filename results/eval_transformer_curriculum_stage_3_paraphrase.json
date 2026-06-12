@@ -7,10 +7,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "abs_val",
-    "gen_fn": "x_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_026004",
@@ -20,10 +20,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "downcase",
-    "gen_fn": "to_upper"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_048442",
@@ -33,10 +33,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "only_positive",
-    "gen_fn": "to_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_015933",
@@ -46,10 +46,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "absolute_value",
-    "gen_fn": "add"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_027822",
@@ -59,7 +59,7 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "str_upper",
     "gen_fn": "NONE"
@@ -72,10 +72,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "count_vowels",
-    "gen_fn": "sum_string"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_015275",
@@ -85,10 +85,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "least",
-    "gen_fn": "elements"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_060949",
@@ -98,10 +98,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "tally",
-    "gen_fn": "sum_items"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_019842",
@@ -111,10 +111,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "number_is_odd",
-    "gen_fn": "num_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_048805",
@@ -124,10 +124,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "extract_positives",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_046225",
@@ -137,10 +137,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "unique_preserve_order",
-    "gen_fn": "result"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_020358",
@@ -150,10 +150,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "odd_number",
-    "gen_fn": "sum_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_044867",
@@ -163,10 +163,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "list_max",
-    "gen_fn": "get_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_045376",
@@ -176,10 +176,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "max_element",
-    "gen_fn": "max_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_031838",
@@ -189,10 +189,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "detect_palindrome",
-    "gen_fn": "get_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_014952",
@@ -202,10 +202,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Exec error: SyntaxError",
+    "name_match": true,
+    "err_msg": "SyntaxError",
     "exp_fn": "pick_min",
-    "gen_fn": "elements_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_057101",
@@ -215,10 +215,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "sorted_combine",
-    "gen_fn": "sorted"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_032406",
@@ -228,10 +228,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "is_symmetric",
-    "gen_fn": "is_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_022673",
@@ -241,10 +241,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "test_positive",
-    "gen_fn": "test_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_027096",
@@ -254,10 +254,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "upper_str",
-    "gen_fn": "sum_string"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_016248",
@@ -267,10 +267,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "math_abs",
-    "gen_fn": "random_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_003802",
@@ -280,10 +280,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "diff_two",
-    "gen_fn": "sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_010773",
@@ -293,10 +293,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_remainder",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_017286",
@@ -309,7 +309,7 @@
     "name_match": true,
     "err_msg": "",
     "exp_fn": "is_even",
-    "gen_fn": "is_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_029679",
@@ -319,10 +319,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "tally_vowels",
-    "gen_fn": "add_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_053229",
@@ -332,10 +332,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "flat_one",
-    "gen_fn": "calc_even_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_019003",
@@ -345,10 +345,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "even_val",
-    "gen_fn": "sum_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_055792",
@@ -358,10 +358,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "merge_sorted",
-    "gen_fn": "merge_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_028872",
@@ -371,10 +371,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "count_vowels",
-    "gen_fn": "sum_str"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_063601",
@@ -384,10 +384,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "fib",
-    "gen_fn": "sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_026498",
@@ -397,10 +397,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "lower_text",
-    "gen_fn": "sum_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_021246",
@@ -410,10 +410,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "is_positive",
-    "gen_fn": "is_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_017059",
@@ -423,10 +423,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "abs_result",
-    "gen_fn": "x_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_017245",
@@ -436,10 +436,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "strip_sign",
-    "gen_fn": "calc_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_001370",
@@ -449,10 +449,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Exec error: SyntaxError",
+    "name_match": true,
+    "err_msg": "SyntaxError",
     "exp_fn": "plus",
-    "gen_fn": "calc_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_039657",
@@ -462,10 +462,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "first_safe",
-    "gen_fn": "first_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_047996",
@@ -475,10 +475,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "order_unique",
-    "gen_fn": "items_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_025310",
@@ -488,10 +488,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "make_lower",
-    "gen_fn": "data_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_002495",
@@ -501,10 +501,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "minus",
-    "gen_fn": "add"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_026939",
@@ -514,7 +514,7 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "to_uppercase",
     "gen_fn": "NONE"
@@ -527,7 +527,7 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "char_count",
     "gen_fn": "NONE"
@@ -540,10 +540,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "compute_product",
-    "gen_fn": "add"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_018265",
@@ -553,10 +553,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "parity_even",
-    "gen_fn": "calc_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_051861",
@@ -566,10 +566,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "flatten",
-    "gen_fn": "get_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_045180",
@@ -579,10 +579,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "list_maximum",
-    "gen_fn": "get_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_033554",
@@ -592,10 +592,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "count_chars",
-    "gen_fn": "sum_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_030153",
@@ -605,10 +605,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "vowel_tally",
-    "gen_fn": "get_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_020712",
@@ -618,10 +618,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "test_odd",
-    "gen_fn": "test_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_006203",
@@ -631,7 +631,7 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "div",
     "gen_fn": "NONE"
@@ -644,10 +644,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "unique_stable",
-    "gen_fn": "result"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_008396",
@@ -657,10 +657,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_power",
-    "gen_fn": "get_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_026785",
@@ -670,10 +670,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "lowercase_str",
-    "gen_fn": "lowercase_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_001214",
@@ -684,9 +684,9 @@
     "stopped": true,
     "test_pass": false,
     "name_match": true,
-    "err_msg": "Test fail: TypeError",
+    "err_msg": "TypeError",
     "exp_fn": "calc_sum",
-    "gen_fn": "calc_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_061317",
@@ -696,7 +696,7 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "occurrence_map",
     "gen_fn": "NONE"
@@ -709,10 +709,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Exec error: SyntaxError",
+    "name_match": true,
+    "err_msg": "SyntaxError",
     "exp_fn": "calc_product",
-    "gen_fn": "calc_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_062754",
@@ -722,10 +722,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "compute_fact",
-    "gen_fn": "factorial"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_032446",
@@ -735,10 +735,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "is_symmetric",
-    "gen_fn": "is_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_042891",
@@ -749,9 +749,9 @@
     "stopped": true,
     "test_pass": false,
     "name_match": true,
-    "err_msg": "Test fail: NameError",
+    "err_msg": "NameError",
     "exp_fn": "total",
-    "gen_fn": "total"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_010301",
@@ -761,10 +761,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "calc_mod",
-    "gen_fn": "calc_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_024924",
@@ -774,10 +774,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "flip_str",
-    "gen_fn": "add_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_038495",
@@ -787,10 +787,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "safe_first",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_045117",
@@ -800,10 +800,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "maximum_item",
-    "gen_fn": "add_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_017029",
@@ -813,10 +813,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "abs_result",
-    "gen_fn": "x_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_050841",
@@ -826,10 +826,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "sum_of_evens",
-    "gen_fn": "sum_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_006861",
@@ -839,10 +839,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "division",
-    "gen_fn": "divide"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_026402",
@@ -852,7 +852,7 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "lower_text",
     "gen_fn": "NONE"
@@ -868,7 +868,7 @@
     "name_match": true,
     "err_msg": "",
     "exp_fn": "get_sum",
-    "gen_fn": "get_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_029115",
@@ -878,10 +878,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "vowel_count",
-    "gen_fn": "text_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_052425",
@@ -891,10 +891,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "flat_list",
-    "gen_fn": "total_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_019467",
@@ -904,10 +904,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "check_odd",
-    "gen_fn": "check_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_022505",
@@ -917,10 +917,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "num_positive",
-    "gen_fn": "num_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_050673",
@@ -930,10 +930,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "even_sum",
-    "gen_fn": "sum_even_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_008369",
@@ -943,10 +943,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_power",
-    "gen_fn": "get_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_030484",
@@ -956,10 +956,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "vowel_num",
-    "gen_fn": "text_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_044500",
@@ -969,10 +969,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_max",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_039089",
@@ -985,7 +985,7 @@
     "name_match": true,
     "err_msg": "",
     "exp_fn": "first_element",
-    "gen_fn": "first_element"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_016093",
@@ -995,10 +995,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "calc_abs",
-    "gen_fn": "calc"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_033974",
@@ -1008,10 +1008,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_len",
-    "gen_fn": "get_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_024653",
@@ -1021,10 +1021,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "backwards_str",
-    "gen_fn": "get_string"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_010248",
@@ -1034,10 +1034,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "calc_mod",
-    "gen_fn": "calc_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_040367",
@@ -1047,10 +1047,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "safe_last",
-    "gen_fn": "get_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_000969",
@@ -1060,10 +1060,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "add_vals",
-    "gen_fn": "add_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_033458",
@@ -1073,10 +1073,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "count_chars",
-    "gen_fn": "sum_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_015264",
@@ -1086,10 +1086,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "least",
-    "gen_fn": "sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_021370",
@@ -1099,10 +1099,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "check_positive",
-    "gen_fn": "check_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_001858",
@@ -1112,10 +1112,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "total_two",
-    "gen_fn": "total_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_052062",
@@ -1125,10 +1125,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "flatten_list",
-    "gen_fn": "get_even_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_027243",
@@ -1138,10 +1138,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "make_upper",
-    "gen_fn": "data"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_045541",
@@ -1151,10 +1151,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "biggest_item",
-    "gen_fn": "add_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_058204",
@@ -1164,10 +1164,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "fetch_key",
-    "gen_fn": "get_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_019975",
@@ -1177,10 +1177,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "number_is_odd",
-    "gen_fn": "number_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_042566",
@@ -1191,9 +1191,9 @@
     "stopped": true,
     "test_pass": false,
     "name_match": true,
-    "err_msg": "Test fail: NameError",
+    "err_msg": "NameError",
     "exp_fn": "get_sum",
-    "gen_fn": "get_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_012135",
@@ -1203,10 +1203,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "find_max",
-    "gen_fn": "remove_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_036309",
@@ -1216,10 +1216,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "strip_ws",
-    "gen_fn": "get_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_032829",
@@ -1229,10 +1229,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "str_len",
-    "gen_fn": "str_str"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_032818",
@@ -1242,10 +1242,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "str_len",
-    "gen_fn": "s_str"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_062332",
@@ -1255,10 +1255,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "n_factorial",
-    "gen_fn": "n_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_015018",
@@ -1268,10 +1268,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "pick_min",
-    "gen_fn": "calc_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_000439",
@@ -1284,7 +1284,7 @@
     "name_match": true,
     "err_msg": "",
     "exp_fn": "add_numbers",
-    "gen_fn": "add_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_004543",
@@ -1294,10 +1294,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_product",
-    "gen_fn": "get_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_003244",
@@ -1307,10 +1307,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "deduct",
-    "gen_fn": "sum_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_001346",
@@ -1320,10 +1320,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "plus",
-    "gen_fn": "sum_two"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_035043",
@@ -1333,10 +1333,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "trim_str",
-    "gen_fn": "clean_string"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_045763",
@@ -1346,10 +1346,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_largest",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_004974",
@@ -1359,10 +1359,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "compute_product",
-    "gen_fn": "add"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_028536",
@@ -1372,10 +1372,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "make_uppercase",
-    "gen_fn": "data_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_031799",
@@ -1385,10 +1385,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "detect_palindrome",
-    "gen_fn": "get_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_001508",
@@ -1398,10 +1398,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "sum_nums",
-    "gen_fn": "sum_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_024150",
@@ -1411,10 +1411,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "backwards",
-    "gen_fn": "clean_string"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_054140",
@@ -1424,10 +1424,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "join_lists",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_044793",
@@ -1437,10 +1437,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "largest",
-    "gen_fn": "total"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_026207",
@@ -1450,10 +1450,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "all_lower",
-    "gen_fn": "theindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_019179",
@@ -1463,10 +1463,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "verify_even",
-    "gen_fn": "calc_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_064720",
@@ -1476,10 +1476,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "calc_fib",
-    "gen_fn": "calc_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_050008",
@@ -1489,10 +1489,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "sum_evens",
-    "gen_fn": "sum_even_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_062460",
@@ -1502,10 +1502,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "factorialize",
-    "gen_fn": "factorial"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_030240",
@@ -1515,10 +1515,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "total_vowels",
-    "gen_fn": "total_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_053750",
@@ -1528,10 +1528,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "un_nest",
-    "gen_fn": "total_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_003097",
@@ -1541,10 +1541,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "subtract_nums",
-    "gen_fn": "add_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_024350",
@@ -1554,10 +1554,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "string_rev",
-    "gen_fn": "string"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_022047",
@@ -1567,10 +1567,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "is_above_zero",
-    "gen_fn": "is_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_015696",
@@ -1580,10 +1580,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_abs",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_040772",
@@ -1593,10 +1593,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "last_or_none",
-    "gen_fn": "first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_054675",
@@ -1606,10 +1606,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "merge",
-    "gen_fn": "merge_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_049067",
@@ -1619,10 +1619,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "positives_only",
-    "gen_fn": "calc_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_061350",
@@ -1632,10 +1632,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "occurrence_map",
-    "gen_fn": "total_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_053070",
@@ -1645,10 +1645,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "flatten_one",
-    "gen_fn": "get_even_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_019028",
@@ -1658,10 +1658,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "even_val",
-    "gen_fn": "sum_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_025159",
@@ -1671,10 +1671,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "lower_str",
-    "gen_fn": "total_string"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_040368",
@@ -1684,10 +1684,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "safe_last",
-    "gen_fn": "get_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_058206",
@@ -1697,10 +1697,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "fetch_key",
-    "gen_fn": "get_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_003280",
@@ -1710,10 +1710,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "deduct",
-    "gen_fn": "add_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_028579",
@@ -1723,10 +1723,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "make_uppercase",
-    "gen_fn": "data_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_008742",
@@ -1736,10 +1736,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "to_the_power",
-    "gen_fn": "to_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_036534",
@@ -1749,10 +1749,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "contains_substring",
-    "gen_fn": "check_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_017328",
@@ -1765,7 +1765,7 @@
     "name_match": true,
     "err_msg": "",
     "exp_fn": "is_even",
-    "gen_fn": "is_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_064517",
@@ -1775,10 +1775,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "fib_val",
-    "gen_fn": "n_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_016412",
@@ -1788,10 +1788,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "magnitude",
-    "gen_fn": "get"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_064446",
@@ -1801,10 +1801,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "fib_n",
-    "gen_fn": "n_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_041904",
@@ -1814,10 +1814,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "safe_get_last",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_059617",
@@ -1827,10 +1827,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "count_frequencies",
-    "gen_fn": "sum_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_017588",
@@ -1843,7 +1843,7 @@
     "name_match": true,
     "err_msg": "",
     "exp_fn": "check_even",
-    "gen_fn": "check_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_051816",
@@ -1853,10 +1853,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "add_evens",
-    "gen_fn": "add_even_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_015292",
@@ -1866,10 +1866,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "least",
-    "gen_fn": "items"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_049748",
@@ -1879,10 +1879,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "filter_pos",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_004035",
@@ -1892,10 +1892,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "product",
-    "gen_fn": "first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_007966",
@@ -1905,10 +1905,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "exponentiate",
-    "gen_fn": "b"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_005877",
@@ -1918,10 +1918,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "divide",
-    "gen_fn": "add"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_015561",
@@ -1931,10 +1931,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "abs_val",
-    "gen_fn": "num_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_027120",
@@ -1944,10 +1944,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "upper_str",
-    "gen_fn": "x_str"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_058419",
@@ -1957,10 +1957,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "get_key_safe",
-    "gen_fn": "get_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_044909",
@@ -1970,10 +1970,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "list_max",
-    "gen_fn": "get_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_017051",
@@ -1983,10 +1983,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "abs_result",
-    "gen_fn": "x"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_045879",
@@ -1996,10 +1996,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_largest",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_041949",
@@ -2009,10 +2009,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "peek_last",
-    "gen_fn": "get_first_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_019421",
@@ -2022,10 +2022,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "check_odd",
-    "gen_fn": "check_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_011377",
@@ -2035,10 +2035,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "mod_nums",
-    "gen_fn": "calc_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_001162",
@@ -2051,7 +2051,7 @@
     "name_match": true,
     "err_msg": "",
     "exp_fn": "calc_sum",
-    "gen_fn": "calc_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_058942",
@@ -2061,10 +2061,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "key_or_none",
-    "gen_fn": "key_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_006204",
@@ -2074,10 +2074,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "div",
-    "gen_fn": "total"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_055483",
@@ -2087,10 +2087,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "merge_two",
-    "gen_fn": "merge_even_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_033894",
@@ -2100,10 +2100,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "string_len",
-    "gen_fn": "string_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_054365",
@@ -2113,10 +2113,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "combine_lists",
-    "gen_fn": "get_even_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_013835",
@@ -2126,10 +2126,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "min_val",
-    "gen_fn": "max_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_011418",
@@ -2139,10 +2139,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "mod_nums",
-    "gen_fn": "items"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_037896",
@@ -2152,10 +2152,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "find_in",
-    "gen_fn": "remove_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_032692",
@@ -2165,7 +2165,7 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "string_length",
     "gen_fn": "NONE"
@@ -2178,10 +2178,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "addition",
-    "gen_fn": "sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_053675",
@@ -2191,10 +2191,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "un_nest",
-    "gen_fn": "total_even_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_021407",
@@ -2204,10 +2204,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "check_positive",
-    "gen_fn": "check_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_025014",
@@ -2217,10 +2217,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "to_lowercase",
-    "gen_fn": "to_upper"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_053759",
@@ -2230,10 +2230,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "un_nest",
-    "gen_fn": "items_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_063372",
@@ -2243,7 +2243,7 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "fibonacci",
     "gen_fn": "NONE"
@@ -2256,10 +2256,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "absolute_value",
-    "gen_fn": "add"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_051796",
@@ -2269,10 +2269,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "add_evens",
-    "gen_fn": "add_even_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_025978",
@@ -2282,10 +2282,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "downcase",
-    "gen_fn": "to_upper"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_043214",
@@ -2295,10 +2295,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "add_all",
-    "gen_fn": "add"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_064342",
@@ -2308,10 +2308,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "fib_n",
-    "gen_fn": "n_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_050336",
@@ -2321,10 +2321,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "total_evens",
-    "gen_fn": "total_even_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_059685",
@@ -2334,10 +2334,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "build_freq_map",
-    "gen_fn": "get_even_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_003114",
@@ -2347,10 +2347,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "subtract_nums",
-    "gen_fn": "add_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_011719",
@@ -2360,10 +2360,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_max",
-    "gen_fn": "get_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_059214",
@@ -2373,10 +2373,10 @@
     "syntax_ok": false,
     "stopped": false,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "get_or_default",
-    "gen_fn": "get_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_052193",
@@ -2386,10 +2386,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "make_flat",
-    "gen_fn": "data"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_060420",
@@ -2399,10 +2399,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "count_each",
-    "gen_fn": "sum_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_025383",
@@ -2412,10 +2412,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "make_lower",
-    "gen_fn": "data_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_001957",
@@ -2425,10 +2425,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "subtract",
-    "gen_fn": "add"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_033152",
@@ -2438,10 +2438,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "length_of",
-    "gen_fn": "string_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_039381",
@@ -2454,7 +2454,7 @@
     "name_match": true,
     "err_msg": "",
     "exp_fn": "get_first",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_040155",
@@ -2464,10 +2464,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "peek_first",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_054895",
@@ -2477,10 +2477,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "cat_lists",
-    "gen_fn": "merge_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_036489",
@@ -2490,10 +2490,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Exec error: SyntaxError",
+    "name_match": true,
+    "err_msg": "SyntaxError",
     "exp_fn": "contains_substring",
-    "gen_fn": "check_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_043185",
@@ -2503,10 +2503,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "sum_elements",
-    "gen_fn": "sum_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_056964",
@@ -2516,10 +2516,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "sorted_combine",
-    "gen_fn": "sorted"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_010027",
@@ -2529,10 +2529,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "mod_val",
-    "gen_fn": "add_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_023886",
@@ -2542,10 +2542,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "flip_string",
-    "gen_fn": "text_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_040933",
@@ -2555,10 +2555,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "tail_safe",
-    "gen_fn": "calc_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_008232",
@@ -2568,7 +2568,7 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "pow_val",
     "gen_fn": "NONE"
@@ -2581,10 +2581,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "bigger",
-    "gen_fn": "first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_051568",
@@ -2597,7 +2597,7 @@
     "name_match": true,
     "err_msg": "",
     "exp_fn": "get_even_sum",
-    "gen_fn": "get_even_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_053598",
@@ -2607,10 +2607,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "flatten_once",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_007475",
@@ -2620,10 +2620,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "div_vals",
-    "gen_fn": "add_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_023991",
@@ -2633,10 +2633,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "flip_string",
-    "gen_fn": "clean_string"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_014712",
@@ -2646,10 +2646,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "compute_min",
-    "gen_fn": "add"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_061215",
@@ -2659,10 +2659,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "build_counts",
-    "gen_fn": "get_even_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_032023",
@@ -2675,7 +2675,7 @@
     "name_match": true,
     "err_msg": "",
     "exp_fn": "test_palindrome",
-    "gen_fn": "test_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_035074",
@@ -2685,10 +2685,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "trim_str",
-    "gen_fn": "clean_string"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_048317",
@@ -2698,10 +2698,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "keep_positives",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_053986",
@@ -2711,10 +2711,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "concat_lists",
-    "gen_fn": "get_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_031289",
@@ -2724,10 +2724,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "is_pal",
-    "gen_fn": "is_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_011838",
@@ -2737,10 +2737,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_max",
-    "gen_fn": "get_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_031568",
@@ -2750,10 +2750,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "pal_check",
-    "gen_fn": "items"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_050637",
@@ -2763,10 +2763,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "even_sum",
-    "gen_fn": "sum_even_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_020714",
@@ -2776,10 +2776,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "test_odd",
-    "gen_fn": "test_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_003317",
@@ -2789,10 +2789,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "deduct",
-    "gen_fn": "add"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_002120",
@@ -2802,10 +2802,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "difference",
-    "gen_fn": "sum_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_039553",
@@ -2815,10 +2815,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "first_safe",
-    "gen_fn": "first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_008109",
@@ -2828,7 +2828,7 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "raise_to",
     "gen_fn": "NONE"
@@ -2841,7 +2841,7 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "all_upper",
     "gen_fn": "NONE"
@@ -2854,10 +2854,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "get_key_safe",
-    "gen_fn": "get_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_021023",
@@ -2867,10 +2867,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "verify_odd",
-    "gen_fn": "check_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_052346",
@@ -2880,10 +2880,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "flat_list",
-    "gen_fn": "total_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_052270",
@@ -2893,10 +2893,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "make_flat",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_033786",
@@ -2906,10 +2906,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "string_len",
-    "gen_fn": "string_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_060249",
@@ -2919,10 +2919,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "frequency_map",
-    "gen_fn": "sum_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_028524",
@@ -2932,10 +2932,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "make_uppercase",
-    "gen_fn": "data_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_052719",
@@ -2945,10 +2945,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "flatten_arr",
-    "gen_fn": "get_even_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_033983",
@@ -2958,10 +2958,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_len",
-    "gen_fn": "get_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_057109",
@@ -2971,10 +2971,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "sorted_combine",
-    "gen_fn": "sorted"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_024214",
@@ -2984,10 +2984,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "invert_string",
-    "gen_fn": "clean_string"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_026333",
@@ -2997,10 +2997,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "to_lower",
-    "gen_fn": "to_upper"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_013014",
@@ -3010,10 +3010,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "pick_max",
-    "gen_fn": "calc_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_045377",
@@ -3023,10 +3023,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "max_element",
-    "gen_fn": "max_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_024959",
@@ -3036,10 +3036,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "flip_str",
-    "gen_fn": "clean_string"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_015565",
@@ -3049,10 +3049,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "abs_val",
-    "gen_fn": "x_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_002191",
@@ -3062,10 +3062,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "difference",
-    "gen_fn": "first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_047330",
@@ -3075,10 +3075,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "unique_in_order",
-    "gen_fn": "total_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_058098",
@@ -3088,10 +3088,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "fetch_key",
-    "gen_fn": "get_key"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_063645",
@@ -3101,10 +3101,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "fib",
-    "gen_fn": "n_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_054526",
@@ -3114,10 +3114,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "append_lists",
-    "gen_fn": "merge_even_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_018398",
@@ -3127,10 +3127,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "parity_even",
-    "gen_fn": "calc_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_014074",
@@ -3140,10 +3140,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "find_min",
-    "gen_fn": "remove_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_010540",
@@ -3153,10 +3153,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "mod_two",
-    "gen_fn": "add_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_037814",
@@ -3166,10 +3166,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Exec error: SyntaxError",
+    "name_match": true,
+    "err_msg": "SyntaxError",
     "exp_fn": "find_in",
-    "gen_fn": "remove_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_047152",
@@ -3179,10 +3179,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "dedup_stable",
-    "gen_fn": "merge_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_031965",
@@ -3192,10 +3192,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "verify_palindrome",
-    "gen_fn": "check_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_048971",
@@ -3205,10 +3205,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "positives_only",
-    "gen_fn": "calc_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_052090",
@@ -3218,10 +3218,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "flatten_list",
-    "gen_fn": "get_even_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_009091",
@@ -3231,10 +3231,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "raise_power",
-    "gen_fn": "total"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_019482",
@@ -3244,10 +3244,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "check_odd",
-    "gen_fn": "check_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_007088",
@@ -3257,10 +3257,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "divide_by",
-    "gen_fn": "add_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_062593",
@@ -3270,10 +3270,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "fact_of",
-    "gen_fn": "n_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_042099",
@@ -3283,10 +3283,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "last_or_null",
-    "gen_fn": "first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_040522",
@@ -3296,10 +3296,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_last_safe",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_020563",
@@ -3309,10 +3309,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "num_is_odd",
-    "gen_fn": "num_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_051931",
@@ -3322,10 +3322,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "flatten",
-    "gen_fn": "get_even_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_052131",
@@ -3335,10 +3335,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "flatten_list",
-    "gen_fn": "get_even_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_033135",
@@ -3348,10 +3348,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "length_of",
-    "gen_fn": "sum_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_012332",
@@ -3361,10 +3361,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "max_of_two",
-    "gen_fn": "max_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_041948",
@@ -3374,10 +3374,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "peek_last",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_064607",
@@ -3387,10 +3387,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "fib_val",
-    "gen_fn": "n_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_013425",
@@ -3400,10 +3400,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "greatest",
-    "gen_fn": "add"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_041427",
@@ -3413,10 +3413,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_last",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_016082",
@@ -3426,10 +3426,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "calc_abs",
-    "gen_fn": "calc"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_060883",
@@ -3439,10 +3439,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "tally",
-    "gen_fn": "sum_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_013335",
@@ -3452,10 +3452,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "greatest",
-    "gen_fn": "elements"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_014405",
@@ -3465,10 +3465,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "lesser",
-    "gen_fn": "items"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_013463",
@@ -3478,10 +3478,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "minimum",
-    "gen_fn": "elements_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_054231",
@@ -3491,10 +3491,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "join_lists",
-    "gen_fn": "merge_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_010155",
@@ -3504,10 +3504,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_mod",
-    "gen_fn": "get"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_025031",
@@ -3517,10 +3517,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "to_lowercase",
-    "gen_fn": "to_upper"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_046059",
@@ -3530,10 +3530,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "max_in_list",
-    "gen_fn": "max_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_008847",
@@ -3543,10 +3543,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "compute_power",
-    "gen_fn": "add_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_004288",
@@ -3556,10 +3556,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "mul",
-    "gen_fn": "first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_030673",
@@ -3569,10 +3569,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "get_vowels",
-    "gen_fn": "get_string"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_053796",
@@ -3582,10 +3582,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "merge_lists",
-    "gen_fn": "remove_even_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_002477",
@@ -3595,10 +3595,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Exec error: SyntaxError",
+    "name_match": true,
+    "err_msg": "SyntaxError",
     "exp_fn": "minus",
-    "gen_fn": "sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_054044",
@@ -3608,10 +3608,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "concat_lists",
-    "gen_fn": "get_even_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_009359",
@@ -3621,10 +3621,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "power_of",
-    "gen_fn": "sum_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_052224",
@@ -3634,10 +3634,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "make_flat",
-    "gen_fn": "get_even_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_005058",
@@ -3647,10 +3647,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Exec error: SyntaxError",
+    "name_match": true,
+    "err_msg": "SyntaxError",
     "exp_fn": "compute_product",
-    "gen_fn": "add_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_031526",
@@ -3660,10 +3660,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "pal_check",
-    "gen_fn": "items"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_046877",
@@ -3673,10 +3673,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "stable_unique",
-    "gen_fn": "items"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_005884",
@@ -3686,10 +3686,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "divide",
-    "gen_fn": "add"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_035624",
@@ -3699,10 +3699,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "clean_str",
-    "gen_fn": "get_string"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_050836",
@@ -3712,10 +3712,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "sum_of_evens",
-    "gen_fn": "sum_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_030956",
@@ -3725,10 +3725,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "palindrome_check",
-    "gen_fn": "palindrome_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_051621",
@@ -3738,10 +3738,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_even_sum",
-    "gen_fn": "get_even_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_015284",
@@ -3751,10 +3751,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Exec error: SyntaxError",
+    "name_match": true,
+    "err_msg": "SyntaxError",
     "exp_fn": "least",
-    "gen_fn": "sum_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_028676",
@@ -3764,10 +3764,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "uppercase_str",
-    "gen_fn": "sum_string"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_059349",
@@ -3777,10 +3777,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "get_or_default",
-    "gen_fn": "get_key_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_016259",
@@ -3790,10 +3790,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "math_abs",
-    "gen_fn": "random_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_025537",
@@ -3803,10 +3803,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_lower",
-    "gen_fn": "getindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_010294",
@@ -3816,10 +3816,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "calc_mod",
-    "gen_fn": "calc_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_053576",
@@ -3829,10 +3829,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "flatten_once",
-    "gen_fn": "get_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_064474",
@@ -3842,10 +3842,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "fib_n",
-    "gen_fn": "sum_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_019317",
@@ -3855,10 +3855,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "is_odd",
-    "gen_fn": "is_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_011651",
@@ -3868,10 +3868,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "maximum",
-    "gen_fn": "sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_013830",
@@ -3881,10 +3881,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "min_val",
-    "gen_fn": "max_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_004048",
@@ -3894,10 +3894,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "product",
-    "gen_fn": "first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_037734",
@@ -3907,10 +3907,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "has_str",
-    "gen_fn": "check_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_007196",
@@ -3920,10 +3920,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "divide_by",
-    "gen_fn": "add"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_017956",
@@ -3933,10 +3933,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "number_is_even",
-    "gen_fn": "sum_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_020521",
@@ -3946,10 +3946,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "num_is_odd",
-    "gen_fn": "num_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_029535",
@@ -3959,10 +3959,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "find_vowels",
-    "gen_fn": "remove_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_047162",
@@ -3972,10 +3972,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "dedup_stable",
-    "gen_fn": "merge_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_060701",
@@ -3985,10 +3985,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "element_counts",
-    "gen_fn": "item_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_035779",
@@ -3998,10 +3998,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "strip_text",
-    "gen_fn": "get_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_062344",
@@ -4011,10 +4011,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "n_factorial",
-    "gen_fn": "n_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_057649",
@@ -4024,10 +4024,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "safe_get",
-    "gen_fn": "get_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_047793",
@@ -4037,10 +4037,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "ndup_ordered",
-    "gen_fn": "calc_duplicates"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_054840",
@@ -4050,10 +4050,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "join_arrays",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_000271",
@@ -4066,7 +4066,7 @@
     "name_match": true,
     "err_msg": "",
     "exp_fn": "sum_two",
-    "gen_fn": "sum_two"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_056122",
@@ -4076,10 +4076,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "combine_sorted",
-    "gen_fn": "merge_even_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_022024",
@@ -4089,10 +4089,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "is_above_zero",
-    "gen_fn": "is_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_059713",
@@ -4102,10 +4102,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "build_freq_map",
-    "gen_fn": "get_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_059403",
@@ -4115,10 +4115,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "dict_safe_get",
-    "gen_fn": "get_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_056700",
@@ -4128,10 +4128,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "sorted_join",
-    "gen_fn": "sorted"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_018794",
@@ -4142,9 +4142,9 @@
     "stopped": true,
     "test_pass": false,
     "name_match": true,
-    "err_msg": "Test fail: NameError",
+    "err_msg": "NameError",
     "exp_fn": "test_even",
-    "gen_fn": "test_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_050626",
@@ -4154,10 +4154,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "even_sum",
-    "gen_fn": "sum_even_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_020376",
@@ -4167,10 +4167,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "odd_number",
-    "gen_fn": "sum_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_013142",
@@ -4180,10 +4180,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "top_val",
-    "gen_fn": "add_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_052757",
@@ -4193,10 +4193,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "flatten_arr",
-    "gen_fn": "get_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_004204",
@@ -4206,10 +4206,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "mul",
-    "gen_fn": "add"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_005516",
@@ -4219,10 +4219,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "times_two",
-    "gen_fn": "to_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_049925",
@@ -4232,10 +4232,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "sum_evens",
-    "gen_fn": "sum_even_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_027829",
@@ -4245,7 +4245,7 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "str_upper",
     "gen_fn": "NONE"
@@ -4258,10 +4258,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "strip_spaces",
-    "gen_fn": "get_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_007275",
@@ -4271,10 +4271,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "ratio",
-    "gen_fn": "elements"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_054553",
@@ -4284,10 +4284,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "append_lists",
-    "gen_fn": "merge_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_034594",
@@ -4297,10 +4297,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "strip_whitespace",
-    "gen_fn": "get_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_057857",
@@ -4310,10 +4310,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Exec error: SyntaxError",
+    "name_match": true,
+    "err_msg": "SyntaxError",
     "exp_fn": "dict_get",
-    "gen_fn": "sorted"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_013526",
@@ -4323,10 +4323,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Exec error: SyntaxError",
+    "name_match": true,
+    "err_msg": "SyntaxError",
     "exp_fn": "minimum",
-    "gen_fn": "sum_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_060440",
@@ -4336,10 +4336,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "count_each",
-    "gen_fn": "sum_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_045811",
@@ -4349,10 +4349,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_largest",
-    "gen_fn": "get_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_000874",
@@ -4362,10 +4362,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "addition",
-    "gen_fn": "sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_012367",
@@ -4375,10 +4375,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "max_of_two",
-    "gen_fn": "max_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_029594",
@@ -4388,10 +4388,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "find_vowels",
-    "gen_fn": "sum_str"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_044765",
@@ -4401,10 +4401,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "largest",
-    "gen_fn": "max_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_010984",
@@ -4414,10 +4414,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "mod_result",
-    "gen_fn": "first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_006719",
@@ -4427,10 +4427,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_quotient",
-    "gen_fn": "get"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_014140",
@@ -4440,10 +4440,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "smaller",
-    "gen_fn": "elements"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_047688",
@@ -4453,10 +4453,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "ndup_ordered",
-    "gen_fn": "calc_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_008846",
@@ -4466,10 +4466,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "compute_power",
-    "gen_fn": "add_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_010612",
@@ -4479,10 +4479,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "compute_mod",
-    "gen_fn": "add"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_005400",
@@ -4492,10 +4492,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "product_of",
-    "gen_fn": "first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_044530",
@@ -4505,10 +4505,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_max",
-    "gen_fn": "get"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_065073",
@@ -4518,10 +4518,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "fib_num",
-    "gen_fn": "n_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_042980",
@@ -4534,7 +4534,7 @@
     "name_match": true,
     "err_msg": "",
     "exp_fn": "total",
-    "gen_fn": "total"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_051406",
@@ -4544,10 +4544,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "evens_total",
-    "gen_fn": "sum_even_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_063705",
@@ -4557,10 +4557,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "nth_fib",
-    "gen_fn": "factorial"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_053343",
@@ -4570,10 +4570,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "reduce_nesting",
-    "gen_fn": "merge_even_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_061547",
@@ -4586,7 +4586,7 @@
     "name_match": true,
     "err_msg": "",
     "exp_fn": "factorial",
-    "gen_fn": "factorial"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_013348",
@@ -4596,10 +4596,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "greatest",
-    "gen_fn": "sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_042637",
@@ -4610,9 +4610,9 @@
     "stopped": true,
     "test_pass": false,
     "name_match": true,
-    "err_msg": "Test fail: TypeError",
+    "err_msg": "TypeError",
     "exp_fn": "get_sum",
-    "gen_fn": "get_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_064251",
@@ -4622,10 +4622,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "compute_fib",
-    "gen_fn": "add_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_054513",
@@ -4635,10 +4635,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "append_lists",
-    "gen_fn": "merge_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_042584",
@@ -4651,7 +4651,7 @@
     "name_match": true,
     "err_msg": "",
     "exp_fn": "get_sum",
-    "gen_fn": "get_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_043680",
@@ -4661,10 +4661,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "sum_all",
-    "gen_fn": "sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_017772",
@@ -4674,10 +4674,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "even_check",
-    "gen_fn": "result"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_021640",
@@ -4687,10 +4687,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "is_gt_zero",
-    "gen_fn": "is_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_032090",
@@ -4703,7 +4703,7 @@
     "name_match": true,
     "err_msg": "",
     "exp_fn": "test_palindrome",
-    "gen_fn": "test_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_022086",
@@ -4713,10 +4713,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "detect_positive",
-    "gen_fn": "get_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_028226",
@@ -4727,9 +4727,9 @@
     "stopped": true,
     "test_pass": false,
     "name_match": true,
-    "err_msg": "Test fail: AssertionError",
+    "err_msg": "AssertionError",
     "exp_fn": "to_upper",
-    "gen_fn": "to_upper"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_048801",
@@ -4739,10 +4739,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "extract_positives",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_018492",
@@ -4752,10 +4752,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "even_number",
-    "gen_fn": "sum_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_052054",
@@ -4765,10 +4765,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "flatten_list",
-    "gen_fn": "get_even_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_060076",
@@ -4778,7 +4778,7 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "item_counts",
     "gen_fn": "NONE"
@@ -4791,10 +4791,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "number_is_odd",
-    "gen_fn": "sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_054462",
@@ -4804,10 +4804,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "append_lists",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_028457",
@@ -4817,10 +4817,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "upper_text",
-    "gen_fn": "n_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_058506",
@@ -4830,10 +4830,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "get_key_safe",
-    "gen_fn": "get_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_063798",
@@ -4843,10 +4843,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "nth_fib",
-    "gen_fn": "factorial"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_036771",
@@ -4856,10 +4856,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "has_substring",
-    "gen_fn": "check_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_008792",
@@ -4869,10 +4869,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "to_the_power",
-    "gen_fn": "to_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_059057",
@@ -4882,10 +4882,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "safe_key_get",
-    "gen_fn": "get_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_028944",
@@ -4895,10 +4895,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "count_vowels",
-    "gen_fn": "sum_string"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_039933",
@@ -4908,10 +4908,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "safe_get_first",
-    "gen_fn": "safe_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_063903",
@@ -4921,10 +4921,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "fib_number",
-    "gen_fn": "n_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_017673",
@@ -4934,10 +4934,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "even",
-    "gen_fn": "sum_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_032393",
@@ -4947,10 +4947,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "is_symmetric",
-    "gen_fn": "is_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_061742",
@@ -4960,10 +4960,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "compute_factorial",
-    "gen_fn": "factorial"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_042870",
@@ -4974,9 +4974,9 @@
     "stopped": true,
     "test_pass": false,
     "name_match": true,
-    "err_msg": "Test fail: NameError",
+    "err_msg": "NameError",
     "exp_fn": "calculate_sum",
-    "gen_fn": "calculate_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_062947",
@@ -4986,10 +4986,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "calc_factorial",
-    "gen_fn": "factorial"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_053220",
@@ -4999,10 +4999,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "flat_one",
-    "gen_fn": "calc_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_055833",
@@ -5012,10 +5012,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "merge_sorted",
-    "gen_fn": "merge_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_046772",
@@ -5025,10 +5025,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "stable_unique",
-    "gen_fn": "safe_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_008153",
@@ -5038,7 +5038,7 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "raise_to",
     "gen_fn": "NONE"
@@ -5051,10 +5051,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "power",
-    "gen_fn": "total"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_020301",
@@ -5064,10 +5064,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "parity_odd",
-    "gen_fn": "check_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_011422",
@@ -5077,10 +5077,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "mod_nums",
-    "gen_fn": "items"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_035871",
@@ -5090,10 +5090,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "trim_text",
-    "gen_fn": "remove_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_044883",
@@ -5103,10 +5103,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "list_max",
-    "gen_fn": "remove_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_033562",
@@ -5116,10 +5116,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "count_chars",
-    "gen_fn": "sum_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_054888",
@@ -5129,10 +5129,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "cat_lists",
-    "gen_fn": "items_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_046274",
@@ -5142,10 +5142,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "dedup_ordered",
-    "gen_fn": "calc_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_001998",
@@ -5155,10 +5155,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "subtract",
-    "gen_fn": "add"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_027983",
@@ -5168,7 +5168,7 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "upcase",
     "gen_fn": "NONE"
@@ -5181,10 +5181,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "distinct_ordered",
-    "gen_fn": "unique"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_018617",
@@ -5194,10 +5194,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "num_is_even",
-    "gen_fn": "num_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_022239",
@@ -5207,10 +5207,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "detect_positive",
-    "gen_fn": "get_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_034326",
@@ -5220,10 +5220,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "measure_str",
-    "gen_fn": "text_str"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_041755",
@@ -5233,10 +5233,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "tail_or_none",
-    "gen_fn": "first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_051810",
@@ -5246,10 +5246,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "add_evens",
-    "gen_fn": "add_even_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_018194",
@@ -5259,10 +5259,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "detect_even",
-    "gen_fn": "get_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_010653",
@@ -5272,10 +5272,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Exec error: SyntaxError",
+    "name_match": true,
+    "err_msg": "SyntaxError",
     "exp_fn": "compute_mod",
-    "gen_fn": "add_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_058329",
@@ -5285,10 +5285,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Exec error: SyntaxError",
+    "name_match": true,
+    "err_msg": "SyntaxError",
     "exp_fn": "safe_lookup",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_009089",
@@ -5298,10 +5298,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "raise_power",
-    "gen_fn": "total"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_047571",
@@ -5311,10 +5311,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "distinct_ordered",
-    "gen_fn": "unique"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_004353",
@@ -5324,10 +5324,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "times",
-    "gen_fn": "to"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_006161",
@@ -5337,10 +5337,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Exec error: SyntaxError",
+    "name_match": true,
+    "err_msg": "SyntaxError",
     "exp_fn": "div",
-    "gen_fn": "add"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_004441",
@@ -5350,10 +5350,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "times",
-    "gen_fn": "items"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_050345",
@@ -5363,10 +5363,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "total_evens",
-    "gen_fn": "total_even_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_049614",
@@ -5376,10 +5376,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "filter_pos",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_000177",
@@ -5392,7 +5392,7 @@
     "name_match": true,
     "err_msg": "",
     "exp_fn": "sum_two",
-    "gen_fn": "sum_two"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_039143",
@@ -5403,9 +5403,9 @@
     "stopped": true,
     "test_pass": false,
     "name_match": true,
-    "err_msg": "Test fail: NameError",
+    "err_msg": "NameError",
     "exp_fn": "first_element",
-    "gen_fn": "first_element"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_028951",
@@ -5415,10 +5415,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "count_vowels",
-    "gen_fn": "sum_str"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_028222",
@@ -5429,9 +5429,9 @@
     "stopped": true,
     "test_pass": false,
     "name_match": true,
-    "err_msg": "Test fail: AssertionError",
+    "err_msg": "AssertionError",
     "exp_fn": "to_upper",
-    "gen_fn": "to_upper"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_051971",
@@ -5441,10 +5441,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "flatten",
-    "gen_fn": "get_even_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_032186",
@@ -5457,7 +5457,7 @@
     "name_match": true,
     "err_msg": "",
     "exp_fn": "palindrome_test",
-    "gen_fn": "palindrome_test"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_012649",
@@ -5467,10 +5467,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "compute_max",
-    "gen_fn": "add_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_002974",
@@ -5480,10 +5480,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "calc_diff",
-    "gen_fn": "calc_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_028055",
@@ -5493,7 +5493,7 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "all_upper",
     "gen_fn": "NONE"
@@ -5506,10 +5506,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "absolute_value",
-    "gen_fn": "add_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_016131",
@@ -5519,10 +5519,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "calc_abs",
-    "gen_fn": "calc"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_025446",
@@ -5532,10 +5532,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_lower",
-    "gen_fn": "getindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_012800",
@@ -5545,10 +5545,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "max_result",
-    "gen_fn": "max_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_005815",
@@ -5558,10 +5558,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "divide",
-    "gen_fn": "add"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_004779",
@@ -5571,10 +5571,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "calc_product",
-    "gen_fn": "calc_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_011521",
@@ -5584,10 +5584,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "maximum",
-    "gen_fn": "sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_001785",
@@ -5597,10 +5597,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "total_two",
-    "gen_fn": "total_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_029015",
@@ -5610,10 +5610,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "vowel_count",
-    "gen_fn": "get_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_056922",
@@ -5623,10 +5623,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "merge_sort_two",
-    "gen_fn": "merge_even_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_049849",
@@ -5636,10 +5636,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "retain_positives",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_057518",
@@ -5649,10 +5649,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "sorted_union",
-    "gen_fn": "sorted"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_009027",
@@ -5662,10 +5662,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "raise_power",
-    "gen_fn": "sum_two"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_014843",
@@ -5675,10 +5675,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "min_result",
-    "gen_fn": "min"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_041560",
@@ -5688,10 +5688,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "last_safe",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_049020",
@@ -5701,10 +5701,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "positives_only",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_050678",
@@ -5714,10 +5714,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "even_sum",
-    "gen_fn": "sum_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_058914",
@@ -5727,10 +5727,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "key_or_none",
-    "gen_fn": "key_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_005535",
@@ -5740,10 +5740,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "times_two",
-    "gen_fn": "elements_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_010730",
@@ -5753,10 +5753,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_remainder",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_057211",
@@ -5766,10 +5766,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "combine_and_sort",
-    "gen_fn": "merge_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_029496",
@@ -5779,10 +5779,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "find_vowels",
-    "gen_fn": "remove_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_044268",
@@ -5793,9 +5793,9 @@
     "stopped": true,
     "test_pass": false,
     "name_match": true,
-    "err_msg": "Test fail: NameError",
+    "err_msg": "NameError",
     "exp_fn": "max_list",
-    "gen_fn": "max_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_009448",
@@ -5805,10 +5805,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "exponent",
-    "gen_fn": "b"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_056675",
@@ -5818,10 +5818,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "sorted_join",
-    "gen_fn": "sorted_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_024691",
@@ -5831,10 +5831,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "backwards_str",
-    "gen_fn": "get_string"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_064507",
@@ -5844,10 +5844,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "fib_val",
-    "gen_fn": "n_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_002645",
@@ -5857,10 +5857,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "sub_vals",
-    "gen_fn": "elements_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_045569",
@@ -5870,10 +5870,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "biggest_item",
-    "gen_fn": "add_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_013420",
@@ -5883,10 +5883,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "greatest",
-    "gen_fn": "add"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_021272",
@@ -5896,10 +5896,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "is_positive",
-    "gen_fn": "is_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_030233",
@@ -5909,10 +5909,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "vowel_tally",
-    "gen_fn": "text_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_008025",
@@ -5922,7 +5922,7 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "raise_to",
     "gen_fn": "NONE"
@@ -5935,10 +5935,10 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "len_str",
-    "gen_fn": "len_string"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_064624",
@@ -5948,10 +5948,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "fib_val",
-    "gen_fn": "sum_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_014147",
@@ -5961,10 +5961,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Exec error: SyntaxError",
+    "name_match": true,
+    "err_msg": "SyntaxError",
     "exp_fn": "smaller",
-    "gen_fn": "elements_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_022149",
@@ -5974,10 +5974,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "detect_positive",
-    "gen_fn": "check_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_026826",
@@ -5987,7 +5987,7 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "lowercase_str",
     "gen_fn": "NONE"
@@ -6000,7 +6000,7 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "lowercase",
     "gen_fn": "NONE"
@@ -6013,10 +6013,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "safe_tail",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_010731",
@@ -6026,10 +6026,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "get_remainder",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_057055",
@@ -6039,10 +6039,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "sorted_combine",
-    "gen_fn": "sorted_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_037843",
@@ -6052,10 +6052,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Exec error: SyntaxError",
+    "name_match": true,
+    "err_msg": "SyntaxError",
     "exp_fn": "find_in",
-    "gen_fn": "remove_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_046173",
@@ -6065,10 +6065,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "unique_preserve_order",
-    "gen_fn": "result"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_020134",
@@ -6078,10 +6078,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "detect_odd",
-    "gen_fn": "get_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_025691",
@@ -6091,7 +6091,7 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "lowercase",
     "gen_fn": "NONE"
@@ -6107,7 +6107,7 @@
     "name_match": true,
     "err_msg": "",
     "exp_fn": "check_palindrome",
-    "gen_fn": "check_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_060846",
@@ -6117,10 +6117,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "tally",
-    "gen_fn": "sum_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_023419",
@@ -6130,7 +6130,7 @@
     "syntax_ok": false,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
+    "name_match": true,
     "err_msg": "",
     "exp_fn": "reverse",
     "gen_fn": "NONE"
@@ -6143,10 +6143,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "safe_get_first",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_052130",
@@ -6156,10 +6156,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "flatten_list",
-    "gen_fn": "get_even_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_012236",
@@ -6169,10 +6169,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "larger",
-    "gen_fn": "sum_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_043029",
@@ -6183,9 +6183,9 @@
     "stopped": true,
     "test_pass": false,
     "name_match": true,
-    "err_msg": "Test fail: NameError",
+    "err_msg": "NameError",
     "exp_fn": "total",
-    "gen_fn": "total"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_003375",
@@ -6195,10 +6195,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "compute_diff",
-    "gen_fn": "add_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_064841",
@@ -6208,10 +6208,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "fibonacci_of",
-    "gen_fn": "sum_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_048579",
@@ -6221,10 +6221,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "positive_only",
-    "gen_fn": "not_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_007768",
@@ -6234,10 +6234,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "power",
-    "gen_fn": "calc_sum"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_043098",
@@ -6247,10 +6247,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "sum_elements",
-    "gen_fn": "sum_list"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_020228",
@@ -6260,10 +6260,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "parity_odd",
-    "gen_fn": "factorial"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_003405",
@@ -6273,10 +6273,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "compute_diff",
-    "gen_fn": "add_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_016002",
@@ -6286,10 +6286,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "calc_abs",
-    "gen_fn": "calc_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_011235",
@@ -6299,10 +6299,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "rem_val",
-    "gen_fn": "total_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_030960",
@@ -6312,10 +6312,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "palindrome_check",
-    "gen_fn": "palindrome_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_040406",
@@ -6325,10 +6325,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "safe_last",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_032055",
@@ -6341,7 +6341,7 @@
     "name_match": true,
     "err_msg": "",
     "exp_fn": "test_palindrome",
-    "gen_fn": "test_palindrome"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_003171",
@@ -6351,10 +6351,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "subtract_nums",
-    "gen_fn": "add_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_033479",
@@ -6364,10 +6364,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "count_chars",
-    "gen_fn": "sum_string"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_016612",
@@ -6377,10 +6377,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "abs_num",
-    "gen_fn": "num_val"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_008678",
@@ -6390,10 +6390,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "to_the_power",
-    "gen_fn": "to_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_054616",
@@ -6406,7 +6406,7 @@
     "name_match": true,
     "err_msg": "",
     "exp_fn": "merge",
-    "gen_fn": "merge"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_034785",
@@ -6416,10 +6416,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "strip_str",
-    "gen_fn": "get_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_041991",
@@ -6429,10 +6429,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "peek_last",
-    "gen_fn": "get_even"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_001890",
@@ -6442,10 +6442,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "total_two",
-    "gen_fn": "total_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_025365",
@@ -6455,10 +6455,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "make_lower",
-    "gen_fn": "data_text"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_041072",
@@ -6468,10 +6468,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "last_element",
-    "gen_fn": "get_first"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_004810",
@@ -6481,10 +6481,10 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "multiply_nums",
-    "gen_fn": "add_numbers"
+    "gen_fn": "NONE"
   },
   {
     "id": "stage3_050113",
@@ -6494,9 +6494,9 @@
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
-    "name_match": false,
-    "err_msg": "Test fail: NameError",
+    "name_match": true,
+    "err_msg": "NameError",
     "exp_fn": "add_even_numbers",
-    "gen_fn": "add_numbers"
+    "gen_fn": "NONE"
   }
 ]

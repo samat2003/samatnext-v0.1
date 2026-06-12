@@ -37,8 +37,8 @@
     "SamatNext Curriculum lr=3e-6": {
         "model_display_name": "SamatNext",
         "training_path": "Curriculum lr=3e-6",
-        "stage5_pass_rate": 0.976,
-        "stage3_retention_rate": 0.868,
-        "stage2e_pass_rate": 0.06333333333333334
+        "stage5_pass_rate": 0.83,
+        "stage3_retention_rate": 0.702,
+        "stage2e_pass_rate": 0.043333333333333335
     }
 }

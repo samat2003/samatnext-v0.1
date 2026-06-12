@@ -38,7 +38,8 @@ Under our specific, controlled small-model curriculum setup (Stage 2A -> Stage 3
 | **Transformer** | Curriculum lr=3e-6 | 49.4% | 4.0% | 0.0% |
 | **Transformer** | Curriculum Rescue lr=1e-5 | 97.6% | 6.0% | 3.0% |
 | **Transformer** | Curriculum Rescue lr=3e-5 | 97.6% | 3.2% | 2.0% |
-| **SamatNext** | Curriculum lr=3e-6 | 97.6% | **86.8%** | **6.3%** |
+| **SamatNext** | Curriculum lr=3e-6 | 83.0% | **70.2%** | **4.3%** |
+*Note: The current main table is generated from cached evaluation JSONs unless reproduce_main_table.py is run with --force-eval. Paper-grade reproduction requires --force-eval and full per-example eval artifacts.*
 
 ### Correct Interpretation
 This is evidence of stronger curriculum-retention / sequential-plasticity behavior **under this setup**. It highlights a potential structural flaw in how standard Transformers handle sequential objective shifts. It is **not** proof of general coding superiority, nor does it guarantee the architecture scales better than Transformers to billions of parameters.
