@@ -57,10 +57,10 @@ The headline experiment asks: after training through the final stage, how much S
 | :--- | :--- | :---: | :---: | :---: |
 | **Transformer** | Scratch → Stage5 | 97.6% | 0.8% | 3.3% |
 | **SamatNext** | Scratch → Stage5 | 97.6% | 0.8% | 1.3% |
-| **Transformer** | Curriculum lr=3e-6 | 49.4% | 4.0% | 0.0% |
+| **Transformer** | Curriculum LR=3e-6 | 49.4% | 4.0% | 0.0% |
 | **Transformer** | Curriculum LR=1e-5 | 97.6% | 6.0% | 3.0% |
 | **Transformer** | Curriculum LR=3e-5 | 97.6% | 3.2% | 2.0% |
-| **SamatNext** | Curriculum lr=3e-6 | 83.0% | 70.2% | 4.3% |
+| **SamatNext** | Curriculum LR=3e-6 | 83.0% | 70.2% | 4.3% |
 
 Full per-example artifacts are stored locally under `results/runs/` and are gitignored because they may be large. To reproduce them, run `make reproduce-main-table-fresh`.
 
@@ -90,11 +90,15 @@ Or directly:
 python scripts/reproduce_main_table.py --force-eval --timeout-seconds 5 --output results/runs/fresh_eval_<timestamp>/
 ```
 
-Frozen artifact commit:
+Reproducibility artifact commit:
 `525665fe790b18668251dad6698fe9bfe0ca27ca`
 
 External artifact archive:
-GitHub Release `v0.1.0-reproducibility`
+GitHub Release [`v0.1.0-reproducibility`](https://github.com/samat2003/samatnext-v0.1/releases/tag/v0.1.0-reproducibility)
+
+Paper status:
+Technical report in preparation.
+
 
 ## Limitations
 - The curriculum is synthetic and narrow, focused on Python code tasks.
