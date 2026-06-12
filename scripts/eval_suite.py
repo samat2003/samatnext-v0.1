@@ -112,7 +112,7 @@ except Exception as e:
     except subprocess.TimeoutExpired:
         return False, "Timeout"
 
-def evaluate_subset(name, data, model, tok, device, return_details=False):
+def evaluate_subset(name, data, model, tok, device, return_details=False, timeout_seconds=None):
     results = []
     
     for i, ex in enumerate(data):
@@ -176,7 +176,10 @@ def evaluate_subset(name, data, model, tok, device, return_details=False):
         if syntax_ok and ("tests" in ex or "hidden_tests" in ex):
             fn_to_test = exp_fn if exp_fn else gen_fn
             tests_to_run = ex.get("tests", []) + ex.get("hidden_tests", [])
-            timeout_val = 2.0 if ("HumanEval" in name or "he_" in name) else 1.0
+            if timeout_seconds is not None:
+                timeout_val = timeout_seconds
+            else:
+                timeout_val = 2.0 if ("HumanEval" in name or "he_" in name) else 1.0
             test_pass, err_msg = run_test_worker_subprocess(eval_gen, fn_to_test, tests_to_run, timeout_val)
                 
         results.append({

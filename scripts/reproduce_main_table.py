@@ -6,6 +6,7 @@ import argparse
 import datetime
 import hashlib
 import shutil
+import subprocess
 import torch
 
 # Try importing transformers safely
@@ -128,7 +129,36 @@ def load_data(stage_key):
     else:
         raise ValueError(f"Unknown stage: {stage_key}")
 
-def run_evaluation(device, tokenizer_name, output_dir):
+def get_git_info():
+    commit = "UNKNOWN"
+    is_dirty = False
+    try:
+        commit = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True, cwd=ROOT).strip()
+        diff = subprocess.run(["git", "diff", "--quiet"], capture_output=True, cwd=ROOT)
+        is_dirty = (diff.returncode != 0)
+    except Exception:
+        pass
+    return commit, is_dirty
+
+def get_dependency_versions():
+    deps = {}
+    for mod_name in ["torch", "transformers", "numpy", "tokenizers", "accelerate"]:
+        try:
+            mod = __import__(mod_name)
+            deps[mod_name] = getattr(mod, "__version__", "UNKNOWN")
+        except ImportError:
+            deps[mod_name] = "NOT_INSTALLED"
+    return deps
+
+def get_gpu_vram():
+    if torch.cuda.is_available():
+        try:
+            return f"{torch.cuda.get_device_properties(0).total_memory // 1024**2} MB"
+        except Exception:
+            return "UNKNOWN"
+    return "N/A"
+
+def run_evaluation(device, tokenizer_name, output_dir, timeout_seconds):
     os.makedirs(output_dir, exist_ok=True)
     datasets_dir = os.path.join(output_dir, "datasets")
     os.makedirs(datasets_dir, exist_ok=True)
@@ -144,21 +174,43 @@ def run_evaluation(device, tokenizer_name, output_dir):
     if os.path.exists(tokenizer_name):
         tokenizer_hash = compute_sha256(tokenizer_name)
         
+    git_commit, git_dirty = get_git_info()
+    dependency_versions = get_dependency_versions()
+    
     results = {}
-    eval_manifest = {}
+    eval_manifest = {
+        "timeout_seconds": timeout_seconds,
+        "metrics": {}
+    }
+    
     run_manifest = {
         "timestamp": datetime.datetime.now().isoformat(),
+        "exact_command": sys.argv,
+        "git_commit_hash": git_commit,
+        "git_dirty_status": git_dirty,
+        "timeout_seconds": timeout_seconds,
+        "output_directory": output_dir,
         "system_info": {
             "device": str(device),
+            "python_version": sys.version,
             "pytorch_version": torch.__version__,
-            "transformers_version": transformers.__version__ if transformers else "UNKNOWN"
+            "cuda_version": torch.version.cuda if (torch.cuda.is_available() and hasattr(torch.version, 'cuda')) else "N/A",
+            "gpu_name": torch.cuda.get_device_name(0) if device.type == "cuda" else "N/A",
+            "gpu_vram": get_gpu_vram(),
+            "dependencies": dependency_versions
+        },
+        "decoding_config": {
+            "max_new_tokens": 192,
+            "temperature": 0.0,
+            "do_sample": False,
+            "dtype": "torch.float32"
+        },
+        "seed_info": {
+            "stage5_random_seed": 99999
         },
         "model_artifacts": {}
     }
     
-    if device.type == "cuda":
-        run_manifest["system_info"]["gpu_name"] = torch.cuda.get_device_name(0)
-        
     copy_list = []
     
     for model_key, model_meta in MODELS_CONFIG.items():
@@ -178,7 +230,10 @@ def run_evaluation(device, tokenizer_name, output_dir):
             "checkpoint_path": checkpoint_path,
             "checkpoint_hash": checkpoint_hash,
             "config_path": config_path,
-            "config_hash": config_hash
+            "config_hash": config_hash,
+            "tokenizer_path_or_name": tokenizer_name,
+            "tokenizer_hash": tokenizer_hash,
+            "stages": {}
         }
         
         print(f"Loading model config from {config_path}...")
@@ -201,7 +256,7 @@ def run_evaluation(device, tokenizer_name, output_dir):
         model.eval()
         
         results[model_key] = {}
-        eval_manifest[model_key] = {}
+        eval_manifest["metrics"][model_key] = {}
         
         for stage_key in ["stage5", "stage3", "stage2e"]:
             print(f"Evaluating {stage_key}...")
@@ -219,10 +274,18 @@ def run_evaluation(device, tokenizer_name, output_dir):
                 
             dataset_hash = compute_sha256(dataset_path)
             
-            metrics, eval_results = evaluate_subset(f"{model_key}_{stage_key}", data, model, tokenizer, device, return_details=True)
+            run_manifest["model_artifacts"][model_key]["stages"][stage_key] = {
+                "eval_dataset_path": dataset_path,
+                "eval_dataset_hash": dataset_hash
+            }
+            
+            metrics, eval_results = evaluate_subset(
+                f"{model_key}_{stage_key}", data, model, tokenizer, device, 
+                return_details=True, timeout_seconds=timeout_seconds
+            )
             
             results[model_key][stage_key] = metrics["pass_rate"]
-            eval_manifest[model_key][stage_key] = metrics
+            eval_manifest["metrics"][model_key][stage_key] = metrics
             
             detailed_records = []
             for item in eval_results:
@@ -327,6 +390,7 @@ def main():
     parser.add_argument("--force-eval", action="store_true", help="Force run evaluations on model checkpoints instead of loading cached results.")
     parser.add_argument("--tokenizer", type=str, default="Qwen/Qwen2.5-Coder-3B-Instruct")
     parser.add_argument("--output", type=str, default=None, help="Output directory for fresh evaluation artifacts.")
+    parser.add_argument("--timeout-seconds", type=float, default=2.0, help="Subprocess execution timeout limit for code tests.")
     args = parser.parse_args()
     
     is_cached = True
@@ -340,7 +404,7 @@ def main():
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         print(f"Running full fresh evaluation on device: {device}")
         print(f"Saving all raw per-task output artifacts to: {args.output}")
-        results = run_evaluation(device, args.tokenizer, args.output)
+        results = run_evaluation(device, args.tokenizer, args.output, args.timeout_seconds)
     else:
         print("Loading pre-computed evaluation results from results/...")
         try:
@@ -352,7 +416,7 @@ def main():
             timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
             args.output = os.path.join(ROOT, "results", "runs", f"fresh_eval_{timestamp}")
             device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-            results = run_evaluation(device, args.tokenizer, args.output)
+            results = run_evaluation(device, args.tokenizer, args.output, args.timeout_seconds)
             
     # Output JSON table format
     final_table = {}
@@ -405,10 +469,41 @@ def main():
                 
             f.write(f"| {m_name} | {t_path} | {s5_rate} | {s3_rate} | {s2_rate} |\n")
             
-        if is_cached:
-            f.write("\n*Note: The current main table is generated from cached evaluation JSONs unless reproduce_main_table.py is run with --force-eval. Paper-grade reproduction requires --force-eval and full per-example eval artifacts.*\n")
+        # Detect if a fresh evaluation run has been performed to display the correct note
+        fresh_note = None
+        runs_dir = os.path.join(ROOT, "results", "runs")
+        if os.path.exists(runs_dir):
+            fresh_runs = [d for d in os.listdir(runs_dir) if d.startswith("fresh_eval_")]
+            if fresh_runs:
+                # Sort by directory name to get the latest run
+                latest_run = sorted(fresh_runs)[-1]
+                latest_run_dir = os.path.join(runs_dir, latest_run)
+                manifest_path = os.path.join(latest_run_dir, "run_manifest.json")
+                if os.path.exists(manifest_path):
+                    try:
+                        with open(manifest_path, "r", encoding="utf-8") as mf:
+                            manifest_data = json.load(mf)
+                        ts = manifest_data.get("timestamp", "UNKNOWN")
+                        if ts != "UNKNOWN":
+                            try:
+                                dt = datetime.datetime.fromisoformat(ts)
+                                ts_friendly = dt.strftime("%Y-%m-%d %H:%M:%S")
+                            except Exception:
+                                ts_friendly = ts
+                        else:
+                            ts_friendly = "UNKNOWN"
+                        out_dir_friendly = f"results/runs/{latest_run}"
+                        fresh_note = f"\n*Note: This table was generated from a fresh evaluation run on {ts_friendly}. Full per-example artifacts are saved in {out_dir_friendly}.*\n"
+                    except Exception:
+                        pass
+
+        if not is_cached:
+            out_formatted = args.output.replace("\\", "/")
+            f.write(f"\n*Note: This table was generated from a fresh evaluation run on {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}. Full per-example artifacts are saved in {out_formatted}.*\n")
+        elif fresh_note:
+            f.write(fresh_note)
         else:
-            f.write(f"\n*Note: This table was generated from a fresh evaluation run on {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}. Full per-example artifacts are saved in {args.output}.*\n")
+            f.write("\n*Note: The current main table is generated from cached evaluation JSONs unless reproduce_main_table.py is run with --force-eval. Paper-grade reproduction requires --force-eval and full per-example eval artifacts.*\n")
             
     print(f"Saved main retention table Markdown report to {md_path}")
     
@@ -426,7 +521,7 @@ def main():
         table_only_text = "\n".join(table_only_lines)
         
         import re
-        pattern = r"(### Results Table\n\n).*?(\n\n### Correct Interpretation)"
+        pattern = r"(### Results Table\n\n).*?(\n\n## Parameter Matching)"
         table_only_text_escaped = table_only_text.replace("\\", "\\\\")
         new_content = re.sub(pattern, rf"\g<1>{table_only_text_escaped}\g<2>", readme_content, flags=re.DOTALL)
         

@@ -9,4 +9,4 @@
 | **Transformer** | Curriculum Rescue lr=3e-5 | 97.6% | 3.2% | 2.0% |
 | **SamatNext** | Curriculum lr=3e-6 | 83.0% | **70.2%** | **4.3%** |
 
-*Note: The current main table is generated from cached evaluation JSONs unless reproduce_main_table.py is run with --force-eval. Paper-grade reproduction requires --force-eval and full per-example eval artifacts.*
+*Note: This table was generated from a fresh evaluation run on 2026-06-12 09:46:46. Full per-example artifacts are saved in results/runs/fresh_eval_20260612_094500.*
