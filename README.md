@@ -62,7 +62,7 @@ make reproduce-main-table-fresh
 ```
 Or directly:
 ```bash
-python scripts/reproduce_main_table.py --force-eval --timeout-seconds 5 --output results/runs/fresh_eval_<timestamp>/
+python scripts/reproduce_main_table.py --force-eval --timeout-seconds 5 --output results/runs/fresh_eval_timestamp/
 ```
 
 ## Licensing
