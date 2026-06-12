@@ -69,7 +69,7 @@ Peak GPU memory usage during evaluation (batch size 1, sequence length up to 204
 
 ## Evaluation Protocol
 - **Greedy Decoding:** Temperature 0.0, Argmax selection.
-- **Subprocess Isolation:** Evaluation executes model-generated Python code using subprocess isolation with timeout and resource limits. This is not a complete security boundary. Run evaluation inside a container or VM when evaluating untrusted models or code. This is not a secure sandbox.
+- **Subprocess Isolation:** Evaluation executes model-generated Python code using subprocess isolation with timeout and resource limits. This is not a secure sandbox or complete security boundary. Run evaluation inside a container or VM when evaluating untrusted models or generated code.
 - **Metrics:** AST parsing checks syntax status, and execution assertions measure pass/fail rates.
 
 ## Reproducibility
@@ -89,6 +89,8 @@ To run a fresh evaluation run on model checkpoints and output full detailed arti
 python scripts/reproduce_main_table.py --force-eval --timeout-seconds 5 --output results/runs/fresh_eval_<timestamp>/
 ```
 
+Full fresh evaluation artifacts can be regenerated locally using `python scripts/reproduce_main_table.py --force-eval --timeout-seconds 5 --output results/runs/fresh_eval_<timestamp>/`. The `results/runs/` directory is gitignored because per-example artifacts may be large. External artifact archive: pending.
+
 ## Data and Contamination Control
 Training data is strictly filtered for contamination against HumanEval and MBPP via AST-level subtree matching and exact string overlays.
 - **Contamination Report:** See `reports/contamination_report.md` for detail.
@@ -103,7 +105,7 @@ The repository follows a strict multi-license boundary configuration:
 - **Paper Draft / Outline:** Subject to CC-BY-4.0.
 
 ## Safety
-Evaluation executes model-generated Python code using subprocess isolation with timeout and resource limits. This is not a complete security boundary. Run evaluation inside a container or VM when evaluating untrusted models or code. This is not a secure sandbox.
+Evaluation executes model-generated Python code using subprocess isolation with timeout and resource limits. This is not a secure sandbox or complete security boundary. Run evaluation inside a container or VM when evaluating untrusted models or generated code.
 
 Do not run evaluations on systems with access to sensitive credentials or networks. For safety details, see [SECURITY.md](SECURITY.md).
 

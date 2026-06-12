@@ -71,8 +71,106 @@ def main():
         except Exception as e:
             print(f"FAIL: Error parsing parameter counts: {e}")
             success = False
-    else:
-        print("FAIL: parameter_counts.json is missing.")
+    # 4. arXiv claim hygiene and licensing checks
+    print("\n--- 4. arXiv Claim Hygiene & Licensing Checks ---")
+    hygiene_success = True
+    try:
+        readme_path = os.path.join(ROOT, "README.md")
+        data_licenses_path = os.path.join(ROOT, "DATA_LICENSES.md")
+        ckpt_path = os.path.join(ROOT, "CHECKPOINT_LICENSE.md")
+        model_card_path = os.path.join(ROOT, "MODEL_CARD.md")
+        table_md_path = os.path.join(ROOT, "results", "tables", "main_retention_table.md")
+        table_json_path = os.path.join(ROOT, "results", "tables", "main_retention_table.json")
+        
+        readme = open(readme_path, "r", encoding="utf-8").read()
+        data_licenses = open(data_licenses_path, "r", encoding="utf-8").read()
+        ckpt = open(ckpt_path, "r", encoding="utf-8").read()
+        model_card = open(model_card_path, "r", encoding="utf-8").read()
+        table_md = open(table_md_path, "r", encoding="utf-8").read()
+        with open(table_json_path, "r", encoding="utf-8") as f:
+            table_json = json.load(f)
+            
+        # Checks on README
+        stale_cmds = ["train_stage2a.py", "train_stage3.py", "train_stage5.py", "scripts/compare_models.py"]
+        for cmd in stale_cmds:
+            if cmd in readme:
+                print(f"FAIL: README contains stale command: {cmd}")
+                hygiene_success = False
+                
+        req_cmds = ["make test", "make reproduce-main-table", "--force-eval"]
+        for cmd in req_cmds:
+            if cmd not in readme:
+                print(f"FAIL: README is missing required command/flag reference: {cmd}")
+                hygiene_success = False
+                
+        fresh_vals = ["83.0%", "70.2%", "4.3%"]
+        for val in fresh_vals:
+            if val not in readme:
+                print(f"FAIL: README is missing fresh result value: {val}")
+                hygiene_success = False
+                
+        if "86.8%" in readme:
+            print("FAIL: README contains stale result value: 86.8%")
+            hygiene_success = False
+            
+        if "execution sandboxes" in readme.lower() or "subprocess sandboxing" in readme.lower():
+            print("FAIL: README contains unsafe sandbox wording ('execution sandboxes' or 'subprocess sandboxing')")
+            hygiene_success = False
+            
+        if "External artifact archive: pending" not in readme:
+            print("FAIL: README must contain 'External artifact archive: pending' because no remote archive is set up yet.")
+            hygiene_success = False
+            
+        if "CC BY-NC-SA 4.0" not in readme:
+            print("FAIL: README is missing CC BY-NC-SA 4.0 reference.")
+            hygiene_success = False
+            
+        # Checks on DATA_LICENSES.md
+        if "Qwen Research license" not in data_licenses:
+            print("FAIL: DATA_LICENSES.md is missing 'Qwen Research license' citation.")
+            hygiene_success = False
+            
+        if "Qwen2.5-Coder-3B model is subject to the Qwen Research license" not in data_licenses:
+            print("FAIL: DATA_LICENSES.md must explicitly cite the Qwen Research license for Qwen2.5-Coder-3B.")
+            hygiene_success = False
+            
+        if "Qwen2.5-Coder-3B" in data_licenses and "Apache License 2.0 (under Qwen2.5-Coder model terms)" in data_licenses:
+            print("FAIL: DATA_LICENSES.md claims Qwen2.5-Coder-3B is Apache-2.0.")
+            hygiene_success = False
+            
+        # Checks on CHECKPOINT_LICENSE.md
+        if "CC BY-NC-SA 4.0" not in ckpt:
+            print("FAIL: CHECKPOINT_LICENSE.md is missing CC BY-NC-SA 4.0 statement.")
+            hygiene_success = False
+            
+        # Checks on MODEL_CARD.md
+        if "CC BY-NC-SA 4.0" not in model_card and "CHECKPOINT_LICENSE.md" not in model_card:
+            print("FAIL: MODEL_CARD.md does not reference CC BY-NC-SA 4.0 or CHECKPOINT_LICENSE.md.")
+            hygiene_success = False
+            
+        # Checks on tables
+        for val in fresh_vals:
+            if val not in table_md:
+                print(f"FAIL: main_retention_table.md is missing fresh result value: {val}")
+                hygiene_success = False
+                
+        row = table_json.get("SamatNext Curriculum lr=3e-6", {})
+        if row.get("stage5_pass_rate") != 0.83:
+            print(f"FAIL: JSON has incorrect stage5_pass_rate: {row.get('stage5_pass_rate')}")
+            hygiene_success = False
+        if row.get("stage3_retention_rate") != 0.702:
+            print(f"FAIL: JSON has incorrect stage3_retention_rate: {row.get('stage3_retention_rate')}")
+            hygiene_success = False
+        if abs(row.get("stage2e_pass_rate", 0) - 0.043333333333333335) > 1e-12:
+            print(f"FAIL: JSON has incorrect stage2e_pass_rate: {row.get('stage2e_pass_rate')}")
+            hygiene_success = False
+            
+        if hygiene_success:
+            print("PASS: All arXiv claim hygiene, licenses, and result-table synchronization checks passed.")
+        else:
+            success = False
+    except Exception as e:
+        print(f"FAIL: Error during arXiv claim hygiene checks: {e}")
         success = False
         
     print("\n==================================================")

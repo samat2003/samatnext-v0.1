@@ -29,5 +29,5 @@ Every dataset used in the curriculum learning setup is documented below. In acco
 - **Source:** Synthetic outputs generated from the Qwen2.5-Coder-3B-Instruct model.
 - **License:** License-sensitive (subject to upstream Qwen Research license terms).
 - **Redistribution:** Allowed. Committed under `data/stage5_teacher_distill.jsonl` for exact baseline comparison.
-- **Licensing Notice:** Teacher-generated SFT examples were generated using Qwen2.5-Coder-3B-Instruct. The upstream Qwen2.5-Coder-3B model is subject to the Qwen Research license, not Apache-2.0. Redistribution and downstream use of generated examples should be treated conservatively and verified against upstream terms before public dataset release. If these examples are included in the repository, mark them as license-sensitive and not automatically Apache-2.0.
+- **Licensing Notice:** Teacher-generated SFT examples were generated using Qwen2.5-Coder-3B-Instruct. The upstream Qwen2.5-Coder-3B model is subject to the Qwen Research license, not Apache-2.0. Redistribution and downstream use of generated examples should be treated conservatively and verified against upstream terms before public dataset release. These teacher-generated examples are license-sensitive and are not automatically covered by the repository’s Apache-2.0 source-code license.
 

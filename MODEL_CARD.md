@@ -18,4 +18,4 @@ SamatNext-v0.1 is an experimental research model intended to study whether hybri
 
 ## Contamination Filtering & Safety
 - **HumanEval / MBPP:** Explicitly held out from all training paths. Contamination tests are run prior to training.
-- **Safety Warning:** Evaluation executes model-generated Python code using subprocess isolation with timeout and resource limits. This is not a complete security boundary. Run evaluation inside a container or VM when evaluating untrusted models or code. This is not a secure sandbox.
+- **Safety Warning:** Evaluation executes model-generated Python code using subprocess isolation with timeout and resource limits. This is not a secure sandbox or complete security boundary. Run evaluation inside a container or VM when evaluating untrusted models or generated code.
