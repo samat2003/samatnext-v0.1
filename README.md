@@ -1,6 +1,8 @@
 # SamatNext-v0.1
 
-[![CI](https://github.com/samat2003/samatnext-v0.1/actions/workflows/ci.yml/badge.svg)](https://github.com/samat2003/samatnext-v0.1/actions/workflows/ci.yml)## Summary
+[![CI](https://github.com/samat2003/samatnext-v0.1/actions/workflows/ci.yml/badge.svg)](https://github.com/samat2003/samatnext-v0.1/actions/workflows/ci.yml)
+
+## Summary
 SamatNext-v0.1 is an experimental language model architecture designed to investigate the sequence-modeling trade-offs between Multi-Head Attention and linear sequence mixers under staged curriculum training.
 
 ## Research Claim
