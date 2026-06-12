@@ -112,7 +112,7 @@ except Exception as e:
     except subprocess.TimeoutExpired:
         return False, "Timeout"
 
-def evaluate_subset(name, data, model, tok, device):
+def evaluate_subset(name, data, model, tok, device, return_details=False, timeout_seconds=None):
     results = []
     
     for i, ex in enumerate(data):
@@ -176,7 +176,10 @@ def evaluate_subset(name, data, model, tok, device):
         if syntax_ok and ("tests" in ex or "hidden_tests" in ex):
             fn_to_test = exp_fn if exp_fn else gen_fn
             tests_to_run = ex.get("tests", []) + ex.get("hidden_tests", [])
-            timeout_val = 2.0 if ("HumanEval" in name or "he_" in name) else 1.0
+            if timeout_seconds is not None:
+                timeout_val = timeout_seconds
+            else:
+                timeout_val = 2.0 if ("HumanEval" in name or "he_" in name) else 1.0
             test_pass, err_msg = run_test_worker_subprocess(eval_gen, fn_to_test, tests_to_run, timeout_val)
                 
         results.append({
@@ -185,7 +188,11 @@ def evaluate_subset(name, data, model, tok, device):
             "stopped_eot": stopped_eot,
             "test_pass": test_pass,
             "err_msg": err_msg,
-            "gen": gen
+            "gen": gen,
+            "prompt": prompt_str,
+            "raw": raw,
+            "eval_gen": eval_gen,
+            "tests": ex.get("tests", []) + ex.get("hidden_tests", [])
         })
             
     syn_rate = sum(1 for r in results if r["syntax_ok"]) / len(results)
@@ -200,7 +207,7 @@ def evaluate_subset(name, data, model, tok, device):
     name_rate = sum(1 for r in results if r["err_msg"] == "NameError") / len(results)
     exc_rate = sum(1 for r in results if r["err_msg"] not in ["", "Timeout", "AssertionError", "NameError"]) / len(results)
     
-    return {
+    summary = {
         "pass_rate": test_rate,
         "syntax_rate": syn_rate,
         "eos_rate": eos_rate,
@@ -212,6 +219,10 @@ def evaluate_subset(name, data, model, tok, device):
         "name_rate": name_rate,
         "exc_rate": exc_rate
     }
+    
+    if return_details:
+        return summary, results
+    return summary
 
 def run_all_evals(model, tok, device):
     metrics = {}

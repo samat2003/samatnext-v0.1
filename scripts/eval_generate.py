@@ -91,7 +91,13 @@ def main():
 
     print(f"Loading checkpoint from {args.checkpoint}...")
     state_dict = torch.load(args.checkpoint, map_location=device, weights_only=True)
-    model.load_state_dict(state_dict, strict=True)
+    missing_keys, unexpected_keys = model.load_state_dict(state_dict, strict=False)
+    important_missing = [k for k in missing_keys if "freqs_cis" not in k]
+    important_unexpected = [k for k in unexpected_keys if "freqs_cis" not in k]
+    if important_missing:
+        raise RuntimeError(f"Missing key(s) in state_dict: {important_missing}")
+    if important_unexpected:
+        raise RuntimeError(f"Unexpected key(s) in state_dict: {important_unexpected}")
     model.eval()
 
     # Load dataset

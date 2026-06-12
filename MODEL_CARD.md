@@ -4,7 +4,7 @@
 - **Architecture:** Hybrid Decoder alternating Differential Attention layers and linear-state mixers (DeltaNet-inspired).
 - **Parameters:** ~356 Million (exact parameter matched to Transformer baseline within 8 parameters).
 - **Context Length:** 8,192 (trained on 512 context size for curriculum steps).
-- **Vocabulary Size:** 151,936.
+- **Vocabulary Size:** 151,936 (configured to match standard Qwen2.5-Coder embedding dimensions; the tokenizer itself has 151,665 active tokens, with 271 reserved/unused).
 - **Language:** Python source code.
 - **License:** Model code is licensed under Apache-2.0. Checkpoint weights are subject to the terms in `CHECKPOINT_LICENSE.md`.
 

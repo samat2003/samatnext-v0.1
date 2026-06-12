@@ -49,8 +49,14 @@ def main():
     if os.path.exists(checkpoint_path):
         print(f"Loading checkpoint from: {checkpoint_path}")
         state_dict = torch.load(checkpoint_path, map_location="cpu", weights_only=True)
-        model.load_state_dict(state_dict, strict=True)
-        print("Checkpoint loaded successfully (strict match).")
+        missing_keys, unexpected_keys = model.load_state_dict(state_dict, strict=False)
+        important_missing = [k for k in missing_keys if "freqs_cis" not in k]
+        important_unexpected = [k for k in unexpected_keys if "freqs_cis" not in k]
+        if important_missing:
+            raise RuntimeError(f"Missing key(s) in state_dict: {important_missing}")
+        if important_unexpected:
+            raise RuntimeError(f"Unexpected key(s) in state_dict: {important_unexpected}")
+        print("Checkpoint loaded successfully (matched parameters).")
     else:
         print(f"Warning: Checkpoint not found at {checkpoint_path} (skipping checkpoint loading)")
         

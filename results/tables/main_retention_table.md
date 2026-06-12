@@ -7,4 +7,6 @@
 | **Transformer** | Curriculum lr=3e-6 | 49.4% | 4.0% | 0.0% |
 | **Transformer** | Curriculum Rescue lr=1e-5 | 97.6% | 6.0% | 3.0% |
 | **Transformer** | Curriculum Rescue lr=3e-5 | 97.6% | 3.2% | 2.0% |
-| **SamatNext** | Curriculum lr=3e-6 | 97.6% | **86.8%** | **6.3%** |
+| **SamatNext** | Curriculum lr=3e-6 | 83.0% | **70.2%** | **4.3%** |
+
+*Note: This table was generated from a fresh evaluation run on 2026-06-12 09:46:46. Full per-example artifacts are saved in results/runs/fresh_eval_20260612_094500.*
