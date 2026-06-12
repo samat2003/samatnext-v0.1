@@ -43,7 +43,7 @@ This is **evidence of stronger curriculum-retention / sequential-plasticity beha
 ## Limitations
 - **Small Scale**: The models are <400M parameters. These results may not extrapolate to 7B+ scale.
 - **Narrow Curriculum**: The domain is restricted to short, highly-controlled Python coding tasks.
-- **Experimental Eval**: Evaluation was done using strict string matching and isolated sandbox unit-tests on custom datasets, rather than standard benchmarks like HumanEval.
+- **Experimental Eval**: Evaluation was done using strict string matching and subprocess isolation with timeout and resource limits. This is not a secure sandbox.
 
 ## Why Stage 6B/6C are Excluded
 Attempts to extend this curriculum into "Stage 6" (completion-only, HumanEval-style targets) were abandoned. The datasets used for completion training contained corrupted targets, doctest contamination, and caused severe metric instability. Because the eval `<|im_end|>` stop-token bug conflated format mismatch with catastrophic forgetting, all Stage 6 results have been archived and are excluded from architecture evidence.

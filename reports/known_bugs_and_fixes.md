@@ -35,7 +35,7 @@ During the development and testing of SamatNext and the curriculum pipeline, sev
 ### 6. Unsafe Raw `exec()` in Evaluation
 - **Symptom:** Evaluation script would completely hang indefinitely.
 - **Root Cause:** `exec()` was run directly in the main python thread. If the model generated `while True: pass`, the evaluation thread locked forever.
-- **Fix:** All evaluation now executes inside a subprocess sandbox with a strict `1.0s` timeout limit.
+- **Fix:** All evaluation now executes using subprocess isolation with timeout and resource limits. This is not a secure sandbox.
 - **Affects Published Results?** No. It merely delayed the evaluation workflow.
 
 ### 7. Stage 6 Completion Contamination

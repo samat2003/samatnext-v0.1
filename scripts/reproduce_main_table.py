@@ -469,41 +469,8 @@ def main():
                 
             f.write(f"| {m_name} | {t_path} | {s5_rate} | {s3_rate} | {s2_rate} |\n")
             
-        # Detect if a fresh evaluation run has been performed to display the correct note
-        fresh_note = None
-        runs_dir = os.path.join(ROOT, "results", "runs")
-        if os.path.exists(runs_dir):
-            fresh_runs = [d for d in os.listdir(runs_dir) if d.startswith("fresh_eval_")]
-            if fresh_runs:
-                # Sort by directory name to get the latest run
-                latest_run = sorted(fresh_runs)[-1]
-                latest_run_dir = os.path.join(runs_dir, latest_run)
-                manifest_path = os.path.join(latest_run_dir, "run_manifest.json")
-                if os.path.exists(manifest_path):
-                    try:
-                        with open(manifest_path, "r", encoding="utf-8") as mf:
-                            manifest_data = json.load(mf)
-                        ts = manifest_data.get("timestamp", "UNKNOWN")
-                        if ts != "UNKNOWN":
-                            try:
-                                dt = datetime.datetime.fromisoformat(ts)
-                                ts_friendly = dt.strftime("%Y-%m-%d %H:%M:%S")
-                            except Exception:
-                                ts_friendly = ts
-                        else:
-                            ts_friendly = "UNKNOWN"
-                        out_dir_friendly = f"results/runs/{latest_run}"
-                        fresh_note = f"\n*Note: This table was generated from a fresh evaluation run on {ts_friendly}. Full per-example artifacts are saved in {out_dir_friendly}.*\n"
-                    except Exception:
-                        pass
-
-        if not is_cached:
-            out_formatted = args.output.replace("\\", "/")
-            f.write(f"\n*Note: This table was generated from a fresh evaluation run on {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}. Full per-example artifacts are saved in {out_formatted}.*\n")
-        elif fresh_note:
-            f.write(fresh_note)
-        else:
-            f.write("\n*Note: The current main table is generated from cached evaluation JSONs unless reproduce_main_table.py is run with --force-eval. Paper-grade reproduction requires --force-eval and full per-example eval artifacts.*\n")
+        # Output the required fresh-evaluation note and pending external archive notice
+        f.write("\nNote: This table was generated from a fresh evaluation run. Full per-example artifacts are stored locally under results/runs/ and are gitignored because they may be large. To reproduce them, run: python scripts/reproduce_main_table.py --force-eval --timeout-seconds 5 --output results/runs/fresh_eval_<timestamp>/.\n\nExternal artifact archive: pending.\n")
             
     print(f"Saved main retention table Markdown report to {md_path}")
     
@@ -517,7 +484,7 @@ def main():
             table_md = f.read()
             
         table_lines = table_md.split("\n")
-        table_only_lines = [line for line in table_lines if line.strip().startswith("|") or line.strip().startswith("*Note:")]
+        table_only_lines = [line for line in table_lines if not line.strip().startswith("#")]
         table_only_text = "\n".join(table_only_lines)
         
         import re
