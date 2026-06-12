@@ -17,12 +17,20 @@ from models.samat_next.config import SamatNextConfig
 from models.samat_next.model import SamatNextForCausalLM
 
 def setup_ddp():
-    # These environment variables are populated by torchrun
+    if "LOCAL_RANK" not in os.environ:
+        os.environ["LOCAL_RANK"] = "0"
+        os.environ["WORLD_SIZE"] = "1"
+        os.environ["RANK"] = "0"
+        os.environ["MASTER_ADDR"] = "localhost"
+        os.environ["MASTER_PORT"] = "29500"
+
+    # These environment variables are populated by torchrun or our fallback
     rank = int(os.environ["RANK"])
     local_rank = int(os.environ["LOCAL_RANK"])
     world_size = int(os.environ["WORLD_SIZE"])
-    
-    dist.init_process_group("nccl")
+    # Use gloo on Windows, nccl on Linux
+    backend = "gloo" if os.name == "nt" else "nccl"
+    dist.init_process_group(backend)
     torch.cuda.set_device(local_rank)
     return rank, local_rank, world_size
 
@@ -46,42 +54,56 @@ def _apply_zero_init(model):
 def cleanup_ddp():
     dist.destroy_process_group()
 
-def stream_and_pack_dataset(tokenizer, rank, world_size, seq_len=2048, batch_size=8):
-    """
-    Streams python-edu from HuggingFace, shards it across GPUs,
-    and packs tokens up to seq_len for maximum efficiency.
-    """
-    # Stream the dataset, sharding it so each GPU sees unique data
-    ds = load_dataset(
-        "codeparrot/codeparrot-clean", 
-        split="train", 
-        streaming=True
-    ).shard(num_shards=world_size, index=rank)
-    
-    buffer = []
-    
-    for row in ds:
-        text = row["content"]
-        # Tokenize and append the EOS token as a natural separator
-        tokens = tokenizer.encode(text, add_special_tokens=False) + [tokenizer.eos_token_id]
-        buffer.extend(tokens)
+class StreamingPackedDataset(torch.utils.data.IterableDataset):
+    def __init__(self, tokenizer, rank, world_size, seq_len=2048, batch_size=8):
+        self.tokenizer = tokenizer
+        self.rank = rank
+        self.world_size = world_size
+        self.seq_len = seq_len
+        self.batch_size = batch_size
+
+    def __iter__(self):
+        row_idx = 0
+        buffer = []
         
-        # Yield batches of exactly `seq_len`
-        while len(buffer) >= (seq_len + 1) * batch_size:
-            input_ids = []
-            labels = []
-            
-            for i in range(batch_size):
-                chunk = buffer[:seq_len + 1]
-                buffer = buffer[seq_len:]  # Keep overlap for next-token prediction shift
+        while True:
+            try:
+                ds = load_dataset(
+                    "codeparrot/codeparrot-clean", 
+                    split="train", 
+                    streaming=True
+                ).shard(num_shards=self.world_size, index=self.rank)
                 
-                input_ids.append(chunk[:-1])
-                labels.append(chunk[1:])
+                ds_iter = iter(ds)
                 
-            yield (
-                torch.tensor(input_ids, dtype=torch.long),
-                torch.tensor(labels, dtype=torch.long)
-            )
+                # Fast-forward to the exact file we were on before the connection dropped
+                for _ in range(row_idx):
+                    next(ds_iter)
+                
+                for row in ds_iter:
+                    text = row["content"]
+                    tokens = self.tokenizer.encode(text, add_special_tokens=False) + [self.tokenizer.eos_token_id]
+                    buffer.extend(tokens)
+                    
+                    while len(buffer) >= (self.seq_len + 1) * self.batch_size:
+                        input_ids = []
+                        labels = []
+                        for i in range(self.batch_size):
+                            chunk = buffer[:self.seq_len + 1]
+                            buffer = buffer[self.seq_len:] 
+                            input_ids.append(chunk[:-1])
+                            labels.append(chunk[1:])
+                        
+                        yield torch.tensor(input_ids, dtype=torch.long), torch.tensor(labels, dtype=torch.long)
+                    
+                    row_idx += 1
+            except StopIteration:
+                break # Reached the end of the entire dataset
+            except Exception as e:
+                print(f"\n[Network] HuggingFace connection dropped ({e}). Reconnecting...\n")
+                import time
+                time.sleep(5)
+                continue
 
 def train():
     # 1. Initialize DDP
@@ -111,11 +133,21 @@ def train():
     
     model = model.to(local_rank)
     
-    # Wrap in DDP
-    model = DDP(model, device_ids=[local_rank], output_device=local_rank, find_unused_parameters=True)
+    # SlidingSpeed Integration: Torch Compile
+    if os.environ.get("SLIDINGSPEED_TORCH_COMPILE") == "1":
+        if is_main_process:
+            print("SlidingSpeed: Enabling torch.compile()")
+        model = torch.compile(model)
+    
+    # Wrap in DDP only if we have multiple GPUs
+    if world_size > 1:
+        model = DDP(model, device_ids=[local_rank], output_device=local_rank, find_unused_parameters=True)
     
     # 3. Setup Optimizer & Scheduler
-    optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4, weight_decay=0.1)
+    use_fused = (os.environ.get("SLIDINGSPEED_FUSED_OPTIMIZER") == "1")
+    if use_fused and is_main_process:
+        print("SlidingSpeed: Enabling Fused AdamW")
+    optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4, weight_decay=0.1, fused=use_fused)
     
     # Standard LLM Warmup (2000 steps warmup, then cosine decay)
     total_steps = 45000  # Our ~24 hour early stopping target
@@ -143,21 +175,28 @@ def train():
                 print(f"Resuming from checkpoint: {latest_ckpt} at step {global_step}")
                 
             checkpoint = torch.load(latest_ckpt, map_location=f"cuda:{local_rank}")
-            model.module.load_state_dict(checkpoint['model_state_dict'])
+            (model.module if world_size > 1 else model).load_state_dict(checkpoint['model_state_dict'])
             optimizer.load_state_dict(checkpoint['optimizer_state_dict'])
             scheduler.load_state_dict(checkpoint['scheduler_state_dict'])
             del checkpoint
     
     # 5. Training Loop
-    batch_size = 1  # Micro-batch size per GPU. Global = batch_size * world_size * grad_accum
-    seq_len = 2048
-    grad_accum_steps = 32
+    batch_size = 1  # Micro-batch size per GPU. Global = batch_size    # Setup data loading
+    dataset = StreamingPackedDataset(tokenizer, rank, world_size, seq_len=2048, batch_size=1)
     
-    data_stream = stream_and_pack_dataset(tokenizer, rank, world_size, seq_len, batch_size)
+    # We use num_workers=0 because HuggingFace streaming httpx client crashes on Windows spawn multiprocessing
+    dataloader = torch.utils.data.DataLoader(
+        dataset, 
+        batch_size=None,
+        num_workers=0
+    )
+    data_stream = iter(dataloader)
     
     model.train()
-    step = global_step * grad_accum_steps
+    step = global_step * 32
     running_loss = 0.0
+    seq_len = 2048
+    grad_accum_steps = 32
     
     # Fast-forward dataloader
     if is_main_process and global_step > 0:
@@ -174,10 +213,10 @@ def train():
             logits, _ = model(input_ids)
             
             if step == 0 and is_main_process:
+                base_model = model.module if world_size > 1 else model
                 print(f"[DEBUG] Logits mean: {logits.mean().item():.4f}, std: {logits.std().item():.4f}, max: {logits.max().item():.4f}, min: {logits.min().item():.4f}")
-                o_proj_std = model.module.model.layers[0].mixer.o_proj.weight.std().item()
-                print(f"[DEBUG] Layer 0 o_proj.weight std: {o_proj_std:.6f}")
-                print(f"[DEBUG] lm_head.weight std: {model.module.lm_head.weight.std().item():.6f}")
+                print(f"[DEBUG] Layer 0 o_proj.weight std: {base_model.model.layers[0].mixer.o_proj.weight.std().item():.6f}")
+                print(f"[DEBUG] lm_head.weight std: {base_model.lm_head.weight.std().item():.6f}")
             
             # Calculate cross-entropy manually to avoid padding tokens since packed tokens are dense
             loss_fct = nn.CrossEntropyLoss()
@@ -198,9 +237,12 @@ def train():
             scheduler.step()
             optimizer.zero_grad()
         else:
-            with model.no_sync():
+            if world_size > 1:
+                with model.no_sync():
+                    loss.backward()
+            else:
                 loss.backward()
-        
+
         # running_loss accumulates the scaled loss, which will sum up to the true average loss over the accum steps
         running_loss += loss.item()
         
@@ -220,18 +262,18 @@ def train():
                 ckpt_path = os.path.join(CKPT_DIR, f"step_{global_step}.pt")
                 torch.save({
                     'global_step': global_step,
-                    'model_state_dict': model.module.state_dict(),
+                    'model_state_dict': (model.module if world_size > 1 else model).state_dict(),
                     'optimizer_state_dict': optimizer.state_dict(),
                     'scheduler_state_dict': scheduler.state_dict()
                 }, ckpt_path)
                 print(f"Saved checkpoint to {ckpt_path}")
                 
-            # Early stopping after ~24 hours on a single L4 GPU (45,000 global steps = ~2.9B tokens)
-            if global_step >= 45000:
+            # Early stopping after 500 local steps
+            if global_step >= 4100:
                 if is_main_process:
-                    print("Reached 45,000 steps (~24 hours). Stopping early for quality verification!")
-                    ckpt_path = os.path.join(CKPT_DIR, "step_45000_final.pt")
-                    torch.save(model.module.state_dict(), ckpt_path)
+                    print("Reached 4100 steps locally. Stopping early for quality verification!")
+                    ckpt_path = os.path.join(CKPT_DIR, "step_4100_final.pt")
+                    torch.save((model.module if world_size > 1 else model).state_dict(), ckpt_path)
                 break
                 
         step += 1

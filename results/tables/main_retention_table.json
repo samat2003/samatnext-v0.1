@@ -1,0 +1,44 @@
+{
+    "Transformer Scratch -> Stage5": {
+        "model_display_name": "Transformer",
+        "training_path": "Scratch \u2192 Stage5",
+        "stage5_pass_rate": 0.976,
+        "stage3_retention_rate": 0.008,
+        "stage2e_pass_rate": 0.03333333333333333
+    },
+    "SamatNext Scratch -> Stage5": {
+        "model_display_name": "SamatNext",
+        "training_path": "Scratch \u2192 Stage5",
+        "stage5_pass_rate": 0.976,
+        "stage3_retention_rate": 0.008,
+        "stage2e_pass_rate": 0.013333333333333334
+    },
+    "Transformer Curriculum lr=3e-6": {
+        "model_display_name": "Transformer",
+        "training_path": "Curriculum lr=3e-6",
+        "stage5_pass_rate": 0.494,
+        "stage3_retention_rate": 0.04,
+        "stage2e_pass_rate": 0.0
+    },
+    "Transformer Curriculum Rescue lr=1e-5": {
+        "model_display_name": "Transformer",
+        "training_path": "Curriculum Rescue lr=1e-5",
+        "stage5_pass_rate": 0.976,
+        "stage3_retention_rate": 0.06,
+        "stage2e_pass_rate": 0.03
+    },
+    "Transformer Curriculum Rescue lr=3e-5": {
+        "model_display_name": "Transformer",
+        "training_path": "Curriculum Rescue lr=3e-5",
+        "stage5_pass_rate": 0.976,
+        "stage3_retention_rate": 0.032,
+        "stage2e_pass_rate": 0.02
+    },
+    "SamatNext Curriculum lr=3e-6": {
+        "model_display_name": "SamatNext",
+        "training_path": "Curriculum lr=3e-6",
+        "stage5_pass_rate": 0.976,
+        "stage3_retention_rate": 0.868,
+        "stage2e_pass_rate": 0.06333333333333334
+    }
+}

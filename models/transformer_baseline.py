@@ -1,5 +1,10 @@
+# SPDX-License-Identifier: Apache-2.0
 import json
 import os
+import math
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
 
 class TransformerConfig:
     def __init__(self, **kwargs):
@@ -12,17 +17,13 @@ class TransformerConfig:
         self.max_position_embeddings = kwargs.pop("max_position_embeddings", 8192)
         self.rms_norm_eps = kwargs.pop("rms_norm_eps", 1e-6)
         self.rope_theta = kwargs.pop("rope_theta", 10000.0)
+        self.use_rope = kwargs.pop("use_rope", True)
 
     @classmethod
     def from_json(cls, path: str):
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)
         return cls(**data)
-import math
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-
 
 class RMSNorm(nn.Module):
     def __init__(self, dim: int, eps: float = 1e-6):
@@ -66,10 +67,12 @@ class SwiGLU(nn.Module):
 class CausalSelfAttention(nn.Module):
     def __init__(self, config: TransformerConfig):
         super().__init__()
+        self.config = config
         self.hidden_size = config.hidden_size
         self.n_heads = config.num_attention_heads
         self.n_kv_heads = getattr(config, "num_key_value_heads", self.n_heads)
         self.head_dim = self.hidden_size // self.n_heads
+        self.use_rope = getattr(config, "use_rope", True)
 
         self.q_proj = nn.Linear(self.hidden_size, self.n_heads * self.head_dim, bias=False)
         self.k_proj = nn.Linear(self.hidden_size, self.n_kv_heads * self.head_dim, bias=False)
@@ -87,14 +90,15 @@ class CausalSelfAttention(nn.Module):
         xk = xk.view(B, seq_len, self.n_kv_heads, self.head_dim)
         xv = xv.view(B, seq_len, self.n_kv_heads, self.head_dim)
 
-        xq, xk = apply_rotary_emb(xq, xk, freqs_cis[:seq_len])
+        if self.use_rope and freqs_cis is not None:
+            xq, xk = apply_rotary_emb(xq, xk, freqs_cis[:seq_len])
 
         # transpose for attention
         xq = xq.transpose(1, 2) # (B, n_heads, seq_len, head_dim)
         xk = xk.transpose(1, 2)
         xv = xv.transpose(1, 2)
 
-        # MQA / GQA replication if needed (here we assume n_kv_heads == n_heads for simplicity if matching 12)
+        # MQA / GQA replication
         if self.n_kv_heads != self.n_heads:
             repeats = self.n_heads // self.n_kv_heads
             xk = torch.repeat_interleave(xk, repeats=repeats, dim=1)
@@ -133,11 +137,14 @@ class TransformerForCausalLM(nn.Module):
         self.lm_head = nn.Linear(config.hidden_size, config.vocab_size, bias=False)
 
         # Precompute RoPE
-        self.register_buffer("freqs_cis", precompute_freqs_cis(
-            config.hidden_size // config.num_attention_heads, 
-            config.max_position_embeddings, 
-            getattr(config, 'rope_theta', 10000.0)
-        ))
+        if getattr(config, "use_rope", True):
+            self.register_buffer("freqs_cis", precompute_freqs_cis(
+                config.hidden_size // config.num_attention_heads, 
+                config.max_position_embeddings, 
+                getattr(config, 'rope_theta', 10000.0)
+            ))
+        else:
+            self.freqs_cis = None
 
     def forward(self, input_ids):
         B, seq_len = input_ids.shape
@@ -148,8 +155,10 @@ class TransformerForCausalLM(nn.Module):
         mask = torch.triu(mask, diagonal=1)
         mask = mask.unsqueeze(0).unsqueeze(0) # (1, 1, seq_len, seq_len)
 
+        freqs_cis = self.freqs_cis[:seq_len] if self.freqs_cis is not None else None
+
         for layer in self.layers:
-            x = layer(x, self.freqs_cis[:seq_len], mask)
+            x = layer(x, freqs_cis, mask)
 
         x = self.norm(x)
         logits = self.lm_head(x)

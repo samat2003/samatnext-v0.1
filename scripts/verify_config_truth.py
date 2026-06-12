@@ -1,43 +1,60 @@
+# SPDX-License-Identifier: Apache-2.0
 import os
 import sys
 import torch
 import json
+import argparse
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
 
 from models.samat_next.config import SamatNextConfig
 from models.samat_next.model import SamatNextForCausalLM
-CKPT_PATH = os.path.join(ROOT, "checkpoints", "samat_next_350m_stage5_best.pt")
-CONFIG_PATH = os.path.join(ROOT, "configs", "samat_next_v0_1.json")
+from models.transformer_baseline import TransformerConfig, TransformerForCausalLM
 
 def main():
-    if not os.path.exists(CKPT_PATH):
-        print(f"Error: Checkpoint not found at {CKPT_PATH}")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--model", type=str, default="samatnext", choices=["samatnext", "transformer"])
+    parser.add_argument("--config", type=str, default=None)
+    parser.add_argument("--checkpoint", type=str, default=None)
+    args = parser.parse_args()
+    
+    # Set defaults based on model type
+    if args.model == "samatnext":
+        config_path = args.config if args.config else os.path.join(ROOT, "configs", "samatnext_350m.json")
+        checkpoint_path = args.checkpoint if args.checkpoint else os.path.join(ROOT, "checkpoints", "samat_next_350m_stage5_best.pt")
+    else:
+        config_path = args.config if args.config else os.path.join(ROOT, "configs", "transformer_350m_matched.json")
+        checkpoint_path = args.checkpoint if args.checkpoint else os.path.join(ROOT, "checkpoints", "transformer_350m_baseline_stage5_best.pt")
+        
+    print(f"Loading config from: {config_path}")
+    if not os.path.exists(config_path):
+        print(f"Error: Config not found at {config_path}")
         return
         
-    if not os.path.exists(CONFIG_PATH):
-        print(f"Error: Config not found at {CONFIG_PATH}")
-        return
+    if args.model == "samatnext":
+        config = SamatNextConfig.from_json(config_path)
+        model = SamatNextForCausalLM(config)
+    else:
+        config = TransformerConfig.from_json(config_path)
+        model = TransformerForCausalLM(config)
         
-    config = SamatNextConfig.from_json(CONFIG_PATH)
-    model = SamatNextForCausalLM(config)
-    
-    # Load state dict strictly to ensure match
-    state_dict = torch.load(CKPT_PATH, map_location="cpu", weights_only=True)
-    model.load_state_dict(state_dict)
-    
-    total_params = sum(p.numel() for p in model.parameters())
-    
-    print("\n--- MODEL CONFIG TRUTH ---")
-    print(f"Checkpoint Path: {CKPT_PATH}")
-    print(f"Config Path: {CONFIG_PATH}")
+    print(f"Model: {args.model.upper()}")
     print(f"Hidden Size: {config.hidden_size}")
-    print(f"Num Layers: {getattr(config, 'num_layers', getattr(config, 'num_hidden_layers', 'unknown'))}")
+    print(f"Num Layers: {config.num_layers}")
     print(f"Attention Heads: {config.num_attention_heads}")
-    print(f"KV Heads: {getattr(config, 'num_key_value_heads', config.num_attention_heads)}")
     print(f"FFN Size: {config.intermediate_size}")
     print(f"Vocab Size: {config.vocab_size}")
+    
+    if os.path.exists(checkpoint_path):
+        print(f"Loading checkpoint from: {checkpoint_path}")
+        state_dict = torch.load(checkpoint_path, map_location="cpu", weights_only=True)
+        model.load_state_dict(state_dict, strict=True)
+        print("Checkpoint loaded successfully (strict match).")
+    else:
+        print(f"Warning: Checkpoint not found at {checkpoint_path} (skipping checkpoint loading)")
+        
+    total_params = sum(p.numel() for p in model.parameters())
     print(f"Exact Parameter Count: {total_params:,}")
     print("--------------------------\n")
 

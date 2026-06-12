@@ -1,0 +1,215 @@
+{
+  "checkpoint": "checkpoints\\samat_next_350m_stage2a_fixed_step_1000.pt",
+  "start_loss": 379.64053068161013,
+  "final_loss": 2.9862594962120057,
+  "nan_in_training": false,
+  "nan_inf_in_eval": false,
+  "syntax_valid_rate": 0.5,
+  "repetition_rate": 0.0,
+  "eos_stop_rate": 1.0,
+  "total_junk_tokens": 0,
+  "samples": [
+    {
+      "instruction": "Write a Python function that merges two lists.",
+      "generated": "def print(\"Hello World\")<|im_end|>",
+      "syntax_valid": false,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that gets the first element of a list safely, returning None if empty.",
+      "generated": "def print_list(list1, num2):\n    return [1 + str2 for i in range(2, 1, 1):\n        print(\"The list2))<|im_end|>",
+      "syntax_valid": false,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that flattens a nested list by one level.",
+      "generated": "def print_list(list1, list2):\n    return list(set(list1 + list2)<|im_end|>",
+      "syntax_valid": false,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that returns the absolute value of a number.",
+      "generated": "def print(\"Hello World\")<|im_end|>",
+      "syntax_valid": false,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that checks if a string contains a given substring.",
+      "generated": "def is_palindrome(string):\n    if len(string) == 0:\n        return False\n    else:\n        return False<|im_end|>",
+      "syntax_valid": true,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    }
+  ],
+  "all_results": [
+    {
+      "instruction": "Write a Python function that merges two lists.",
+      "generated": "def print(\"Hello World\")<|im_end|>",
+      "syntax_valid": false,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that gets the first element of a list safely, returning None if empty.",
+      "generated": "def print_list(list1, num2):\n    return [1 + str2 for i in range(2, 1, 1):\n        print(\"The list2))<|im_end|>",
+      "syntax_valid": false,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that flattens a nested list by one level.",
+      "generated": "def print_list(list1, list2):\n    return list(set(list1 + list2)<|im_end|>",
+      "syntax_valid": false,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that returns the absolute value of a number.",
+      "generated": "def print(\"Hello World\")<|im_end|>",
+      "syntax_valid": false,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that checks if a string contains a given substring.",
+      "generated": "def is_palindrome(string):\n    if len(string) == 0:\n        return False\n    else:\n        return False<|im_end|>",
+      "syntax_valid": true,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that gets a dictionary value with a default fallback.",
+      "generated": "def print(\"Hello World\")<|im_end|>",
+      "syntax_valid": false,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that finds the minimum in a list.",
+      "generated": "def print_list(list1, num2):\n    return list(set(list1 + num2)<|im_end|>",
+      "syntax_valid": false,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that checks if a list is empty.",
+      "generated": "def is_palindrome(s):\n    if len(s % 0:\n        return False\n    else:\n        return False<|im_end|>",
+      "syntax_valid": false,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that squares a number.",
+      "generated": "def print(\"Hello World\")<|im_end|>",
+      "syntax_valid": false,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that cubes a number.",
+      "generated": "def print(\"Hello World\")<|im_end|>",
+      "syntax_valid": false,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that gets the last element of a list.",
+      "generated": "def print_list(list1, list2):\n    return list1 + list2<|im_end|>",
+      "syntax_valid": true,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that finds the intersection of two lists.",
+      "generated": "def calculate_sum(num1, num2):\n    return num1 + num2<|im_end|>",
+      "syntax_valid": true,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that converts a string to uppercase.",
+      "generated": "def print_string(string):\n    return string[::-1]<|im_end|>",
+      "syntax_valid": true,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that converts a string to lowercase.",
+      "generated": "def print_string(string):\n    return string[::-1]<|im_end|>",
+      "syntax_valid": true,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that checks if a dictionary is empty.",
+      "generated": "def is_palindrome(s):\n    if len(string) == 0:\n        return False\n    else:\n        return False<|im_end|>",
+      "syntax_valid": true,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that repeats a string n times.",
+      "generated": "def print_string(string):\n    for i in range(1, 1):\n        print(\"Hello World\")<|im_end|>",
+      "syntax_valid": true,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that computes the average of a list.",
+      "generated": "def calculate_sum(n):\n    return 1 + b<|im_end|>",
+      "syntax_valid": true,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that checks if all elements in a list are positive.",
+      "generated": "def is_prime_numbers(num):\n    if num % 2 == 0:\n        return False\n    else:\n        return False\n    else:\n        return False<|im_end|>",
+      "syntax_valid": false,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that returns the keys of a dictionary as a list.",
+      "generated": "def print_list(list1, list2):\n    return list1 + list2<|im_end|>",
+      "syntax_valid": true,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    },
+    {
+      "instruction": "Write a Python function that returns the values of a dictionary as a list.",
+      "generated": "def calculate_list(list1, list2):\n    return list1 + list2<|im_end|>",
+      "syntax_valid": true,
+      "repetitive": false,
+      "junk_tokens": 0,
+      "stopped_at_eos": true
+    }
+  ]
+}

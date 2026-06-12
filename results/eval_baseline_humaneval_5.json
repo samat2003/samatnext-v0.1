@@ -1,0 +1,67 @@
+[
+  {
+    "id": "he_0",
+    "prompt": "def has_close_elements(numbers: list[float], threshold: float) -> bool:\n    \"\"\" Check if in given list of numbers, are any two numbers closer to each other than\n    given threshold.\n    >>> has_close_elements([1.0, 2.0, 3.0], 0.5)\n    False\n    >>> has_close_elements([1.0, 2.8, 3.0, 4.0, 5.0], 0.3)\n    True\n    \"\"\"\n",
+    "target": "",
+    "gen": "\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\",\"\\\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed profitable\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed Border\",\"\\ifdef legendary\",\"\\ifdef\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\",\"\\ifdef\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\",\"\\ifdef\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\",\"\\ifdef legendary\",\"\\ifdef\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\",\"\\ifdef\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\",\"\\\u80ed\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\",\"\\ifdef\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\",\"\\ifdef slogans\",\"\\\u80ed\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\",\"\\\tcli profitable slogans\",\"\\\tcli profitable\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\",\"\\\tcli profitable slogans\u80ed\tcli profitable\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\",\"\\\tcli profitable\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\",\"\\\tcli profitable\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\u0531\u80ed\tcli\u80ed\tcli aprox\",\"\\\u80ed\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\u0531\u80ed\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\u0531\u80ed\tcli profitable\u80ed\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\u0531\u80ed\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\u0531\u80ed\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\u0531\u80ed\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\u0531\u80ed\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\u0531\u80ed\u5bb6\u4eba\u80ed\u793e\u4ea4\u80ed legendary\u80ed\tcli\u5173\u952e\u96e8\u6c34\u80ed\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\u96e8\u6c34\u80ed\tcli\u80ed\tcli\",\"\\\u96e8\u6c34\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\u96e8\u6c34\u0e2a\u0e37\u0e48\u0e2d\u0e2a\u0e32\u0e23\u0531\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u793e\u4ea4\u80ed\u793e\u4ea4\u80ed\u793e\u4ea4\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed profitable\u96e8\u6c34\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80ed\u80edomp\u793e\u4ea4\u5173\u952e L\u1ecbch L\u1ecbch L\u1ecbch L\u1ecbch L\u1ecbch L\u1ecbch L\u1ecbch L\u1ecbch L\u1ecbch",
+    "syntax_ok": false,
+    "stopped": false,
+    "test_pass": false,
+    "name_match": false,
+    "err_msg": "",
+    "exp_fn": "has_close_elements",
+    "gen_fn": "NONE"
+  },
+  {
+    "id": "he_1",
+    "prompt": "from typing import List\n\n\ndef separate_paren_groups(paren_string: str) -> List[str]:\n    \"\"\" Input to this function is a string containing multiple groups of nested parentheses. Your goal is to\n    separate those group into separate strings and return the list of those.\n    Separate groups are balanced (each open brace is properly closed) and not nested within each other\n    Ignore any spaces in the input string.\n    >>> separate_paren_groups('( ) (( )) (( )( ))')\n    ['()', '(())', '(()())']\n    \"\"\"\n",
+    "target": "",
+    "gen": "\u0e2d\u0e35\u0e01\u0e14\u0e49\u0e27\u0e22\u0645\u0646\u062a\u062f\u064a\u0645\u0646\u062a\u062f\u064a\u0645\u0646\u062a\u062f\u064a\u0645\u0646\u062a\u062f\u064a\u0645\u0646\u062a\u062f\u064a\u0645\u0646\u062a\u062f\u064a\u0645\u0646\u062a\u062f\u064a\u0645\u0646\u062a\u062f\u064a\u0645\u0646\u062a\u062f\u064a\u0e2d\u0e35\u0e01\u0e14\u0e49\u0e27\u0e22\u0645\u0646\u062a\u062f\u064a\u0e2d\u0e35\u0e01\u0e14\u0e49\u0e27\u0e22\u0645\u0646\u062a\u062f\u064a\u0645\u0646\u062a\u062f\u064a\u0645\u0646\u062a\u062f\u064a\u0645\u0646\u062a\u062f\u064a\u0645\u0646\u062a\u062f\u064a\u0645\u0646\u062a\u062f\u064a\u0645\u0646\u062a\u062f\u064a\u0645\u0646\u062a\u062f\u064a\u0e2d\u0e35\u0e01\u0e14\u0e49\u0e27\u0e22\u0645\u0646\u062a\u062f\u064a\u0e2d\u0e35\u0e01\u0e14\u0e49\u0e27\u0e22\u0645\u0646\u062a\u062f\u064a\u0e2d\u0e35\u0e01\u0e14\u0e49\u0e27\u0e22\u0645\u0646\u062a\u062f\u064a\u0645\u0646\u062a\u062f\u064a\u0645\u0646\u062a\u062f\u064a\u0645\u0646\u062a\u062f\u064a\u0645\u0646\u062a\u062f\u064a firmly\u5f92\u6b65 firmly\u5f92\u6b65 firmly\u5f92\u6b65 firmly\u5f92\u6b65 firmly\u5f92\u6b65 firmly\u5f92\u6b65 firmly\u5f92\u6b65 firmly\u5f92\u6b65 \u0625\u0637\u0627\u0631 \u0627\u0644\u062f\u0646\u064a.findBy\u66dd \u0627\u0644\u062f\u0646\u064a.findBy\u66dd \u0627\u0644\u062f\u0646\u064a.findBy\u66dd \u0627\u0644\u062f\u0646\u064a.findBy\u66dd \u0627\u0644\u062f\u0646\u064a.findBy.findBy\u66dd \u0627\u0644\u062f\u0646\u064a.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy.findBy warmly\u66dd\u0e2d\u0e35\u0e01\u0e14\u0e49\u0e27\u0e22 firmly.findBy firmly.findBy firmly.findBy firmly.findBy firmly.findBy firmly.findBy firmly.findBy firmly.findBy firmly.findBy firmly.findBy\u66dd\u0e2d\u0e35\u0e01\u0e14\u0e49\u0e27\u0e22\u66dd\u0e2d\u0e35\u0e01\u0e14\u0e49\u0e27\u0e22\u66dd\u0e2d\u0e35\u0e01\u0e14\u0e49\u0e27\u0e22\u66dd\u0e2d\u0e35\u0e01\u0e14\u0e49\u0e27\u0e22\u66dd\u66dd\u66dd\u66dd\u66dd\u66dd\u0e2d\u0e35\u0e01\u0e14\u0e49\u0e27\u0e22\u66dd\u0e2d\u0e35\u0e01\u0e14\u0e49\u0e27\u0e22\u66dd\u0e2d\u0e35\u0e01\u0e14\u0e49\u0e27\u0e22\u66dd\u66dd\u66dd_TRUE_TRUE b\u00f6yle\u662f\u4e00\u5ea7_allocator.findBy\u66dd_TRUE b\u00f6yle\u662f\u4e00\u5ea7_allocator.findBy_TRUE b\u00f6yle\u662f\u4e00\u5ea7_allocator_TRUE b\u00f6yle\u662f\u4e00\u5ea7\u66dd_TRUE b\u00f6yle\u662f\u4e00\u5ea7_allocator_TRUE_TRUE_TRUE_TRUE b\u00f6yle\u662f\u4e00\u5ea7\u66dd_TRUE_TRUE_TRUE_TRUE b\u00f6yle\u662f\u4e00\u5ea7\u66dd_TRUE_TRUE_TRUE b\u00f6yle\u662f\u4e00\u5ea7 b\u00f6yle\u662f\u4e00\u5ea7 b\u00f6yle\u662f\u4e00\u5ea7_TRUE_TRUE_TRUE_TRUE_TRUE",
+    "syntax_ok": false,
+    "stopped": false,
+    "test_pass": false,
+    "name_match": false,
+    "err_msg": "",
+    "exp_fn": "separate_paren_groups",
+    "gen_fn": "NONE"
+  },
+  {
+    "id": "he_2",
+    "prompt": "def truncate_number(number: float) -> float:\n    \"\"\" Given a positive floating point number, it can be decomposed into\n    and integer part (largest integer smaller than given number) and decimals\n    (leftover part always smaller than 1).\n\n    Return the decimal part of the number.\n    >>> truncate_number(3.5)\n    0.5\n    \"\"\"\n",
+    "target": "",
+    "gen": "return return return return return return return return return total return return return return return return return return return return return total return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return return",
+    "syntax_ok": false,
+    "stopped": false,
+    "test_pass": false,
+    "name_match": false,
+    "err_msg": "",
+    "exp_fn": "truncate_number",
+    "gen_fn": "NONE"
+  },
+  {
+    "id": "he_3",
+    "prompt": "from typing import List\n\n\ndef below_zero(operations: List[int]) -> bool:\n    \"\"\" You're given a list of deposit and withdrawal operations on a bank account that starts with\n    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and\n    at that point function should return True. Otherwise it should return False.\n    >>> below_zero([1, 2, 3])\n    False\n    >>> below_zero([1, 2, -4, 5])\n    True\n    \"\"\"\n",
+    "target": "",
+    "gen": "dated dated dated dated dated dated dated dated dated dated dated dated dated dated-location Ability_DETAILS dated-location Ability dated-location MC Ability dated-location Ability runners Ability Caldwell dated dated dated dated dated dated dated datedculate dated\u9664 dated\u9664 \u0440\u0430\u0441 dated Floral Ability Floral Ability Floral\u0645\u0646\u062a\u062f\u064a \u0627\u0644\u062b\u0627\u0644\u062b\u9664 \u0440\u0430\u0441 dated Floral Ability dated\u062a\u0641(vo dated McMahon Floral\u0645\u0646\u062a\u062f\u064a \u0627\u0644\u062b\u0627\u0644\u062bwon \"\n\nwon \"\n\n\u9664\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf \"\n\n\u9664\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u9664\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf(vo(vo(vo(vo(vo(vo(vo(vo(vo(vo(vo dated dated dated dated dated dated dated dated dated dated dated(vo(vo(vo(vo(vo\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf\u7ea2\u7ebf dated dated dated dated dated Caldwell Caldwell Caldwell Caldwell Caldwell Caldwell Caldwell Caldwell Caldwell Caldwell Caldwell Caldwell Caldwell Caldwell Caldwell Caldwell Caldwell Caldwell Caldwell",
+    "syntax_ok": false,
+    "stopped": false,
+    "test_pass": false,
+    "name_match": false,
+    "err_msg": "",
+    "exp_fn": "below_zero",
+    "gen_fn": "NONE"
+  },
+  {
+    "id": "he_4",
+    "prompt": "from typing import List\n\n\ndef mean_absolute_deviation(numbers: List[float]) -> float:\n    \"\"\" For a given list of input numbers, calculate Mean Absolute Deviation\n    around the mean of this dataset.\n    Mean Absolute Deviation is the average absolute difference between each\n    element and a centerpoint (mean in this case):\n    MAD = average | x - x_mean |\n    >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])\n    1.0\n    \"\"\"\n",
+    "target": "",
+    "gen": "mapping mappingsocket return)\nsocket return mapping mapping mapping mapping mapping mappingsocket Scandinaviansocket }))\n mapping mapping mapping mapping mapping mapping mapping mapping mapping mapping mapping mapping mapping mapping mapping mapping mapping mapping mapping mapping mapping mappingsocketsocketsocketsocket mappingcury mappingsocketsocketsocketsocketsocket mappingsocketsocketsocketsocketsocketsocket \uc54c\ub824socket return mappingsocketsocket }))\n mappingsocket kidney mappingsocketsocketsocket componentDid mappingsocket mappingsocket mapping\u6295\u8d44\u9879\u76ee kidneyassesocket kidney mappingsocket return mappingsocket mappingsocket kidneysocket kidneysocket mapping\u6c7e mapping\u6c7e mapping\u6c7e mapping\u6c7esocketsocket componentDid mapping Scandinaviansocket \ufffd componentDid mapping mapping mapping\u6c7e componentDid mapping\u6c7e componentDid mapping\u6295\u8d44\u9879\u76eecury\u6c7e componentDid mapping componentDid mapping componentDid mapping componentDid mapping componentDid mapping componentDid mapping\u6295\u8d44\u9879\u76eecury\u6c7e componentDid mapping componentDid mapping \ufffd\u6c7e componentDid mapping componentDid mapping \ufffd componentDid mapping componentDid mapping \ufffd kidneysocket \ufffd\u6c7e\u6295\u8d44\u9879\u76eeassesocketsocketsocketsocket componentDid\u6c7e\u6295\u8d44\u9879\u76eeassesocket kidney digest componentDid digest componentDid digest componentDid digest componentDid\u6c7e\u6295\u8d44\u9879\u76ee kidneysocketsocketsocket kidney digest\u6295\u8d44\u9879\u76ee kidneysocket kidneysocket kidneysocket",
+    "syntax_ok": false,
+    "stopped": false,
+    "test_pass": false,
+    "name_match": false,
+    "err_msg": "",
+    "exp_fn": "mean_absolute_deviation",
+    "gen_fn": "NONE"
+  }
+]
