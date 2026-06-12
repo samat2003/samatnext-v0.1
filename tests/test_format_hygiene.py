@@ -26,9 +26,7 @@ def test_makefile_contents():
     makefile_path = ROOT / "Makefile"
     if makefile_path.exists():
         makefile = makefile_path.read_text(encoding="utf-8")
-        assert "
-setup:" in makefile
-        assert "
-reproduce-main-table-fresh:" in makefile
+        assert "\nsetup:" in makefile
+        assert "\nreproduce-main-table-fresh:" in makefile
         # Check that there are tab-indented recipes
         assert "\t" in makefile, "Makefile must contain tab-indented recipe lines"
