@@ -1,0 +1,10 @@
+* commit hash: 9d712377e6ddf6ee2112dd2570e2b8195dbac4c7
+* fresh eval date/time: 2026-06-12 09:45:00
+* table values:
+  * SamatNext curriculum: 83.0% Stage 5, 70.2% Stage 3, 4.3% Stage 2E
+  * strongest Transformer rescue: 97.6% Stage 5, 6.0% Stage 3, 3.0% Stage 2E
+* license note:
+  * source code: Apache-2.0
+  * checkpoints: CC BY-NC-SA 4.0
+  * datasets: see DATA_LICENSES.md
+  * Qwen-generated Stage 5 examples: license-sensitive, subject to Qwen Research license terms

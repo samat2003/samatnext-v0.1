@@ -1,0 +1,233 @@
+{
+    "timeout_seconds": 5.0,
+    "metrics": {
+        "Transformer Scratch -> Stage5": {
+            "stage5": {
+                "pass_rate": 0.976,
+                "syntax_rate": 1.0,
+                "eos_rate": 1.0,
+                "emitted_im_end_rate": 1.0,
+                "emitted_endoftext_rate": 0.0,
+                "rep_rate": 0.0,
+                "timeout_rate": 0.0,
+                "assert_rate": 0.0,
+                "name_rate": 0.024,
+                "exc_rate": 0.0
+            },
+            "stage3": {
+                "pass_rate": 0.008,
+                "syntax_rate": 0.558,
+                "eos_rate": 1.0,
+                "emitted_im_end_rate": 1.0,
+                "emitted_endoftext_rate": 0.0,
+                "rep_rate": 0.0,
+                "timeout_rate": 0.0,
+                "assert_rate": 0.0,
+                "name_rate": 0.548,
+                "exc_rate": 0.002
+            },
+            "stage2e": {
+                "pass_rate": 0.03333333333333333,
+                "syntax_rate": 0.36666666666666664,
+                "eos_rate": 1.0,
+                "emitted_im_end_rate": 1.0,
+                "emitted_endoftext_rate": 0.0,
+                "rep_rate": 0.0033333333333333335,
+                "timeout_rate": 0.0,
+                "assert_rate": 0.0,
+                "name_rate": 0.3333333333333333,
+                "exc_rate": 0.0
+            }
+        },
+        "SamatNext Scratch -> Stage5": {
+            "stage5": {
+                "pass_rate": 0.976,
+                "syntax_rate": 1.0,
+                "eos_rate": 1.0,
+                "emitted_im_end_rate": 1.0,
+                "emitted_endoftext_rate": 0.0,
+                "rep_rate": 0.0,
+                "timeout_rate": 0.0,
+                "assert_rate": 0.0,
+                "name_rate": 0.024,
+                "exc_rate": 0.0
+            },
+            "stage3": {
+                "pass_rate": 0.008,
+                "syntax_rate": 0.928,
+                "eos_rate": 1.0,
+                "emitted_im_end_rate": 1.0,
+                "emitted_endoftext_rate": 0.0,
+                "rep_rate": 0.0,
+                "timeout_rate": 0.0,
+                "assert_rate": 0.008,
+                "name_rate": 0.91,
+                "exc_rate": 0.002
+            },
+            "stage2e": {
+                "pass_rate": 0.013333333333333334,
+                "syntax_rate": 0.88,
+                "eos_rate": 1.0,
+                "emitted_im_end_rate": 1.0,
+                "emitted_endoftext_rate": 0.0,
+                "rep_rate": 0.0,
+                "timeout_rate": 0.0,
+                "assert_rate": 0.0,
+                "name_rate": 0.8666666666666667,
+                "exc_rate": 0.0
+            }
+        },
+        "Transformer Curriculum lr=3e-6": {
+            "stage5": {
+                "pass_rate": 0.494,
+                "syntax_rate": 0.83,
+                "eos_rate": 0.966,
+                "emitted_im_end_rate": 0.966,
+                "emitted_endoftext_rate": 0.0,
+                "rep_rate": 0.034,
+                "timeout_rate": 0.0,
+                "assert_rate": 0.048,
+                "name_rate": 0.25,
+                "exc_rate": 0.038
+            },
+            "stage3": {
+                "pass_rate": 0.04,
+                "syntax_rate": 0.908,
+                "eos_rate": 0.998,
+                "emitted_im_end_rate": 0.998,
+                "emitted_endoftext_rate": 0.0,
+                "rep_rate": 0.018,
+                "timeout_rate": 0.0,
+                "assert_rate": 0.004,
+                "name_rate": 0.83,
+                "exc_rate": 0.034
+            },
+            "stage2e": {
+                "pass_rate": 0.0,
+                "syntax_rate": 0.89,
+                "eos_rate": 0.9933333333333333,
+                "emitted_im_end_rate": 0.9933333333333333,
+                "emitted_endoftext_rate": 0.0,
+                "rep_rate": 0.006666666666666667,
+                "timeout_rate": 0.0,
+                "assert_rate": 0.0,
+                "name_rate": 0.8766666666666667,
+                "exc_rate": 0.013333333333333334
+            }
+        },
+        "Transformer Curriculum Rescue lr=1e-5": {
+            "stage5": {
+                "pass_rate": 0.976,
+                "syntax_rate": 1.0,
+                "eos_rate": 1.0,
+                "emitted_im_end_rate": 1.0,
+                "emitted_endoftext_rate": 0.0,
+                "rep_rate": 0.0,
+                "timeout_rate": 0.0,
+                "assert_rate": 0.0,
+                "name_rate": 0.024,
+                "exc_rate": 0.0
+            },
+            "stage3": {
+                "pass_rate": 0.06,
+                "syntax_rate": 0.944,
+                "eos_rate": 1.0,
+                "emitted_im_end_rate": 1.0,
+                "emitted_endoftext_rate": 0.0,
+                "rep_rate": 0.0,
+                "timeout_rate": 0.0,
+                "assert_rate": 0.006,
+                "name_rate": 0.842,
+                "exc_rate": 0.036
+            },
+            "stage2e": {
+                "pass_rate": 0.03,
+                "syntax_rate": 0.9633333333333334,
+                "eos_rate": 1.0,
+                "emitted_im_end_rate": 1.0,
+                "emitted_endoftext_rate": 0.0,
+                "rep_rate": 0.0,
+                "timeout_rate": 0.0,
+                "assert_rate": 0.0,
+                "name_rate": 0.9333333333333333,
+                "exc_rate": 0.0
+            }
+        },
+        "Transformer Curriculum Rescue lr=3e-5": {
+            "stage5": {
+                "pass_rate": 0.976,
+                "syntax_rate": 1.0,
+                "eos_rate": 1.0,
+                "emitted_im_end_rate": 1.0,
+                "emitted_endoftext_rate": 0.0,
+                "rep_rate": 0.0,
+                "timeout_rate": 0.0,
+                "assert_rate": 0.0,
+                "name_rate": 0.024,
+                "exc_rate": 0.0
+            },
+            "stage3": {
+                "pass_rate": 0.032,
+                "syntax_rate": 0.984,
+                "eos_rate": 1.0,
+                "emitted_im_end_rate": 1.0,
+                "emitted_endoftext_rate": 0.0,
+                "rep_rate": 0.0,
+                "timeout_rate": 0.0,
+                "assert_rate": 0.002,
+                "name_rate": 0.932,
+                "exc_rate": 0.018
+            },
+            "stage2e": {
+                "pass_rate": 0.02,
+                "syntax_rate": 1.0,
+                "eos_rate": 1.0,
+                "emitted_im_end_rate": 1.0,
+                "emitted_endoftext_rate": 0.0,
+                "rep_rate": 0.0,
+                "timeout_rate": 0.0,
+                "assert_rate": 0.0,
+                "name_rate": 0.98,
+                "exc_rate": 0.0
+            }
+        },
+        "SamatNext Curriculum lr=3e-6": {
+            "stage5": {
+                "pass_rate": 0.83,
+                "syntax_rate": 0.988,
+                "eos_rate": 1.0,
+                "emitted_im_end_rate": 1.0,
+                "emitted_endoftext_rate": 0.0,
+                "rep_rate": 0.0,
+                "timeout_rate": 0.0,
+                "assert_rate": 0.152,
+                "name_rate": 0.006,
+                "exc_rate": 0.0
+            },
+            "stage3": {
+                "pass_rate": 0.702,
+                "syntax_rate": 0.96,
+                "eos_rate": 1.0,
+                "emitted_im_end_rate": 1.0,
+                "emitted_endoftext_rate": 0.0,
+                "rep_rate": 0.0,
+                "timeout_rate": 0.0,
+                "assert_rate": 0.062,
+                "name_rate": 0.144,
+                "exc_rate": 0.052
+            },
+            "stage2e": {
+                "pass_rate": 0.043333333333333335,
+                "syntax_rate": 0.9166666666666666,
+                "eos_rate": 1.0,
+                "emitted_im_end_rate": 1.0,
+                "emitted_endoftext_rate": 0.0,
+                "rep_rate": 0.0,
+                "timeout_rate": 0.0,
+                "assert_rate": 0.0033333333333333335,
+                "name_rate": 0.8233333333333334,
+                "exc_rate": 0.04666666666666667
+            }
+        }
+    }
+}

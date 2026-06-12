@@ -42,4 +42,4 @@ def test_safety_wording():
 def test_fresh_artifact_archive_wording():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     assert "fresh_eval_<timestamp>" in readme
-    assert "fresh_eval_/" not in readme
+    assert "fresh_eval_<timestamp>/" not in readme

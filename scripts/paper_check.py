@@ -47,8 +47,8 @@ def check_readme():
         print("FAIL: README missing fresh_eval_<timestamp>")
         return False
         
-    if "fresh_eval_/" in readme:
-        print("FAIL: README contains fresh_eval_/")
+    if "fresh_eval_<timestamp>/" in readme:
+        print("FAIL: README contains fresh_eval_<timestamp>/")
         return False
         
     if "CC BY-NC-SA 4.0" not in readme:
