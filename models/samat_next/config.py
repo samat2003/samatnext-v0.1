@@ -13,8 +13,10 @@ class SamatNextConfig:
     attention_ratio: float = 0.5
     deltanet_ratio: float = 0.5
     use_differential_attention: bool = True
-    use_verifier_head: bool = True
+    use_verifier_head: bool = False
     rms_norm_eps: float = 1e-6
+    mixer_pattern: str = "alternating"
+    use_rope: bool = True
 
     @classmethod
     def from_json(cls, json_path: str) -> "SamatNextConfig":

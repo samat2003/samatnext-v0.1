@@ -1,8 +1,9 @@
+# SPDX-License-Identifier: Apache-2.0
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from .config import SamatNextConfig
-from .deltanet import GatedDeltaNet
+from .linear_state_mixer import DeltaNetInspiredLinearStateMixer
 from .differential_attention import DifferentialAttention
 
 class RMSNorm(nn.Module):
@@ -32,17 +33,41 @@ class SamatNextBlock(nn.Module):
         self.input_layernorm = RMSNorm(config.hidden_size, eps=config.rms_norm_eps)
         self.post_attention_layernorm = RMSNorm(config.hidden_size, eps=config.rms_norm_eps)
         
-        if layer_idx % 2 == 0:
-            self.mixer = GatedDeltaNet(config)
-        else:
+        # Determine mixer type based on mixer_pattern configuration
+        pattern = getattr(config, "mixer_pattern", "alternating")
+        num_layers = config.num_layers
+        
+        if pattern == "all_diffattn":
             self.mixer = DifferentialAttention(config)
+        elif pattern == "all_linear_state":
+            self.mixer = DeltaNetInspiredLinearStateMixer(config)
+        elif pattern == "diffattn_first":
+            if layer_idx < num_layers // 2:
+                self.mixer = DifferentialAttention(config)
+            else:
+                self.mixer = DeltaNetInspiredLinearStateMixer(config)
+        elif pattern == "linear_state_first":
+            if layer_idx < num_layers // 2:
+                self.mixer = DeltaNetInspiredLinearStateMixer(config)
+            else:
+                self.mixer = DifferentialAttention(config)
+        else: # "alternating"
+            if layer_idx % 2 == 0:
+                self.mixer = DeltaNetInspiredLinearStateMixer(config)
+            else:
+                self.mixer = DifferentialAttention(config)
             
         self.mlp = MLP(config)
 
-    def forward(self, hidden_states: torch.Tensor):
+    def forward(self, hidden_states: torch.Tensor, freqs_cis=None):
         residual = hidden_states
         hidden_states = self.input_layernorm(hidden_states)
-        hidden_states = self.mixer(hidden_states)
+        
+        if isinstance(self.mixer, DifferentialAttention):
+            hidden_states = self.mixer(hidden_states, freqs_cis)
+        else:
+            hidden_states = self.mixer(hidden_states)
+            
         hidden_states = residual + hidden_states
         
         residual = hidden_states

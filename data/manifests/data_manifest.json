@@ -1,0 +1,63 @@
+{
+    "seed": 42,
+    "smoke": true,
+    "removed_counts": {
+        "empty": 0,
+        "malformed": 0,
+        "non_python": 1606,
+        "duplicate": 19899,
+        "contaminated": 94028
+    },
+    "processed_files": {
+        "stage2a_code_pretrain.jsonl": {
+            "path": "C:\\new model\\data\\processed\\stage2a_code_pretrain.jsonl",
+            "sha256": "9109f4a84f78ec88427a1740ef8d9a66fcf6c00d3a1ef7a322d2c465b3da5a2c",
+            "sample_count": 50,
+            "estimated_tokens": 8698
+        },
+        "stage3_paraphrase_train.jsonl": {
+            "path": "C:\\new model\\data\\processed\\stage3_paraphrase_train.jsonl",
+            "sha256": "0d6d7b8cd2d1100b5e5f1bb8a3709c196eb1811f952ba82bcfbd8c160159673e",
+            "sample_count": 50,
+            "estimated_tokens": 1634
+        },
+        "stage5_teacher_sft.jsonl": {
+            "path": "C:\\new model\\data\\processed\\stage5_teacher_sft.jsonl",
+            "sha256": "8ea95c1eabb056c5fc4da3d27f1d638000040c6f65777ce6691bbbf46caca630",
+            "sample_count": 9,
+            "estimated_tokens": 475
+        },
+        "train.jsonl": {
+            "path": "C:\\new model\\data\\processed\\train.jsonl",
+            "sha256": "17d46931bdcf650d2d8dfe5cf7be1c66b741400e39e3979c605c9fe6128b1c09",
+            "sample_count": 7,
+            "estimated_tokens": 325
+        },
+        "val.jsonl": {
+            "path": "C:\\new model\\data\\processed\\val.jsonl",
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "sample_count": 0,
+            "estimated_tokens": 0
+        },
+        "internal_test.jsonl": {
+            "path": "C:\\new model\\data\\processed\\internal_test.jsonl",
+            "sha256": "5564420382235ba4ce20293cf581df0e42ffb0d7f64734b52e49845aefdbd9ea",
+            "sample_count": 2,
+            "estimated_tokens": 150
+        }
+    },
+    "benchmarks": {
+        "humaneval": {
+            "path": "C:\\new model\\data\\benchmark\\humaneval.jsonl",
+            "sha256": "e07b8a014c6e771c142b75bcab016fae614ebfd26774f0f18baddf9723fcb0a8"
+        },
+        "mbpp": {
+            "path": "C:\\new model\\data\\benchmark\\mbpp_eval.jsonl",
+            "sha256": "532c24ad2c93d84133c1ef7f1200271db0dd773769aa107b0c320c14be7dd948"
+        },
+        "custom_retention": {
+            "path": "C:\\new model\\data\\benchmark\\custom_retention_eval.jsonl",
+            "sha256": "4b5359700619c038fec6ef109d2cfe6afee1643506a6db68c4260dfc7c528855"
+        }
+    }
+}

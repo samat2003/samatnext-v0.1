@@ -1,11 +1,13 @@
+# SPDX-License-Identifier: Apache-2.0
 import torch
 import torch.nn as nn
 from .config import SamatNextConfig
 
-class GatedDeltaNet(nn.Module):
+class DeltaNetInspiredLinearStateMixer(nn.Module):
     """
-    Placeholder for the Gated DeltaNet layer.
-    Implemented as a basic, differentiable linear attention approximation.
+    DeltaNet-inspired linear-state mixer (simplified causal linear-state mixer).
+    This is a simplified causal linear attention approximation, not a faithful 
+    implementation of the full DeltaNet delta-rule update.
     """
     def __init__(self, config: SamatNextConfig):
         super().__init__()
@@ -41,4 +43,3 @@ class GatedDeltaNet(nn.Module):
         out = (q * kv_state) / k_state
         out = out.to(orig_dtype)
         return self.o_proj(out)
-
