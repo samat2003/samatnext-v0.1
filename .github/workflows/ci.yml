@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test-and-paper-check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.10"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Compile critical Python files
+        run: |
+          python -m py_compile scripts/paper_check.py
+          python -m py_compile tests/test_claim_hygiene.py
+          python -m py_compile tests/test_format_hygiene.py
+
+      - name: Run unit and hygiene tests
+        run: |
+          python -m pytest tests/
+
+      - name: Run paper artifact checks
+        run: |
+          python scripts/paper_check.py
+          make paper-check

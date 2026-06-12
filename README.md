@@ -1,6 +1,6 @@
 # SamatNext-v0.1
 
-## Summary
+[![CI](https://github.com/samat2003/samatnext-v0.1/actions/workflows/ci.yml/badge.svg)](https://github.com/samat2003/samatnext-v0.1/actions/workflows/ci.yml)## Summary
 SamatNext-v0.1 is an experimental language model architecture designed to investigate the sequence-modeling trade-offs between Multi-Head Attention and linear sequence mixers under staged curriculum training.
 
 ## Research Claim
@@ -70,4 +70,4 @@ python scripts/reproduce_main_table.py --force-eval --timeout-seconds 5 --output
 ## Safety
 Evaluation executes model-generated Python code using subprocess isolation with timeout and resource limits. This is not a secure sandbox or complete security boundary. Run evaluation inside a container or VM when evaluating untrusted models or generated code.
 
-External artifact archive: pending.
+External artifact archive: GitHub Release `v0.1.0-reproducibility`.
