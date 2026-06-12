@@ -12,15 +12,17 @@
 - This is **NOT** a frontier coding model.
 - This is **NOT** production-ready.
 - This is **NOT** proven generally superior to Transformers in all domains.
-- This is **NOT** trained or evaluated on HumanEval (all completion-only HumanEval-style experiments were abandoned due to format contamination).
+- **HumanEval is never used for training.** Full HumanEval evaluation is pending / optional. Earlier exploratory HumanEval-5 subset results are archived and should not be treated as a full benchmark (all completion-only HumanEval-style experiments were abandoned due to format contamination).
 
 ## Architecture Summary
 The **SamatNext-v0.1** architecture is an autoregressive next-token decoder combining:
-- Standard Tokenization (151,936 vocab), Embeddings, and LM Head.
+- Standard Tokenization (151,936 vocabulary config, with 151,665 active tokenizer tokens; see note below), Embeddings, and LM Head.
 - Standard RMSNorm and SwiGLU Feed-Forward Networks.
 - **DifferentialAttention Layers**: An experimental hybrid attention mechanism.
 - **DeltaNet-style Layers**: Recurrent/state-tracking layers to enhance sequential dependency learning.
 - Qwen-style chat formatting (`<|im_start|>`, `<|im_end|>`).
+
+*Note on Vocabulary vs. Tokenizer Length: The configuration sets the model vocabulary size to 151,936 to match the standard Qwen2.5-Coder architecture embedding dimensions, whereas the tokenizer itself actually defines 151,665 active tokens. The remaining 271 indices are reserved or unused.*
 
 ## Main Result: Curriculum Retention Advantage
 The core hypothesis was that standard Transformers suffer catastrophic forgetting when traversing a curriculum of small datasets, effectively overwriting their understanding of early syntax rules once they memorize a later, more complex dataset. 
@@ -42,13 +44,13 @@ Under our specific, controlled small-model curriculum setup (Stage 2A -> Stage 3
 This is evidence of stronger curriculum-retention / sequential-plasticity behavior **under this setup**. It highlights a potential structural flaw in how standard Transformers handle sequential objective shifts. It is **not** proof of general coding superiority, nor does it guarantee the architecture scales better than Transformers to billions of parameters.
 
 ## Reproducibility
-To reproduce the curriculum runs locally, execute the following active scripts in sequence:
+To run the automated tests, check the paper checklist, or run the reproducibility pipelines:
 
-1. **Stage 2A (Syntax):** `python scripts/train_stage2a.py`
-2. **Stage 3 (Semantics):** `python scripts/train_stage3.py`
-3. **Stage 5 (Teacher Distill):** `python scripts/train_stage5.py`
-4. **Transformer Baseline Curriculum:** `python scripts/train_transformer_curriculum.py`
-5. **Evaluation:** `python scripts/compare_models.py` (which internally leverages `eval_suite.py`).
+- **Run Verification Tests:** `python -m pytest tests/`
+- **Verify Paper Checklist:** `python scripts/paper_check.py`
+- **Run Smoke Test Pipeline:** `python scripts/reproduce_smoke.py`
+- **Recreate Main Table & Update README:** `python scripts/reproduce_main_table.py`
+
 
 ## Future Work
 - **Clean Full-Function Coding Generalization:** Training on strictly decontaminated Hugging Face Python datasets.
