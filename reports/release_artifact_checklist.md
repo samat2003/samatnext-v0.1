@@ -1,7 +1,7 @@
 # Release Artifact Checklist
 
 - [x] CI workflow exists
-- [ ] CI passes on main
+- [x] CI passes on main
 - [x] fresh eval artifact bundle created
 - [x] SHA256 checksums created
 - [x] GitHub Release created
