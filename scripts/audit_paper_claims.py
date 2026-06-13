@@ -160,7 +160,7 @@ def audit_vram_table():
 
 def audit_artifact_commits():
     print("Auditing artifact manifest consistency...")
-    source_commit = "29e780e07d4b78f9fe85c32160ab7d5f4ce8d3de"
+    source_commit = "f8773cc21c99e404dd50e50a2eab547d09d44dff"
     repro_commit = "525665fe790b18668251dad6698fe9bfe0ca27ca"
     
     main_tex_path = os.path.join(ROOT, "paper", "main.tex")
