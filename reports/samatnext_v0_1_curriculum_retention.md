@@ -32,10 +32,10 @@ The curriculum consisted of the following sequential stages:
 | **Transformer** | Curriculum lr=3e-6 | 49.4% | 4.0% | 0.0% |
 | **Transformer** | Curriculum Rescue lr=1e-5 | 97.6% | 6.0% | 0.0% |
 | **Transformer** | Curriculum Rescue lr=3e-5 | 97.6% | 3.2% | 2.0% |
-| **SamatNext** | Curriculum lr=3e-6 | 97.6% | **86.8%** | **6.3%** |
+| **SamatNext** | Curriculum lr=3e-6 | 83.0% | **70.2%** | **4.3%** |
 
 ## Interpretation
-Under this controlled setup, SamatNext-v0.1 demonstrated massive improvements in Stage 3 Retention (86.8%) compared to the best Transformer baseline rescue attempt (6.0%). The Transformer suffered catastrophic forgetting of earlier stages the moment it successfully converged on Stage 5. 
+Under this controlled setup, SamatNext-v0.1 demonstrated massive improvements in Stage 3 Retention (70.2%) compared to the best Transformer baseline rescue attempt (6.0%). The Transformer suffered catastrophic forgetting of earlier stages the moment it successfully converged on Stage 5. 
 
 This is **evidence of stronger curriculum-retention / sequential-plasticity behavior** under this specific setup. 
 **It is NOT proof of general coding superiority.** It is NOT proof that the architecture beats Transformers in all settings or at massive scale.
