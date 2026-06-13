@@ -9,8 +9,8 @@ Status:
 - The paper is still a draft and has not been submitted.
 - Reproducibility artifacts are frozen separately from later documentation/source polish commits.
 
-Source commit:
-`41636fe45f01838dd10ccdf7cb94d75fa6061ae2`
+Paper source tag:
+`v0.1.0-paper`
 
 Reproducibility artifact commit:
 `525665fe790b18668251dad6698fe9bfe0ca27ca`
