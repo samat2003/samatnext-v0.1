@@ -10,7 +10,7 @@ Status:
 - Reproducibility artifacts are frozen separately from later documentation/source polish commits.
 
 Source commit:
-`f8773cc21c99e404dd50e50a2eab547d09d44dff`
+`bc833343b4195667fbfa9d0dc5d8b60a8ab1b243`
 
 Reproducibility artifact commit:
 `525665fe790b18668251dad6698fe9bfe0ca27ca`
