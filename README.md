@@ -90,6 +90,9 @@ Or directly:
 python scripts/reproduce_main_table.py --force-eval --timeout-seconds 5 --output results/runs/fresh_eval_<timestamp>/
 ```
 
+Paper source tag:
+`v0.1.0-paper`
+
 Reproducibility artifact commit:
 `525665fe790b18668251dad6698fe9bfe0ca27ca`
 
@@ -106,6 +109,7 @@ Technical report in preparation.
 - Stage 2E retention remains low for both SamatNext and Transformer baselines.
 - The current release does not yet include full architectural ablations separating Differential-Attention-style layers from DeltaNet-inspired simplified linear-state mixers.
 - The Transformer baselines are parameter-matched and learning-rate-varied, but they are not compared against explicit continual-learning methods such as replay, EWC, or adapter isolation.
+- The Transformer curriculum baseline is evaluated across multiple learning rates, while the current SamatNext curriculum result is reported at LR=3e-6. Additional SamatNext LR=1e-5 and LR=3e-5 runs are needed to fully isolate architecture effects from learning-rate effects.
 - Some Stage 5 data is teacher-generated, so dataset provenance and licensing are documented separately.
 
 ## Licensing
