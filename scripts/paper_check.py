@@ -108,9 +108,23 @@ def check_results():
             
     return True
 
+def check_audit_claims():
+    import subprocess
+    try:
+        res = subprocess.run([sys.executable, str(ROOT / "scripts" / "audit_paper_claims.py")], capture_output=True, text=True, check=True)
+        print(res.stdout)
+        return True
+    except Exception as e:
+        print("FAIL: audit_paper_claims.py failed")
+        if hasattr(e, 'stdout') and e.stdout:
+            print(e.stdout)
+        if hasattr(e, 'stderr') and e.stderr:
+            print(e.stderr)
+        return False
+
 def main():
     print("Running paper checks...")
-    success = check_files_exist() and check_readme() and check_licenses() and check_results()
+    success = check_files_exist() and check_readme() and check_licenses() and check_results() and check_audit_claims()
     if success:
         print("PASS: All checks passed")
         sys.exit(0)

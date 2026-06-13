@@ -3,7 +3,7 @@
 [![CI](https://github.com/samat2003/samatnext-v0.1/actions/workflows/ci.yml/badge.svg)](https://github.com/samat2003/samatnext-v0.1/actions/workflows/ci.yml)
 
 ## Summary
-SamatNext-v0.1 is an experimental ~350M-parameter autoregressive language model architecture designed to study retention under staged curriculum training for Python code tasks. The project compares a hybrid decoder using Differential-Attention-style layers and DeltaNet-inspired linear-state mixers against a parameter-matched Transformer baseline.
+SamatNext-v0.1 is an experimental ~350M-parameter autoregressive language model architecture designed to study retention under staged curriculum training for Python code tasks. The project compares a hybrid decoder using Differential-Attention-style layers and DeltaNet-inspired simplified linear-state mixers against a parameter-matched Transformer baseline.
 
 ## Research Claim
 SamatNext-v0.1 shows substantially stronger intermediate semantic curriculum retention than a parameter-matched Transformer sequential fine-tuning baseline under a controlled Python curriculum, while sacrificing some final-stage specialization.
@@ -31,7 +31,7 @@ The supported claim is narrower: in this controlled staged Python curriculum, Sa
 ## Architecture
 The **SamatNext-v0.1** autoregressive next-token decoder integrates:
 - **Differential-Attention-style layers:** Attention blocks inspired by differential attention mechanisms.
-- **DeltaNet-inspired linear-state mixer layers:** Recurrent/linear-state sequence-mixing blocks intended to test whether state-tracking inductive bias affects curriculum retention.
+- **DeltaNet-inspired simplified linear-state mixer layers:** Recurrent/linear-state sequence-mixing blocks intended to test whether state-tracking inductive bias affects curriculum retention.
 - **Feed-forward blocks:** Standard SwiGLU non-linear mappings.
 
 ## Matched Transformer Baseline
@@ -104,7 +104,7 @@ Technical report in preparation.
 - The curriculum is synthetic and narrow, focused on Python code tasks.
 - The headline result is not a broad HumanEval/MBPP/SWE-bench claim.
 - Stage 2E retention remains low for both SamatNext and Transformer baselines.
-- The current release does not yet include full architectural ablations separating Differential-Attention-style layers from DeltaNet-inspired linear-state mixers.
+- The current release does not yet include full architectural ablations separating Differential-Attention-style layers from DeltaNet-inspired simplified linear-state mixers.
 - The Transformer baselines are parameter-matched and learning-rate-varied, but they are not compared against explicit continual-learning methods such as replay, EWC, or adapter isolation.
 - Some Stage 5 data is teacher-generated, so dataset provenance and licensing are documented separately.
 

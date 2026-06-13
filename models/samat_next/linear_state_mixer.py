@@ -5,9 +5,8 @@ from .config import SamatNextConfig
 
 class DeltaNetInspiredLinearStateMixer(nn.Module):
     """
-    DeltaNet-inspired linear-state mixer (simplified causal linear-state mixer).
-    This is a simplified causal linear attention approximation, not a faithful 
-    implementation of the full DeltaNet delta-rule update.
+    DeltaNet-inspired simplified linear-state mixer.
+    This is a simplified causal linear attention approximation.
     """
     def __init__(self, config: SamatNextConfig):
         super().__init__()
