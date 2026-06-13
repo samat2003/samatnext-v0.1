@@ -160,7 +160,7 @@ def audit_vram_table():
 
 def audit_artifact_commits():
     print("Auditing artifact manifest consistency...")
-    source_commit = "41636fe45f01838dd10ccdf7cb94d75fa6061ae2"
+    paper_source_tag = "v0.1.0-paper"
     repro_commit = "525665fe790b18668251dad6698fe9bfe0ca27ca"
     
     main_tex_path = os.path.join(ROOT, "paper", "main.tex")
@@ -171,8 +171,8 @@ def audit_artifact_commits():
             print(f"FAIL: File not found: {path}")
             return "FAIL"
         content = open(path, "r", encoding="utf-8").read()
-        if source_commit not in content:
-            print(f"FAIL: source commit {source_commit} not in {path}")
+        if paper_source_tag not in content:
+            print(f"FAIL: paper source tag {paper_source_tag} not in {path}")
             return "FAIL"
         if repro_commit not in content:
             print(f"FAIL: reproducibility commit {repro_commit} not in {path}")
