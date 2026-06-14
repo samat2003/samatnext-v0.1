@@ -17,6 +17,7 @@ class SamatNextConfig:
     rms_norm_eps: float = 1e-6
     mixer_pattern: str = "alternating"
     use_rope: bool = True
+    lsm_output_scale: float = 1.0
 
     @classmethod
     def from_json(cls, json_path: str) -> "SamatNextConfig":

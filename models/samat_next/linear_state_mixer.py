@@ -11,6 +11,7 @@ class DeltaNetInspiredLinearStateMixer(nn.Module):
     def __init__(self, config: SamatNextConfig):
         super().__init__()
         self.hidden_size = config.hidden_size
+        self.lsm_output_scale = getattr(config, 'lsm_output_scale', 1.0)
         
         self.q_proj = nn.Linear(self.hidden_size, self.hidden_size, bias=False)
         self.k_proj = nn.Linear(self.hidden_size, self.hidden_size, bias=False)
@@ -41,5 +42,6 @@ class DeltaNetInspiredLinearStateMixer(nn.Module):
 
         out = (q * kv_state) / k_state
         out = out / out.pow(2).mean(dim=-1, keepdim=True).add(1e-6).sqrt()
+        out = self.lsm_output_scale * out
         out = out.to(orig_dtype)
         return self.o_proj(out)
