@@ -17,6 +17,7 @@ class SamatNextConfig:
     rms_norm_eps: float = 1e-6
     mixer_pattern: str = "alternating"
     use_rope: bool = True
+    use_lsm_rmsnorm: bool = False
     lsm_output_scale: float = 1.0
 
     @classmethod

@@ -10,5 +10,6 @@
   "use_rope": true,
   "use_verifier_head": false,
   "rms_norm_eps": 1e-06,
+  "use_lsm_rmsnorm": true,
   "lsm_output_scale": 0.50
 }
