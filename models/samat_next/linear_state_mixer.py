@@ -40,5 +40,6 @@ class DeltaNetInspiredLinearStateMixer(nn.Module):
         k_state  = torch.cumsum(k,  dim=1).clamp(min=1e-6)   # never zero
 
         out = (q * kv_state) / k_state
+        out = out / out.pow(2).mean(dim=-1, keepdim=True).add(1e-6).sqrt()
         out = out.to(orig_dtype)
         return self.o_proj(out)
