@@ -40,5 +40,12 @@
         "stage5_pass_rate": 0.83,
         "stage3_retention_rate": 0.702,
         "stage2e_pass_rate": 0.043333333333333335
+    },
+    "SamatNext Curriculum v0.2-B lr=3e-6": {
+        "model_display_name": "SamatNext v0.2-B",
+        "training_path": "Curriculum lr=3e-6",
+        "stage5_pass_rate": 1.0,
+        "stage3_retention_rate": 0.988,
+        "stage2e_pass_rate": 0.12333333333333334
     }
 }

@@ -28,6 +28,7 @@ from transformers import AutoTokenizer
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, ROOT)
+sys.path.insert(0, os.path.join(ROOT, "models"))
 
 from models.samat_next.config import SamatNextConfig
 from models.samat_next.model import SamatNextForCausalLM
@@ -155,13 +156,19 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--steps",  type=int, default=1000,  help="Number of optimizer steps to run")
     parser.add_argument("--resume", type=str, default=None, help="Path to checkpoint to resume from")
+    parser.add_argument("--input-checkpoint", type=str, default=None, help="Path to checkpoint to resume from (alternative)")
+    parser.add_argument("--config", type=str, default="configs/samat_next_150m.json", help="Path to config JSON")
+    parser.add_argument("--output-checkpoint-prefix", type=str, default="samat_next_350m_stage3", help="Prefix for saved checkpoints")
     parser.add_argument("--start_step", type=int, default=0, help="Initial step count for resumed runs")
+    parser.add_argument("--batch-size", type=int, default=1, help="Batch size for training")
+    parser.add_argument("--grad-accum-steps", type=int, default=32, help="Gradient accumulation steps")
     args = parser.parse_args()
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     # fp32 for full numerical stability — model is 350M, fits comfortably in VRAM
     print(f"Device: {device}  |  Precision: float32 (AMP disabled)")
-    print(f"Target steps: {args.steps}  |  Resume: {args.resume}\n")
+    resume_path = args.input_checkpoint if args.input_checkpoint is not None else args.resume
+    print(f"Target steps: {args.steps}  |  Resume: {resume_path}\n")
 
     tok = load_tokenizer()
     print_tokenizer_info(tok)
@@ -176,19 +183,26 @@ def main():
 
     dataset = FixedCodeDataset(data, tok, max_len=512)
     loader  = DataLoader(
-        dataset, batch_size=1, shuffle=True,
+        dataset, batch_size=args.batch_size, shuffle=True,
         collate_fn=lambda b: collate_fn(b, tok.pad_token_id),
         num_workers=0,
     )
 
     # Model
-    config_path = os.path.join(ROOT, "configs", "samat_next_150m.json")
+    if os.path.isabs(args.config):
+        config_path = args.config
+    else:
+        config_path = os.path.join(ROOT, args.config)
+    print(f"Loading config from: {config_path}")
     config = SamatNextConfig.from_json(config_path)
     model  = SamatNextForCausalLM(config).to(device)
 
-    if args.resume and os.path.exists(args.resume):
-        print(f"Resuming from: {args.resume}")
-        model.load_state_dict(torch.load(args.resume, map_location=device, weights_only=True))
+    if resume_path and os.path.exists(resume_path):
+        print(f"Resuming from: {resume_path}")
+        model.load_state_dict(torch.load(resume_path, map_location=device, weights_only=True))
+    elif resume_path:
+        print(f"ERROR: Resume checkpoint not found: {resume_path}")
+        sys.exit(1)
     else:
         print("Initializing from scratch (fresh random weights)")
         for m in model.modules():
@@ -206,7 +220,7 @@ def main():
     WARMUP_STEPS = 100
     WEIGHT_DECAY = 0.01
     GRAD_CLIP    = 0.5
-    GRAD_ACCUM   = 32     # effective batch = 32
+    GRAD_ACCUM   = args.grad_accum_steps     # effective batch = batch_size * grad_accum_steps
     MAX_STEPS    = 2000
     SAVE_EVERY   = 500
 
@@ -235,10 +249,10 @@ def main():
                 diffattn_max_logit.append(out.float().abs().max().item())
         return hook
 
-    from samat_next.deltanet import GatedDeltaNet
-    from samat_next.differential_attention import DifferentialAttention
+    from models.samat_next.linear_state_mixer import DeltaNetInspiredLinearStateMixer
+    from models.samat_next.differential_attention import DifferentialAttention
     for m in model.modules():
-        if isinstance(m, GatedDeltaNet):
+        if isinstance(m, DeltaNetInspiredLinearStateMixer):
             m.register_forward_hook(make_dn_hook())
         elif isinstance(m, DifferentialAttention):
             m.register_forward_hook(make_da_hook())
@@ -251,7 +265,7 @@ def main():
 
     log_data      = []
     best_loss     = float("inf")
-    best_ckpt_path = os.path.join(ROOT, "checkpoints", "samat_next_350m_stage3_best.pt")
+    best_ckpt_path = os.path.join(ROOT, "checkpoints", f"{args.output_checkpoint_prefix}_best.pt")
     nan_happened  = False
     step_count    = args.start_step
     running_loss  = 0.0
@@ -357,7 +371,7 @@ def main():
             if step_count % SAVE_EVERY == 0:
                 ckpt = os.path.join(
                     ROOT, "checkpoints",
-                    f"samat_next_350m_stage3_step_{step_count}.pt"
+                    f"{args.output_checkpoint_prefix}_step_{step_count}.pt"
                 )
                 torch.save(model.state_dict(), ckpt)
                 print(f"         -> Checkpoint saved: {ckpt}")
@@ -366,11 +380,11 @@ def main():
                 break
 
     # Final save
-    final_ckpt = os.path.join(ROOT, "checkpoints", "samat_next_350m_stage3_latest.pt")
+    final_ckpt = os.path.join(ROOT, "checkpoints", f"{args.output_checkpoint_prefix}_latest.pt")
     torch.save(model.state_dict(), final_ckpt)
 
     # Persist log
-    log_file = os.path.join(ROOT, "results", "stage3_log.json")
+    log_file = os.path.join(ROOT, "results", f"{args.output_checkpoint_prefix}_log.json")
     # Merge with existing log if resuming
     existing = []
     if os.path.exists(log_file):

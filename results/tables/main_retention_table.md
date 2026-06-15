@@ -1,14 +1,13 @@
 # SamatNext-v0.1: Curriculum Retention and Sequential Plasticity
 
-| Model       | Training Path             | Stage 5 Pass | Stage 3 Retention | Stage 2E Pass |
-| ----------- | ------------------------- | -----------: | ----------------: | ------------: |
-| Transformer | Scratch → Stage5          |        97.6% |              0.8% |          3.3% |
-| SamatNext   | Scratch → Stage5          |        97.6% |              0.8% |          1.3% |
-| Transformer | Curriculum lr=3e-6        |        49.4% |              4.0% |          0.0% |
-| Transformer | Curriculum Rescue lr=1e-5 |        97.6% |              6.0% |          3.0% |
-| Transformer | Curriculum Rescue lr=3e-5 |        97.6% |              3.2% |          2.0% |
-| SamatNext   | Curriculum lr=3e-6        |        83.0% |             70.2% |          4.3% |
+| Model | Training Path | Stage 5 Pass | Stage 3 Retention | Stage 2E Pass |
+| :--- | :--- | :---: | :---: | :---: |
+| **Transformer** | Scratch → Stage5 | 97.6% | 0.8% | 3.3% |
+| **SamatNext** | Scratch → Stage5 | 97.6% | 0.8% | 1.3% |
+| **Transformer** | Curriculum lr=3e-6 | 49.4% | 4.0% | 0.0% |
+| **Transformer** | Curriculum Rescue lr=1e-5 | 97.6% | 6.0% | 3.0% |
+| **Transformer** | Curriculum Rescue lr=3e-5 | 97.6% | 3.2% | 2.0% |
+| **SamatNext** | Curriculum lr=3e-6 | 83.0% | **70.2%** | **4.3%** |
+| **SamatNext v0.2-B** | Curriculum lr=3e-6 | 100.0% | **98.8%** | **12.3%** |
 
-Note: This table was generated from a fresh evaluation run. Full per-example artifacts are stored locally under `results/runs/` and are gitignored because they may be large. To reproduce them, run `make reproduce-main-table-fresh`.
-
-External artifact archive: pending.
+Full per-example artifacts are stored locally under `results/runs/` and are gitignored because they may be large. To reproduce them, run `make reproduce-main-table-fresh`. External artifact archive: pending.

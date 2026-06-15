@@ -100,6 +100,18 @@ MODELS_CONFIG = {
         },
         "display_name": "SamatNext",
         "training_path": "Curriculum lr=3e-6"
+    },
+    "SamatNext Curriculum v0.2-B lr=3e-6": {
+        "model_type": "samatnext",
+        "config": os.path.join(ROOT, "configs", "ablations", "samat_next_v0_2b_official.json"),
+        "checkpoint": os.path.join(ROOT, "checkpoints", "samatnext_v02b_stage5_best.pt"),
+        "files": {
+            "stage5": "eval_v02b_stage_5_teacher-style_holdout.json",
+            "stage3": "eval_v02b_stage_3_paraphrase.json",
+            "stage2e": "eval_v02b_stage_2e_adversarial.json"
+        },
+        "display_name": "SamatNext v0.2-B",
+        "training_path": "Curriculum lr=3e-6"
     }
 }
 
@@ -386,6 +398,7 @@ def load_cached_results():
     return results
 
 def main():
+    global MODELS_CONFIG
     parser = argparse.ArgumentParser()
     parser.add_argument("--force-eval", action="store_true", help="Force run evaluations on model checkpoints instead of loading cached results.")
     parser.add_argument("--tokenizer", type=str, default="Qwen/Qwen2.5-Coder-3B-Instruct")
@@ -406,17 +419,50 @@ def main():
         print(f"Saving all raw per-task output artifacts to: {args.output}")
         results = run_evaluation(device, args.tokenizer, args.output, args.timeout_seconds)
     else:
-        print("Loading pre-computed evaluation results from results/...")
-        try:
-            results = load_cached_results()
-        except FileNotFoundError as e:
-            print(e)
-            print("Falling back to running live evaluation...")
-            is_cached = False
-            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-            args.output = os.path.join(ROOT, "results", "runs", f"fresh_eval_{timestamp}")
+        print("Hybrid loading mode: check cached files and evaluate missing models...")
+        results = {}
+        missing_models_config = {}
+        results_dir = os.path.join(ROOT, "results")
+        
+        for model_key, model_meta in MODELS_CONFIG.items():
+            model_missing = False
+            for stage_key, filename in model_meta["files"].items():
+                filepath = os.path.join(results_dir, filename)
+                if not os.path.exists(filepath):
+                    model_missing = True
+                    break
+            
+            if model_missing:
+                missing_models_config[model_key] = model_meta
+            else:
+                results[model_key] = {}
+                for stage_key, filename in model_meta["files"].items():
+                    filepath = os.path.join(results_dir, filename)
+                    with open(filepath, "r", encoding="utf-8") as f:
+                        data = json.load(f)
+                    total = len(data)
+                    passed = sum(1 for item in data if item.get("test_pass", False))
+                    rate = passed / total if total > 0 else 0.0
+                    results[model_key][stage_key] = rate
+                print(f"Loaded cached results for {model_key}")
+                
+        if missing_models_config:
+            print(f"Evaluating missing models: {list(missing_models_config.keys())}")
+            if args.output is None:
+                timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+                args.output = os.path.join(ROOT, "results", "runs", f"hybrid_eval_{timestamp}")
             device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-            results = run_evaluation(device, args.tokenizer, args.output, args.timeout_seconds)
+            
+            # Temporarily swap MODELS_CONFIG to only run evaluation on the missing ones
+            original_models_config = MODELS_CONFIG
+            MODELS_CONFIG = missing_models_config
+            try:
+                eval_results = run_evaluation(device, args.tokenizer, args.output, args.timeout_seconds)
+                results.update(eval_results)
+            finally:
+                MODELS_CONFIG = original_models_config
+        else:
+            print("All models loaded from cache.")
             
     # Output JSON table format
     final_table = {}
@@ -451,7 +497,8 @@ def main():
             "Transformer Curriculum lr=3e-6",
             "Transformer Curriculum Rescue lr=1e-5",
             "Transformer Curriculum Rescue lr=3e-5",
-            "SamatNext Curriculum lr=3e-6"
+            "SamatNext Curriculum lr=3e-6",
+            "SamatNext Curriculum v0.2-B lr=3e-6"
         ]:
             if model_key not in final_table:
                 continue

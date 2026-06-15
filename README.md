@@ -90,6 +90,68 @@ Or directly:
 python scripts/reproduce_main_table.py --force-eval --timeout-seconds 5 --output results/runs/fresh_eval_<timestamp>/
 ```
 
+## Quick Start (Beginner Friendly)
+
+You can run and explore **SamatNext v0.2-B** using either pre-trained weights or by training the model from scratch.
+
+### Option 1: Load and Evaluate Pre-trained Weights (Recommended)
+This option allows you to load our verified checkpoints and evaluate them immediately.
+
+1. **Place Checkpoints:** Make sure the following checkpoints are placed in the `checkpoints/` directory:
+   * `samatnext_v02b_stage2a.pt` (Stage 2A Best)
+   * `samatnext_v02b_stage3_best.pt` (Stage 3 Best)
+   * `samatnext_v02b_stage5_best.pt` (Stage 5 Best)
+2. **Run Evaluation:** Run the hybrid evaluation suite to test the model across the curriculum tasks:
+   ```bash
+   python scripts/reproduce_main_table.py --output results/runs/official_v02b_eval/
+   ```
+3. **Programmatic Usage:** Load and run a forward pass in Python:
+   ```python
+   import torch
+   from models.samat_next.config import SamatNextConfig
+   from models.samat_next.model import SamatNextForCausalLM
+   from transformers import AutoTokenizer
+
+   # Load Config & Model
+   config = SamatNextConfig.from_json("configs/ablations/samat_next_v0_2b_official.json")
+   model = SamatNextForCausalLM(config)
+
+   # Load Stage 5 Weights
+   weights = torch.load("checkpoints/samatnext_v02b_stage5_best.pt", map_location="cpu")
+   state_dict = weights["model_state_dict"] if "model_state_dict" in weights else weights
+   model.load_state_dict(state_dict, strict=True)
+   model.eval()
+
+   # Tokenize Prompt and Generate
+   tok = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-Coder-3B-Instruct")
+   prompt = "<|im_start|>user\nDefine a function add_two(x, y) that returns their sum.<|im_end|>\n<|im_start|>assistant\n"
+   inputs = tok(prompt, return_tensors="pt").input_ids
+   with torch.no_grad():
+       logits, _ = model(inputs)
+       print("Next token logit shape:", logits.shape)
+   ```
+
+### Option 2: Train the Model from Scratch (Do-It-Yourself)
+Follow these steps to run the complete curriculum pre-training and sequential fine-tuning yourself:
+
+1. **Prepare the Data:** Download and process the curriculum datasets:
+   ```bash
+   make prepare-data
+   ```
+2. **Train Stage 2A (Pretraining from Scratch):**
+   ```bash
+   python scripts/train_stage2a.py --config configs/ablations/samat_next_v0_2b_official.json --output-checkpoint-prefix samatnext_v02b_stage2a --batch-size 1 --grad-accum-steps 32
+   ```
+3. **Train Stage 3 (Sequential Fine-tuning for Paraphrase):**
+   ```bash
+   python scripts/train_stage3.py --config configs/ablations/samat_next_v0_2b_official.json --input-checkpoint checkpoints/samatnext_v02b_stage2a.pt --output-checkpoint-prefix samatnext_v02b_stage3
+   ```
+4. **Train Stage 5 (Teacher-Student Distillation):**
+   ```bash
+   python scripts/train_stage5.py --config configs/ablations/samat_next_v0_2b_official.json --input-checkpoint checkpoints/samatnext_v02b_stage3_best.pt --output-checkpoint-prefix samatnext_v02b_stage5
+   ```
+
+
 Paper source tag:
 `v0.1.0-paper`
 
