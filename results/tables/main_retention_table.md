@@ -14,6 +14,3 @@ Full per-example artifacts are stored locally under `results/runs/` and are giti
 | :--- | :--- | :---: |
 | **Transformer** | Curriculum lr=3e-6 | 8.0% |
 | **SamatNext v0.2-B** | Curriculum lr=3e-6 | **12.0%** |
-
----
-*Note: This table is automatically compiled by the evaluation harness during full runs.*

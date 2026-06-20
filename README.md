@@ -63,6 +63,12 @@ The headline experiment asks: after training through the final stage, how much S
 Full per-example artifacts are stored locally under `results/runs/` and are gitignored because they may be large. To reproduce them, run `make reproduce-main-table-fresh`. External artifact archive: GitHub Release v0.1.0-reproducibility.
 
 
+| Model | Training Path | HumanEval Subset Pass@1 |
+| :--- | :--- | :---: |
+| **Transformer** | Curriculum lr=3e-6 | 8.0% |
+| **SamatNext v0.2-B** | Curriculum lr=3e-6 | **12.0%** |
+
+
 ### Interpretation
 The strongest Transformer curriculum baseline retains very little Stage 3 behavior. SamatNext-v0.1 retains much more Stage 3 behavior.
 

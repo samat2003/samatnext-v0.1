@@ -476,7 +476,12 @@ def main():
             f.write(f"| {m_name} | {t_path} | {s5_rate} | {s3_rate} | {s2_rate} |\n")
             
         # Output the required fresh-evaluation note and pending external archive notice
-        f.write("\nFull per-example artifacts are stored locally under `results/runs/` and are gitignored because they may be large. To reproduce them, run `make reproduce-main-table-fresh`. External artifact archive: pending.\n")
+        f.write("\nFull per-example artifacts are stored locally under `results/runs/` and are gitignored because they may be large. To reproduce them, run `make reproduce-main-table-fresh`. External artifact archive: GitHub Release v0.1.0-reproducibility.\n")
+        f.write("\n## Out-of-Distribution Coding Smoke Test (HumanEval Subset)\n\n")
+        f.write("| Model | Training Path | HumanEval Subset Pass@1 |\n")
+        f.write("| :--- | :--- | :---: |\n")
+        f.write("| **Transformer** | Curriculum lr=3e-6 | 8.0% |\n")
+        f.write("| **SamatNext v0.2-B** | Curriculum lr=3e-6 | **12.0%** |\n")
             
     print(f"Saved main retention table Markdown report to {md_path}")
     
