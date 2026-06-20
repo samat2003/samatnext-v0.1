@@ -112,7 +112,7 @@ except Exception as e:
     except subprocess.TimeoutExpired:
         return False, "Timeout"
 
-def evaluate_subset(name, data, model, tok, device, return_details=False, timeout_seconds=None):
+def evaluate_subset(name, data, model, tok, device, return_details=False, timeout_seconds=None, dtype=torch.float32):
     results = []
     
     for i, ex in enumerate(data):
@@ -131,16 +131,17 @@ def evaluate_subset(name, data, model, tok, device, return_details=False, timeou
         stopped_im_end = False
         stopped_eot = False
         with torch.no_grad():
-            for _ in range(192):
-                sl, _ = model(inp_ids)
-                nxt = torch.argmax(sl[0, -1, :]).item()
-                inp_ids = torch.cat([inp_ids, torch.tensor([[nxt]], device=device)], dim=1)
-                if nxt == 151645:  # <|im_end|>
-                    stopped_im_end = True
-                    break
-                elif nxt == tok.eos_token_id:  # <|endoftext|>
-                    stopped_eot = True
-                    break
+            with torch.autocast(device_type="cuda", dtype=dtype):
+                for _ in range(192):
+                    sl, _ = model(inp_ids)
+                    nxt = torch.argmax(sl[0, -1, :]).item()
+                    inp_ids = torch.cat([inp_ids, torch.tensor([[nxt]], device=device)], dim=1)
+                    if nxt == 151645:  # <|im_end|>
+                        stopped_im_end = True
+                        break
+                    elif nxt == tok.eos_token_id:  # <|endoftext|>
+                        stopped_eot = True
+                        break
                     
         raw = tok.decode(inp_ids[0], skip_special_tokens=False)
         gen = raw.split("<|im_start|>assistant\n")[-1].replace(tok.eos_token, "").replace("<|im_end|>", "").strip()
@@ -224,7 +225,7 @@ def evaluate_subset(name, data, model, tok, device, return_details=False, timeou
         return summary, results
     return summary
 
-def run_all_evals(model, tok, device):
+def run_all_evals(model, tok, device, dtype=torch.float32):
     metrics = {}
     
     # 1. Existing datasets
@@ -237,17 +238,17 @@ def run_all_evals(model, tok, device):
             if ev["name"] == "Stage 6A Holdout":
                 # Ensure we evaluate on the actual holdout length
                 pass
-            res = evaluate_subset(ev["name"], data, model, tok, device)
+            res = evaluate_subset(ev["name"], data, model, tok, device, dtype=dtype)
             metrics[ev["name"]] = res
             
     # 2. Stage 5
     stage5_data = generate_stage5_holdout()[:200]
-    res = evaluate_subset("Stage 5", stage5_data, model, tok, device)
+    res = evaluate_subset("Stage 5", stage5_data, model, tok, device, dtype=dtype)
     metrics["Stage 5"] = res
     
     # 3. HumanEval 5
     he5 = load_humaneval_5()
-    res = evaluate_subset("HumanEval 5", he5, model, tok, device)
+    res = evaluate_subset("HumanEval 5", he5, model, tok, device, dtype=dtype)
     metrics["HumanEval 5"] = res
     
     print("\n" + "="*50)

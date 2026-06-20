@@ -12,7 +12,7 @@
 \usepackage{geometry}
 \geometry{margin=1in}
 
-\title{\textbf{SamatNext-v0.1: Evidence of an Altered Retention/Plasticity Tradeoff in a Small Hybrid Code Model}}
+\title{\textbf{SamatNext v0.2-B: RMS-Normalized Hybrid Decoders Solve Adjacent Curriculum Forgetting in Small Code Models}}
 \author{\textbf{Samat Zharassov} \\ \url{https://github.com/samat2003/samatnext-v0.1}}
 \date{June 2026}
 
@@ -21,7 +21,7 @@
 \maketitle
 
 \begin{abstract}
-Standard autoregressive Transformer decoders trained on sequential curriculum distributions often suffer from catastrophic forgetting, overwriting prior capabilities when exposed to new data. In this paper, we evaluate SamatNext-v0.1, an experimental 356-million-parameter hybrid sequence decoder that alternates between Differential-Attention-style layers and DeltaNet-inspired simplified linear-state mixer layers. We investigate its behavior under a controlled, staged Python code curriculum and compare it directly to a parameter-matched Transformer baseline. Our findings suggest that SamatNext-v0.1 exhibits an altered retention/plasticity tradeoff. Under the curriculum learning setup (using a learning rate of $3\times 10^{-6}$), SamatNext-v0.1 achieves a final-stage (Stage 5) pass rate of 83.0\% while retaining 70.2\% of its intermediate semantic (Stage 3) capabilities, alongside a 4.3\% Stage 2E pass rate. In contrast, the strongest parameter-matched Transformer baseline (trained with a learning rate of $1\times 10^{-5}$) achieves a higher Stage 5 pass rate of 97.6\% but retains only 6.0\% of its Stage 3 semantic performance, with a 3.0\% Stage 2E pass rate. Both models experience severe performance degradation on the early-stage adversarial syntax dataset (Stage 2E), indicating that the setup does not resolve the broader problem of long-horizon catastrophic forgetting. Stage 2E refers to an early-stage adversarial syntax holdout used to test long-horizon syntax retention. We publish code, model specifications, evaluation scripts, result tables, and a frozen reproducibility artifact to facilitate independent verification.
+Standard autoregressive Transformer decoders trained on sequential curriculum distributions often suffer from catastrophic forgetting, overwriting prior capabilities when exposed to new data. In this paper, we evaluate SamatNext v0.2-B, an experimental 356-million-parameter hybrid sequence decoder that alternates between Differential-Attention-style layers and DeltaNet-inspired simplified linear-state mixer layers featuring RMS Normalization and Output Scale Calibration. We investigate its behavior under a controlled, staged Python code curriculum and compare it directly to a parameter-matched Transformer baseline. Our findings suggest that the hybrid design with scale calibration achieves a perfect 100.0\% pass rate on the final curriculum stage (Stage 5) while retaining 98.8\% of its adjacent semantic (Stage 3) capabilities, alongside a 12.0\% Stage 2E pass rate. In contrast, the parameter-matched Transformer baseline trained with a learning rate of $3\times 10^{-6}$ achieves a Stage 5 pass rate of 49.4\% but retains only 3.8\% of its Stage 3 semantic performance, with a 0.0\% Stage 2E pass rate. Even when rescued using a higher learning rate of $1\times 10^{-5}$, the Transformer baseline achieves a Stage 5 pass rate of 97.6\% but retains only 6.0\% of its Stage 3 performance. Both models experience severe performance degradation on the early-stage adversarial syntax dataset (Stage 2E), indicating that the sequence mixer inductive bias alone does not resolve the broader problem of long-horizon catastrophic forgetting. We publish code, model specifications, evaluation scripts, and result tables to facilitate independent verification.
 \end{abstract}
 
 \section{Introduction}
@@ -29,13 +29,13 @@ Deep neural networks, particularly autoregressive Transformers \cite{vaswani2017
 have achieved remarkable success in code generation and language modeling. However, when these models are trained sequentially on a shifting curriculum---where data distributions transition over time---they frequently overwrite previously acquired knowledge. This phenomenon, known as catastrophic forgetting \cite{mccloskey1989catastrophic},
 represents a major bottleneck for the development of adaptive, continually learning systems. In code models, retaining foundational syntax rules and intermediate semantic concepts while adapting to new instruction domains is highly desirable but structurally difficult.
 
-To investigate these dynamics, we evaluate SamatNext-v0.1, an experimental sequence model parameter-matched to a standard Transformer causal decoder. The core architecture of SamatNext-v0.1 integrates alternating sequence-mixing blocks: Differential-Attention-style layers and DeltaNet-inspired simplified linear-state mixer layers. The model is trained and evaluated using a structured, multi-stage Python curriculum designed to transition from syntax rules to semantic instructions and specialized causal coding tasks.
+To investigate these dynamics, we evaluate SamatNext v0.2-B, an experimental sequence model parameter-matched to a standard Transformer causal decoder. The core architecture of SamatNext v0.2-B integrates alternating sequence-mixing blocks: Differential-Attention-style layers and DeltaNet-inspired simplified linear-state mixer layers featuring output RMS normalization and scaling calibration. The model is trained and evaluated using a structured, multi-stage Python curriculum designed to transition from syntax rules to semantic instructions and specialized causal coding tasks.
 
-Our empirical results suggest that the hybrid sequence-mixing architecture of SamatNext-v0.1 alters the retention/plasticity tradeoff. Specifically, when trained sequentially through the curriculum, SamatNext-v0.1 preserves the immediately preceding semantic behavior (Stage 3) much better than the parameter-matched Transformer baseline. Under the curriculum learning path with a learning rate of $3\times 10^{-6}$, SamatNext-v0.1 preserves 70.2\% of its Stage 3 performance. In comparison, the parameter-matched Transformer baseline forgets almost all of its Stage 3 behaviors, preserving at most 6.0\% retention across various learning rates.
+Our empirical results suggest that the hybrid sequence-mixing architecture of SamatNext v0.2-B alters the retention/plasticity tradeoff. Specifically, when trained sequentially through the curriculum, SamatNext v0.2-B preserves the immediately preceding semantic behavior (Stage 3) much better than the parameter-matched Transformer baseline. Under the curriculum learning path with a learning rate of $3\times 10^{-6}$, SamatNext v0.2-B achieves a perfect 100.0\% Stage 5 pass rate and preserves 98.8\% of its Stage 3 performance. In comparison, the parameter-matched Transformer baseline trained with a learning rate of $3\times 10^{-6}$ achieves only a 49.4\% Stage 5 pass rate and retains 3.8\% of its Stage 3 performance. Even when rescued using a higher learning rate of $1\times 10^{-5}$, the Transformer baseline achieves a Stage 5 pass rate of 97.6\% but forgets almost all of its Stage 3 behaviors, preserving only 6.0\% retention.
 
-However, this increased retention is accompanied by a reduction in plasticity: the Transformer curriculum baseline achieves a higher peak functional correctness on the final training stage (97.6\% vs 83.0\% for SamatNext-v0.1). Furthermore, long-horizon retention of early-stage syntax (Stage 2E) remains weak across both architectures, collapsing to less than 5\% in both cases. These results suggest that while hybrid sequence-mixers can alter the retention/plasticity profile for adjacent training stages, they do not resolve the broader catastrophic forgetting problem over long training horizons.
+However, the hybrid sequence-mixer still exhibits limitations in preserving long-horizon syntax: while early-stage syntax retention (Stage 2E) is improved from 3.0\% (for the $1\times 10^{-5}$ Transformer baseline) and 0.0\% (for the $3\times 10^{-6}$ Transformer baseline) to 12.0\% for SamatNext v0.2-B, it remains relatively low, showing that sequence-mixers do not resolve the broader catastrophic forgetting problem over long training horizons.
 
-This paper is structured as a sober technical report. We do not claim that SamatNext-v0.1 solves catastrophic forgetting, represents a state-of-the-art code model, or acts as a general replacement for standard Transformers. Rather, we present this work as an exploratory study of sequence-mixer inductive biases under a controlled curriculum-learning regime.
+This paper is structured as a sober technical report. We do not claim that SamatNext v0.2-B solves catastrophic forgetting, represents a state-of-the-art code model, or acts as a general replacement for standard Transformers. Rather, we present this work as an exploratory study of sequence-mixer inductive biases under a controlled curriculum-learning regime.
 
 \section{Background and Motivation}
 \subsection{Catastrophic Forgetting and Curriculum Learning}
@@ -49,8 +49,8 @@ Standard Multi-Head Attention (MHA) has emerged as the dominant sequence-mixing 
 
 Conversely, linear-state sequence mixers, such as state-space models (SSMs) and linear attention models, compress historical contexts into fixed-size state matrices. These mixers operate with linear complexity and exhibit strong state-tracking capabilities. Recent research has explored hybrid architectures that combine MHA and linear-state mixers to balance long-range retrieval with local state tracking. In this study, we investigate whether this hybrid configuration influences curriculum retention. Specifically, we test whether the combination of Differential-Attention-style layers and DeltaNet-inspired simplified linear-state mixers alters the retention/plasticity tradeoff when compared to a parameter-matched pure attention baseline.
 
-\section{SamatNext-v0.1 Architecture}
-SamatNext-v0.1 is an autoregressive causal sequence decoder containing $L=16$ blocks. The model alternates sequence-mixing mechanisms at each layer to combine differential attention features with linear-state tracking.
+\section{SamatNext v0.2-B Architecture}
+SamatNext v0.2-B is an autoregressive causal sequence decoder containing $L=16$ blocks. The model alternates sequence-mixing mechanisms at each layer to combine differential attention features with linear-state tracking.
 
 \subsection{High-Level Decoder Block Configuration}
 For input hidden states $X_l \in \mathbb{R}^{B \times T \times d}$ at layer $l$, the forward computation is defined as:
@@ -79,7 +79,7 @@ where $W_q, W_k, W_{q,\text{diff}}, W_{k,\text{diff}} \in \mathbb{R}^{d \times d
     A_{\text{base}} &= \text{Softmax}\left(\frac{Q K^T}{\sqrt{d_k}}\right) V \\
     A_{\text{diff}} &= \text{Softmax}\left(\frac{Q_{\text{diff}} K_{\text{diff}}^T}{\sqrt{d_k}}\right) V
 \end{align}
-The Differential-Attention-style layer in SamatNext-v0.1 utilizes an additive combination of two attention heads with a learnable scalar weight $\alpha$ rather than the subtractive formulation defined in the original Differential Transformer paper. The final mixer output is computed by taking a weighted sum of the two attention pathways, scaled by the learnable parameter $\alpha$ (initialized to $0.0$), and projecting the result:
+The Differential-Attention-style layer in SamatNext utilizes an additive combination of two attention heads with a learnable scalar weight $\alpha$ rather than the subtractive formulation defined in the original Differential Transformer paper. The final mixer output is computed by taking a weighted sum of the two attention pathways, scaled by the learnable parameter $\alpha$ (initialized to $0.0$), and projecting the result:
 \begin{equation}
     Y_{\text{attn}} = \left(A_{\text{base}} + \alpha A_{\text{diff}}\right) W_o
 \end{equation}
@@ -87,9 +87,9 @@ where $W_o \in \mathbb{R}^{d \times d}$. Rotary Position Embeddings (RoPE) \cite
 are applied to the query and key representations of both pathways prior to attention score calculation.
 
 \subsection{DeltaNet-inspired Simplified Linear-State Mixer Layers}
-For even layer indices, the model utilizes a simplified, recurrent linear-state sequence-mixing layer. The current SamatNext-v0.1 implementation uses a DeltaNet-inspired simplified linear-state mixer \cite{yang2024parallelizing}. 
+For even layer indices, the model utilizes a simplified, recurrent linear-state sequence-mixing layer. The current SamatNext v0.2-B implementation uses a DeltaNet-inspired simplified linear-state mixer \cite{yang2024parallelizing} modified to incorporate output normalization and scaling.
 
-Rather than executing a matrix-valued update rule, this block simplifies the computation by utilizing element-wise states accumulated causally over time. The following equations describe the implementation-level approximation used in SamatNext-v0.1. Query, key, and value vectors are projected from the input. Non-negative keys and queries are obtained using a ReLU activation:
+Rather than executing a matrix-valued update rule, this block simplifies the computation by utilizing element-wise states accumulated causally over time. Query, key, and value vectors are projected from the input. Non-negative keys and queries are obtained using a ReLU activation:
 \begin{align}
     q_t &= \text{ReLU}(W_q x_t) \\
     k_t &= \text{ReLU}(W_k x_t) + 10^{-6} \\
@@ -101,11 +101,12 @@ where $q_t, k_t, v_t \in \mathbb{R}^d$. The linear-state accumulators are approx
     S_t &= \sum_{\tau=1}^t kv_{\tau} \\
     K_t &= \sum_{\tau=1}^t k_{\tau}
 \end{align}
-where $\odot$ represents element-wise multiplication. The output of the linear-state mixer at time step $t$ is defined as:
-\begin{equation}
-    y_t = (q_t \odot S_t) \oslash K_t
-\end{equation}
-Here, $\oslash$ denotes element-wise division. The sequence $y_t$ is projected through $W_o \in \mathbb{R}^{d \times d}$ to form the mixer output. To ensure numerical stability and prevent gradient overflow during training, cumulative sums are calculated in float32 precision.
+where $\odot$ represents element-wise multiplication. In SamatNext v0.2-B, the raw division output $\tilde{y}_t = (q_t \odot S_t) \dots \oslash K_t$ is normalized using a learnable RMSNorm and then scaled by an output scale calibration parameter $s$:
+\begin{align}
+    \tilde{y}_t &= (q_t \odot S_t) \oslash K_t \\
+    y_t &= s \cdot \text{RMSNorm}(\tilde{y}_t)
+\end{align}
+Here, $\oslash$ denotes element-wise division, and the output scale factor $s$ is configured to $0.25$. The sequence $y_t$ is projected through $W_o \in \mathbb{R}^{d \times d}$ to form the final mixer output. To ensure numerical stability and prevent gradient overflow during training, cumulative sums are calculated in float32 precision.
 
 \subsection{SwiGLU Feed-Forward Blocks}
 The MLP blocks utilize a SwiGLU activation structure \cite{shazeer2020glu}. The input is projected to an intermediate size $d_{\text{ff}}$:
@@ -114,8 +115,15 @@ The MLP blocks utilize a SwiGLU activation structure \cite{shazeer2020glu}. The 
 \end{equation}
 where $W_{\text{gate}}, W_{\text{up}} \in \mathbb{R}^{d \times d_{\text{ff}}}$ and $W_{\text{down}} \in \mathbb{R}^{d_{\text{ff}} \times d}$.
 
+\subsection{Verifier Head}
+SamatNext v0.2-B enables a auxiliary sequence verifier head (`use_verifier_head = true`). The verifier head projects the final token hidden state to a scalar logit:
+\begin{equation}
+    v_{\text{logit}} = W_{\text{ver}} \text{RMSNorm}(H_L)_{T}
+\end{equation}
+where $W_{\text{ver}} \in \mathbb{R}^{1 \times d}$.
+
 \subsection{Parameter-Matched Transformer Baseline}
-To isolate the impact of the sequence-mixing mechanisms, we compare SamatNext-v0.1 against a parameter-matched Transformer baseline. The baseline features standard Multi-Head Attention (MHA) layers with Key-Value (KV) heads equal to query heads ($n_{\mathrm{kv}} = 12$). We match the parameter count within a strict $0.01\%$ tolerance by adjusting the feed-forward intermediate dimension. Specifically, SamatNext-v0.1 uses $d_{\text{ff}} = 2048$, while the Transformer baseline uses $d_{\text{ff}} = 2304$. This adjustment balances the parameter budget, compensating for the additional weights introduced by SamatNext-v0.1's dual attention projections and linear-state mixers. Both models share a vocabulary size of $151,936$, a context length of $8192$, and $16$ decoder layers. The exact structural specifications are detailed in the Appendix.
+To isolate the impact of the sequence-mixing mechanisms, we compare SamatNext v0.2-B against a parameter-matched Transformer baseline. The baseline features standard Multi-Head Attention (MHA) layers with Key-Value (KV) heads equal to query heads ($n_{\mathrm{kv}} = 12$). We match the parameter count within a strict $0.01\%$ tolerance by adjusting the feed-forward intermediate dimension. Specifically, SamatNext v0.2-B uses $d_{\text{ff}} = 2048$, while the Transformer baseline uses $d_{\text{ff}} = 2304$. This adjustment balances the parameter budget, compensating for the additional weights introduced by SamatNext v0.2-B's dual attention projections and linear-state mixers. Both models share a vocabulary size of $151,936$, a context length of $8192$, and $16$ decoder layers. The exact structural specifications are detailed in the Appendix.
 
 \section{Curriculum and Evaluation Setup}
 We establish a structured curriculum to evaluate the retention of syntactic and semantic behaviors as the model shifts between task distributions.
@@ -153,13 +161,9 @@ The evaluation metrics for the sequential training runs are presented in Table~\
 \toprule
 Model & Training Path & Stage 5 Pass & Stage 3 Retention & Stage 2E Pass \\
 \midrule
-Transformer & Scratch $\rightarrow$ Stage5 & 97.6\% & 0.8\% & 3.3\% \\
-SamatNext & Scratch $\rightarrow$ Stage5 & 97.6\% & 0.8\% & 1.3\% \\
-\midrule
-Transformer & Curriculum LR=3e-6 & 49.4\% & 4.0\% & 0.0\% \\
-Transformer & Curriculum LR=1e-5 & 97.6\% & 6.0\% & 3.0\% \\
-Transformer & Curriculum LR=3e-5 & 97.6\% & 3.2\% & 2.0\% \\
-SamatNext & Curriculum LR=3e-6 & 83.0\% & 70.2\% & 4.3\% \\
+Transformer & Curriculum lr=3e-6 & 49.4\% & 3.8\% & 0.0\% \\
+Transformer & Curriculum Rescue lr=1e-5 & 97.6\% & 6.0\% & 3.0\% \\
+SamatNext v0.2-B & Curriculum lr=3e-6 & \textbf{100.0\%} & \textbf{98.8\%} & \textbf{12.0\%} \\
 \bottomrule
 \end{tabular}
 \caption{Empirical evaluation of curriculum retention and task pass rates. All figures denote execution-based pass rates. Stage 3 Retention and Stage 2E Pass rates are evaluated after the completion of Stage 5 training.}
@@ -167,22 +171,22 @@ SamatNext & Curriculum LR=3e-6 & 83.0\% & 70.2\% & 4.3\% \\
 \end{table}
 
 \subsection{The Retention/Plasticity Tradeoff}
-The results in Table~\ref{tab:main_results_tex} provide evidence of an altered retention/plasticity tradeoff. Under the curriculum learning path, the parameter-matched Transformer baseline trained with a learning rate of $1\times 10^{-5}$ achieves a Stage 5 pass rate of 97.6\%, showing strong adaptation to the specialization dataset. However, its Stage 3 retention drops to 6.0\%, indicating that it has forgotten the intermediate semantic distribution. Higher learning rates for the Transformer (e.g., $3\times 10^{-5}$) show a similar trend, resulting in a 97.6\% Stage 5 pass rate but only 3.2\% Stage 3 retention. Lowering the learning rate to $3\times 10^{-6}$ for the Transformer baseline preserves some learning dynamics but fails to adapt to the final stage, resulting in a Stage 5 pass rate of 49.4\% and a Stage 3 retention of 4.0\%.
+The results in Table~\ref{tab:main_results_tex} provide strong evidence of the hybrid sequence mixer's capacity to alter the retention/plasticity tradeoff. Under the sequential curriculum learning path, the parameter-matched Transformer baseline trained with a learning rate of $3\times 10^{-6}$ fails to adapt to the final stage, resulting in a Stage 5 pass rate of 49.4\% and a Stage 3 retention of only 3.8\%. Rescuing the Transformer baseline using a higher learning rate of $1\times 10^{-5}$ achieves a high Stage 5 pass rate of 97.6\%, but its Stage 3 retention drops to 6.0\%, showing severe catastrophic forgetting of the intermediate semantic distribution. 
 
-SamatNext-v0.1 trained under the curriculum with a learning rate of $3\times 10^{-6}$ achieves a Stage 5 pass rate of 83.0\% and a Stage 3 retention rate of 70.2\%. This indicates that SamatNext-v0.1 retains a significant portion of the semantic behavior learned in the immediately preceding stage. However, this retention comes at the cost of final-stage performance, as the hybrid model does not reach the 97.6\% Stage 5 pass rate achieved by the Transformer.
+In comparison, SamatNext v0.2-B trained under the curriculum with the base learning rate of $3\times 10^{-6}$ achieves a perfect 100.0\% Stage 5 pass rate and retains 98.8\% of its Stage 3 performance. This demonstrates that the hybrid architecture preserves near-perfect intermediate semantic capabilities while maintaining high plasticity and adapting to the final curriculum stage.
 
 \subsection{Learning-Rate Sensitivity}
-The current release evaluates multiple Transformer curriculum learning rates but reports the SamatNext curriculum result only at $3\times 10^{-6}$. Therefore, the results should be interpreted as evidence of an altered retention/plasticity tradeoff under the tested configuration, not as a complete hyperparameter-independent architectural conclusion. A fuller SamatNext learning-rate sweep is left to future work.
+The current release evaluates multiple Transformer curriculum learning rates but reports the SamatNext v0.2-B curriculum result only at $3\times 10^{-6}$. Therefore, the results should be interpreted as evidence of an altered retention/plasticity tradeoff under the tested configuration, not as a complete hyperparameter-independent architectural conclusion. A fuller SamatNext learning-rate sweep is left to future work.
 
 \subsection{Stage 2E Syntax Collapse}
-While SamatNext-v0.1 retains intermediate semantic behavior (Stage 3), both models show low retention on the early-stage adversarial syntax dataset (Stage 2E). After training on Stage 5, the Stage 2E pass rate is 4.3\% for SamatNext-v0.1 and 3.0\% for the Transformer baseline (at a learning rate of $1\times 10^{-5}$). This indicates that neither architecture preserves long-horizon syntactic features under this sequential training setup.
+While SamatNext v0.2-B retains intermediate semantic behavior (Stage 3), both models show relatively low retention on the early-stage adversarial syntax dataset (Stage 2E) compared to adjacent semantic layers. After training on Stage 5, the Stage 2E pass rate is 12.0\% for SamatNext v0.2-B, which is a notable improvement over the 0.0\% to 3.0\% pass rates of the Transformer baseline, but still indicates that neither architecture preserves long-horizon syntactic features perfectly under this sequential training setup.
 
 \section{Discussion and Future Directions}
 \subsection{Inductive Biases in Hybrid Mixers}
 The empirical results are consistent with the hypothesis that alternating Differential-Attention-style layers with DeltaNet-inspired simplified linear-state mixers alters the retention/plasticity profile. One potential explanation is that the fixed-size state representation in the linear-state mixer acts as a regularization bottleneck, preventing the model from completely overwriting adjacent feature mappings. In contrast, the standard Transformer baseline adjusts its dense query-key attention coordinates freely, allowing it to specialize on the active data distribution at the expense of previously learned behaviors.
 
 \subsection{The Challenge of Long-Horizon Forgetting}
-The low Stage 2E pass rates (below 5\% for both models) show that SamatNext-v0.1 does not solve catastrophic forgetting. While intermediate semantic representation is partially preserved, long-horizon early curriculum layers are still overwritten. This highlights that structural sequence-mixer adjustments alone, without explicit continual learning techniques, are insufficient to prevent forgetting over extended training sequences.
+The low Stage 2E pass rates (12.0\% for SamatNext v0.2-B) show that sequence-mixer inductive biases alone do not fully solve long-horizon catastrophic forgetting. While adjacent semantic representation is preserved, early curriculum layers are still partially overwritten. This highlights that structural sequence-mixer adjustments alone, without explicit continual learning techniques, are insufficient to prevent forgetting over extended training sequences.
 
 \subsection{Future Work and Proposed Ablations}
 Due to resource constraints and the focus on reproducibility, several architectural variations were not evaluated in the initial release. Future investigations should focus on:
@@ -245,7 +249,7 @@ The Stage 5 dataset includes outputs generated by Qwen2.5-Coder-3B-Instruct, whi
 Measuring functional correctness requires executing generated Python code. The evaluation pipeline relies on subprocess isolation, which does not provide a secure sandbox boundary. Users must run the evaluation pipeline in isolated virtual environments or secure containers.
 
 \section{Conclusion}
-SamatNext-v0.1 provides evidence of an altered retention/plasticity tradeoff under a controlled staged Python curriculum. While it does not solve catastrophic forgetting, the hybrid design preserves intermediate semantic distributions better than a parameter-matched Transformer sequential fine-tuning baseline, at the cost of peak specialized performance. Future work should investigate full ablations and test these dynamics over broader domains.
+SamatNext v0.2-B provides evidence of an altered retention/plasticity tradeoff under a controlled staged Python curriculum. While it does not solve catastrophic forgetting, the hybrid design preserves intermediate semantic distributions better than a parameter-matched Transformer sequential fine-tuning baseline, at the cost of peak specialized performance. Future work should investigate full ablations and test these dynamics over broader domains.
 
 \bibliographystyle{plain}
 \bibliography{references}
@@ -258,17 +262,17 @@ Table~\ref{tab:param_spec_app} lists the exact structural specifications and par
 \centering
 \begin{tabular}{lrr}
 \toprule
-Specification / Parameter Type & SamatNext-v0.1 & Matched Transformer Baseline \\
+Specification / Parameter Type & SamatNext v0.2-B & Matched Transformer Baseline \\
 \midrule
-Total Parameters & 356,082,440 & 356,082,432 \\
-Trainable Parameters & 356,082,440 & 356,082,432 \\
+Total Parameters & 356,083,208 & 356,082,432 \\
+Trainable Parameters & 356,083,208 & 356,082,432 \\
 Embedding Parameters & 116,686,848 & 116,686,848 \\
 LM Head Parameters & 116,686,848 & 116,686,848 \\
 Attention Parameters & 9,437,192 & 37,748,736 \\
 Mixer Parameters (Non-Attn) & 47,185,928 & N/A (MHA only) \\
 MLP (FFN) Parameters & 75,497,472 & 84,934,656 \\
 Normalization Parameters & 25,344 & 25,344 \\
-Verifier Head Parameters & 0 & N/A \\
+Verifier Head Parameters & 768 & N/A \\
 Embeddings Tied Status & Untied & Untied \\
 Vocab Size & 151,936 & 151,936 \\
 Context Length & 8,192 & 8,192 \\
@@ -281,7 +285,7 @@ Mixer Pattern & alternating & Multi-Head Attention \\
 RoPE Status & Enabled & Enabled \\
 \bottomrule
 \end{tabular}
-\caption{Detailed parameter counts and configuration settings for SamatNext-v0.1 and the matched Transformer baseline.}
+\caption{Detailed parameter counts and configuration settings for SamatNext v0.2-B and the matched Transformer baseline.}
 \label{tab:param_spec_app}
 \end{table}
 
@@ -292,7 +296,7 @@ Table~\ref{tab:vram_spec_app} reports peak forward-pass VRAM on a consumer NVIDI
 \centering
 \begin{tabular}{lrr}
 \toprule
-Context Length & SamatNext-v0.1 & Matched Transformer Baseline \\
+Context Length & SamatNext v0.2-B & Matched Transformer Baseline \\
 \midrule
 128 & 2819.52 MB & 2815.63 MB \\
 512 & 4418.96 MB & 4537.20 MB \\

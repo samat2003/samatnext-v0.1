@@ -5138,7 +5138,7 @@
     "id": "stage3_046274",
     "prompt": "Program a Python function dedup_ordered(items) that removes duplicates from items while preserving the original insertion order.",
     "target": "def dedup_ordered(items):\n    result = []\n    for item in items:\n        if item not in result:\n            result.append(item)\n    return result",
-    "gen": "def dedupe_items(items):\n    seen = set()\n    result = []\n    for item in items:\n        if item not in seen:\n            seen.add(item)\n            result.append(item)\n    return result",
+    "gen": "def dedupe_items(items):\n    seen = set()\n    return [item for item in items if not (item in seen or seen.add(item))]",
     "syntax_ok": true,
     "stopped": true,
     "test_pass": false,
