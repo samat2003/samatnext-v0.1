@@ -1,13 +1,16 @@
 # SPDX-License-Identifier: Apache-2.0
 
-.PHONY: setup test prepare-data-smoke prepare-data bench-vram reproduce-smoke reproduce-main-table reproduce-main-table-fresh paper-check help
+.PHONY: setup test claim-guard paper-build arxiv-source-check prepare-data-smoke prepare-data bench-vram reproduce-smoke reproduce-main-table reproduce-main-table-fresh paper-check help
 
 help:
 	@echo "SamatNext-v0.1 Reproducibility Makefile"
 	@echo ""
 	@echo "Targets:"
 	@echo "  setup                      - Install dependencies"
-	@echo "  test                       - Run fast unit and hygiene tests"
+	@echo "  test                       - Run fast unit, hygiene, and claim-guard tests"
+	@echo "  claim-guard                - Run automated claims and hype scanning"
+	@echo "  paper-build                - Build the paper/main.tex PDF"
+	@echo "  arxiv-source-check         - Verify source files for arXiv package"
 	@echo "  prepare-data-smoke         - Download and tokenize smoke-test data (1%)"
 	@echo "  prepare-data               - Download and tokenize full datasets"
 	@echo "  bench-vram                 - Run GPU VRAM benchmark"
@@ -19,8 +22,17 @@ help:
 setup:
 	python -m pip install -r requirements.txt
 
-test:
+test: claim-guard
 	python -m pytest tests/
+
+claim-guard:
+	python scripts/claim_guard.py
+
+paper-build:
+	cd paper && pdflatex -interaction=nonstopmode main.tex && bibtex main && pdflatex -interaction=nonstopmode main.tex && pdflatex -interaction=nonstopmode main.tex
+
+arxiv-source-check:
+	python scripts/arxiv_source_check.py
 
 prepare-data-smoke:
 	python scripts/prepare_data.py --smoke
@@ -42,3 +54,4 @@ reproduce-main-table-fresh:
 
 paper-check:
 	python scripts/paper_check.py
+

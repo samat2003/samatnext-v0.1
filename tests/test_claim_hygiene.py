@@ -52,3 +52,9 @@ def test_fresh_artifact_archive_wording():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     assert "fresh_eval_<timestamp>" in readme
     assert "fresh_eval_/" not in readme
+
+def test_claim_guard_automated():
+    from scripts.claim_guard import SCAN_FILES, scan_file
+    for f in SCAN_FILES:
+        assert scan_file(f), f"Claim guard failed on {f}"
+

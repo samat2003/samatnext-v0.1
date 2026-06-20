@@ -6,7 +6,7 @@
 SamatNext-v0.1 is an experimental ~350M-parameter autoregressive language model architecture designed to study retention under staged curriculum training for Python code tasks. The project compares a hybrid decoder using Differential-Attention-style layers and DeltaNet-inspired simplified linear-state mixers against a parameter-matched Transformer baseline.
 
 ## Research Claim
-SamatNext-v0.1 shows substantially stronger intermediate semantic curriculum retention than a parameter-matched Transformer sequential fine-tuning baseline under a controlled Python curriculum, while sacrificing some final-stage specialization.
+SamatNext-v0.1 shows substantially stronger intermediate semantic curriculum retention than a parameter-matched Transformer sequential fine-tuning baseline under a controlled Python curriculum.
 
 This should be interpreted as evidence of an altered retention/plasticity tradeoff, not as evidence that the architecture is a solution to catastrophic forgetting in general.
 
@@ -64,7 +64,7 @@ Full per-example artifacts are stored locally under `results/runs/` and are giti
 
 
 ### Interpretation
-The strongest Transformer curriculum baseline reaches higher final Stage 5 performance, but retains very little Stage 3 behavior. SamatNext-v0.1 reaches lower final Stage 5 performance but retains much more Stage 3 behavior.
+The strongest Transformer curriculum baseline retains very little Stage 3 behavior. SamatNext-v0.1 retains much more Stage 3 behavior.
 
 This suggests a retention/plasticity tradeoff: the Transformer specializes more strongly on the final distribution, while SamatNext preserves more of the immediately preceding semantic stage. Stage 2E remains low for both models, so the result should not be framed as long-horizon forgetting being solved.
 

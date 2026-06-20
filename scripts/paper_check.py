@@ -105,6 +105,41 @@ def check_results():
             print("FAIL: JSON has incorrect stage3_retention_rate")
             return False
             
+    # Check consistency across README.md, release_notes.txt, results/tables/main_retention_table.md, and paper/main.tex
+    readme = (ROOT / "README.md").read_text(encoding="utf-8")
+    release_notes = (ROOT / "release_notes.txt").read_text(encoding="utf-8")
+    table_md = (ROOT / "results" / "tables" / "main_retention_table.md").read_text(encoding="utf-8")
+    
+    paper_tex_path = ROOT / "paper" / "main.tex"
+    if paper_tex_path.exists():
+        paper_tex = paper_tex_path.read_text(encoding="utf-8")
+    else:
+        paper_tex = ""
+        
+    # Check that 100.0 (or 100) % for Stage 5 is in all of them (excluding paper_tex which might have it differently formatted, but let's check basic substrings)
+    for name, content in [("README.md", readme), ("release_notes.txt", release_notes), ("main_retention_table.md", table_md)]:
+        if "100.0%" not in content:
+            print(f"FAIL: Consistency check: 100.0% not in {name}")
+            return False
+        if "98.8%" not in content:
+            print(f"FAIL: Consistency check: 98.8% not in {name}")
+            return False
+        if "12.0%" not in content:
+            print(f"FAIL: Consistency check: 12.0% not in {name}")
+            return False
+
+    if paper_tex:
+        # Tex can format as 100.0 or 100, let's verify both are present
+        if "100.0" not in paper_tex and "100%" not in paper_tex:
+            print("FAIL: Consistency check: 100.0% not in paper/main.tex")
+            return False
+        if "98.8" not in paper_tex:
+            print("FAIL: Consistency check: 98.8% not in paper/main.tex")
+            return False
+        if "12.0" not in paper_tex:
+            print("FAIL: Consistency check: 12.0% not in paper/main.tex")
+            return False
+
     return True
 
 def check_audit_claims():

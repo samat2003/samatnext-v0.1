@@ -1,10 +1,10 @@
 # Paper Draft Outline
 
 ## Title
-SamatNext v0.2-B: RMS-Normalized Hybrid Decoders Improve Adjacent Curriculum Forgetting in Small Code Models
+SamatNext v0.2-B: An Exploratory Study of RMS-Normalized Hybrid Decoders for Curriculum Retention in Small Code Models
 
 ## Abstract
-Standard Transformer decoders suffer from catastrophic forgetting when trained sequentially on shifting curriculum objectives. We present SamatNext v0.2-B, an experimental hybrid sequence-mixing decoder that alternates Differential Attention layers with linear-state sequence mixers featuring RMS Normalization and Output Scale Calibration. We compare this architecture under a controlled sequential Python code curriculum against a parameter-matched Transformer baseline. Our findings suggest that the hybrid design with scale calibration achieves a perfect 100.0% pass rate on the final curriculum stage while retaining 98.8% of adjacent semantic stage capabilities under identical token budgets.
+Standard Transformer decoders can exhibit substantial forgetting under sequential fine-tuning when trained sequentially on shifting curriculum objectives. We present SamatNext v0.2-B, an experimental hybrid sequence-mixing decoder that alternates Differential Attention layers with linear-state sequence mixers featuring RMS Normalization and Output Scale Calibration. We compare this architecture under a controlled sequential Python code curriculum against a parameter-matched Transformer baseline. Our findings suggest that under this controlled setting, the hybrid design with scale calibration achieves a 100.0% pass rate on the controlled Stage 5 holdout while retaining 98.8% of adjacent semantic stage capabilities under identical token budgets. However, it does not completely solve catastrophic forgetting on earlier curriculum stages.
 
 ## 1. Introduction
 - Background: Seq2Seq and code models.
