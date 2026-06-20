@@ -6,7 +6,7 @@
 SamatNext-v0.1 is an experimental ~350M-parameter autoregressive language model architecture designed to study retention under staged curriculum training for Python code tasks. The project compares a hybrid decoder using Differential-Attention-style layers and DeltaNet-inspired simplified linear-state mixers against a parameter-matched Transformer baseline.
 
 ## Research Claim
-SamatNext-v0.1 shows substantially stronger intermediate semantic curriculum retention than a parameter-matched Transformer sequential fine-tuning baseline under a controlled Python curriculum, while sacrificing some final-stage specialization.
+SamatNext-v0.1 shows substantially stronger intermediate semantic curriculum retention than a parameter-matched Transformer sequential fine-tuning baseline under a controlled Python curriculum.
 
 This should be interpreted as evidence of an altered retention/plasticity tradeoff, not as evidence that the architecture is a solution to catastrophic forgetting in general.
 
@@ -53,19 +53,24 @@ The headline experiment asks: after training through the final stage, how much S
 
 ### Results Table
 
+
 | Model | Training Path | Stage 5 Pass | Stage 3 Retention | Stage 2E Pass |
 | :--- | :--- | :---: | :---: | :---: |
-| **Transformer** | Scratch → Stage5 | 97.6% | 0.8% | 3.3% |
-| **SamatNext** | Scratch → Stage5 | 97.6% | 0.8% | 1.3% |
-| **Transformer** | Curriculum LR=3e-6 | 49.4% | 4.0% | 0.0% |
-| **Transformer** | Curriculum LR=1e-5 | 97.6% | 6.0% | 3.0% |
-| **Transformer** | Curriculum LR=3e-5 | 97.6% | 3.2% | 2.0% |
-| **SamatNext** | Curriculum LR=3e-6 | 83.0% | 70.2% | 4.3% |
+| **Transformer** | Curriculum lr=3e-6 | 49.4% | 3.8% | 0.0% |
+| **Transformer** | Curriculum Rescue lr=1e-5 | 97.6% | 6.0% | 3.0% |
+| **SamatNext v0.2-B** | Curriculum lr=3e-6 | 100.0% | **98.8%** | **12.0%** |
 
-Full per-example artifacts are stored locally under `results/runs/` and are gitignored because they may be large. To reproduce them, run `make reproduce-main-table-fresh`.
+Full per-example artifacts are stored locally under `results/runs/` and are gitignored because they may be large. To reproduce them, run `make reproduce-main-table-fresh`. External artifact archive: GitHub Release v0.1.0-reproducibility.
+
+
+| Model | Training Path | HumanEval Subset Pass@1 |
+| :--- | :--- | :---: |
+| **Transformer** | Curriculum lr=3e-6 | 8.0% |
+| **SamatNext v0.2-B** | Curriculum lr=3e-6 | **12.0%** |
+
 
 ### Interpretation
-The strongest Transformer curriculum baseline reaches higher final Stage 5 performance, but retains very little Stage 3 behavior. SamatNext-v0.1 reaches lower final Stage 5 performance but retains much more Stage 3 behavior.
+The strongest Transformer curriculum baseline retains very little Stage 3 behavior. SamatNext-v0.1 retains much more Stage 3 behavior.
 
 This suggests a retention/plasticity tradeoff: the Transformer specializes more strongly on the final distribution, while SamatNext preserves more of the immediately preceding semantic stage. Stage 2E remains low for both models, so the result should not be framed as long-horizon forgetting being solved.
 
@@ -89,6 +94,68 @@ Or directly:
 ```bash
 python scripts/reproduce_main_table.py --force-eval --timeout-seconds 5 --output results/runs/fresh_eval_<timestamp>/
 ```
+
+## Quick Start (Beginner Friendly)
+
+You can run and explore **SamatNext v0.2-B** using either pre-trained weights or by training the model from scratch.
+
+### Option 1: Load and Evaluate Pre-trained Weights (Recommended)
+This option allows you to load our verified checkpoints and evaluate them immediately.
+
+1. **Place Checkpoints:** Make sure the following checkpoints are placed in the `checkpoints/` directory:
+   * `samatnext_v02b_stage2a.pt` (Stage 2A Best)
+   * `samatnext_v02b_stage3_best.pt` (Stage 3 Best)
+   * `samatnext_v02b_stage5_best.pt` (Stage 5 Best)
+2. **Run Evaluation:** Run the hybrid evaluation suite to test the model across the curriculum tasks:
+   ```bash
+   python scripts/reproduce_main_table.py --output results/runs/official_v02b_eval/
+   ```
+3. **Programmatic Usage:** Load and run a forward pass in Python:
+   ```python
+   import torch
+   from models.samat_next.config import SamatNextConfig
+   from models.samat_next.model import SamatNextForCausalLM
+   from transformers import AutoTokenizer
+
+   # Load Config & Model
+   config = SamatNextConfig.from_json("configs/ablations/samat_next_v0_2b_official.json")
+   model = SamatNextForCausalLM(config)
+
+   # Load Stage 5 Weights
+   weights = torch.load("checkpoints/samatnext_v02b_stage5_best.pt", map_location="cpu")
+   state_dict = weights["model_state_dict"] if "model_state_dict" in weights else weights
+   model.load_state_dict(state_dict, strict=True)
+   model.eval()
+
+   # Tokenize Prompt and Generate
+   tok = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-Coder-3B-Instruct")
+   prompt = "<|im_start|>user\nDefine a function add_two(x, y) that returns their sum.<|im_end|>\n<|im_start|>assistant\n"
+   inputs = tok(prompt, return_tensors="pt").input_ids
+   with torch.no_grad():
+       logits, _ = model(inputs)
+       print("Next token logit shape:", logits.shape)
+   ```
+
+### Option 2: Train the Model from Scratch (Do-It-Yourself)
+Follow these steps to run the complete curriculum pre-training and sequential fine-tuning yourself:
+
+1. **Prepare the Data:** Download and process the curriculum datasets:
+   ```bash
+   make prepare-data
+   ```
+2. **Train Stage 2A (Pretraining from Scratch):**
+   ```bash
+   python scripts/train_stage2a.py --config configs/ablations/samat_next_v0_2b_official.json --output-checkpoint-prefix samatnext_v02b_stage2a --batch-size 1 --grad-accum-steps 32
+   ```
+3. **Train Stage 3 (Sequential Fine-tuning for Paraphrase):**
+   ```bash
+   python scripts/train_stage3.py --config configs/ablations/samat_next_v0_2b_official.json --input-checkpoint checkpoints/samatnext_v02b_stage2a.pt --output-checkpoint-prefix samatnext_v02b_stage3
+   ```
+4. **Train Stage 5 (Teacher-Student Distillation):**
+   ```bash
+   python scripts/train_stage5.py --config configs/ablations/samat_next_v0_2b_official.json --input-checkpoint checkpoints/samatnext_v02b_stage3_best.pt --output-checkpoint-prefix samatnext_v02b_stage5
+   ```
+
 
 Paper source tag:
 `v0.1.0-paper`

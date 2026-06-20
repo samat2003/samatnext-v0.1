@@ -1,16 +1,16 @@
 # Model Parameter Count and Structural Specifications
 
-| Specification / Parameter Type | SamatNext-v0.1 | Matched Transformer Baseline |
+| Specification / Parameter Type | SamatNext v0.2-B | Matched Transformer Baseline |
 | :--- | :---: | :---: |
-| **Total Parameters** | 356,082,440 | 356,082,432 |
-| **Trainable Parameters** | 356,082,440 | 356,082,432 |
+| **Total Parameters** | 356,083,208 | 356,082,432 |
+| **Trainable Parameters** | 356,083,208 | 356,082,432 |
 | **Embedding Parameters** | 116,686,848 | 116,686,848 |
 | **LM Head Parameters** | 116,686,848 | 116,686,848 |
 | **Attention Parameters** | 9,437,192 | 37,748,736 |
 | **Mixer Parameters (Non-Attn)** | 47,185,928 | N/A (MHA only) |
 | **MLP (FFN) Parameters** | 75,497,472 | 84,934,656 |
 | **Normalization Parameters** | 25,344 | 25,344 |
-| **Verifier Head Parameters** | 0 | N/A |
+| **Verifier Head Parameters** | 768 | N/A |
 | **Embeddings Tied Status** | Untied | Untied |
 | **Vocab Size** | 151,936 | 151,936 |
 | **Tokenizer Length** | 151,665 | 151,665 |

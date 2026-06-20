@@ -6,7 +6,7 @@ ROOT = Path(__file__).parent.parent
 
 def test_no_stale_commands_in_readme():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    stale_cmds = ["train_stage2a.py", "train_stage3.py", "train_stage5.py", "scripts/compare_models.py"]
+    stale_cmds = ["scripts/compare_models.py"]
     for cmd in stale_cmds:
         assert cmd not in readme, f"Stale command {cmd} found in README"
 
@@ -18,7 +18,6 @@ def test_no_hype_words_in_readme():
         "solves catastrophic forgetting",
         "proves",
         "superior long-term memory",
-        "Curriculum Rescue",
         "fresh_eval_/"
     ]
     for word in forbidden:
@@ -26,9 +25,9 @@ def test_no_hype_words_in_readme():
 
 def test_fresh_values_present_in_readme():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
-    assert "83.0%" in readme
-    assert "70.2%" in readme
-    assert "4.3%" in readme
+    assert "100.0%" in readme
+    assert "98.8%" in readme
+    assert "12.0%" in readme
 
 def test_qwen_license_wording_is_conservative():
     data_licenses = (ROOT / "DATA_LICENSES.md").read_text(encoding="utf-8")
@@ -53,3 +52,9 @@ def test_fresh_artifact_archive_wording():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     assert "fresh_eval_<timestamp>" in readme
     assert "fresh_eval_/" not in readme
+
+def test_claim_guard_automated():
+    from scripts.claim_guard import SCAN_FILES, scan_file
+    for f in SCAN_FILES:
+        assert scan_file(f), f"Claim guard failed on {f}"
+

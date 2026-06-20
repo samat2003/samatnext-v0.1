@@ -1,7 +1,7 @@
 {
     "samatnext": {
-        "total_parameters": 356082440,
-        "trainable_parameters": 356082440,
+        "total_parameters": 356083208,
+        "trainable_parameters": 356083208,
         "non_trainable_parameters": 0,
         "embedding_parameters": 116686848,
         "lm_head_parameters": 116686848,
@@ -9,7 +9,7 @@
         "mixer_parameters": 47185928,
         "mlp_parameters": 75497472,
         "norm_parameters": 25344,
-        "verifier_head_parameters": 0,
+        "verifier_head_parameters": 768,
         "embeddings_tied": false,
         "vocab_size": 151936,
         "tokenizer_length": 151665,

@@ -104,6 +104,28 @@ def lr_schedule(step, warmup, total):
     return max(0.1, 0.5 * (1 + math.cos(math.pi * progress)))
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config", type=str, default="configs/samat_next_150m.json", help="Path to config JSON")
+    parser.add_argument("--input-checkpoint", type=str, default="checkpoints/samat_next_350m_stage3_best.pt", help="Path to base checkpoint")
+    parser.add_argument("--output-checkpoint-prefix", type=str, default="samat_next_350m_stage5", help="Prefix for saved checkpoints")
+    parser.add_argument("--batch-size", type=int, default=1, help="Batch size for training")
+    parser.add_argument("--grad-accum-steps", type=int, default=16, help="Gradient accumulation steps")
+    args = parser.parse_args()
+
+    # Redefine checkpoint/log paths based on prefix
+    global BASE_CKPT, BEST_CKPT, STEP_CKPT, RESULTS, BATCH, GRAD_ACCUM
+    if os.path.isabs(args.input_checkpoint):
+        BASE_CKPT = args.input_checkpoint
+    else:
+        BASE_CKPT = os.path.join(ROOT, args.input_checkpoint)
+
+    BEST_CKPT = os.path.join(ROOT, "checkpoints", f"{args.output_checkpoint_prefix}_best.pt")
+    STEP_CKPT = os.path.join(ROOT, "checkpoints", f"{args.output_checkpoint_prefix}_step_{{step}}.pt")
+    RESULTS = os.path.join(ROOT, "results", f"{args.output_checkpoint_prefix}_log.json")
+    BATCH = args.batch_size
+    GRAD_ACCUM = args.grad_accum_steps
+
     random.seed(SEED); torch.manual_seed(SEED)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Stage 5 Training: Teacher-Student Distillation | device={device}")
@@ -116,7 +138,12 @@ def main():
     except:
         tok = AutoTokenizer.from_pretrained("Qwen/Qwen2.5-Coder-3B-Instruct")
 
-    config = SamatNextConfig.from_json(os.path.join(ROOT, "configs", "samat_next_150m.json"))
+    if os.path.isabs(args.config):
+        config_path = args.config
+    else:
+        config_path = os.path.join(ROOT, args.config)
+    print(f"Loading config from: {config_path}")
+    config = SamatNextConfig.from_json(config_path)
     model  = SamatNextForCausalLM(config).to(device)
     param_count = sum(p.numel() for p in model.parameters())
     print(f"Parameters: {param_count:,}")

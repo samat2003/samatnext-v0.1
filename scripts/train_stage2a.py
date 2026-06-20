@@ -55,6 +55,14 @@ def collate_fn(batch, pad_token_id):
     return input_ids, labels
 
 def main():
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--config", type=str, default="configs/samat_next_150m.json", help="Path to config JSON")
+    parser.add_argument("--output-checkpoint-prefix", type=str, default="samat_next_350m_stage2a", help="Prefix for saved checkpoints")
+    parser.add_argument("--batch-size", type=int, default=1, help="Batch size for training")
+    parser.add_argument("--grad-accum-steps", type=int, default=32, help="Gradient accumulation steps")
+    args = parser.parse_args()
+
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Using device: {device}")
     
@@ -85,13 +93,17 @@ def main():
     dataset = Stage2ADataset(data, tokenizer, max_len=512)
     dataloader = DataLoader(
         dataset, 
-        batch_size=1, 
+        batch_size=args.batch_size, 
         shuffle=True, 
         collate_fn=lambda b: collate_fn(b, tokenizer.pad_token_id)
     )
     
     print("Initializing Samat-Next-Coder-350M from scratch...")
-    config_path = os.path.join(ROOT, "configs", "samat_next_150m.json")
+    if os.path.isabs(args.config):
+        config_path = args.config
+    else:
+        config_path = os.path.join(ROOT, args.config)
+    print(f"Loading config from: {config_path}")
     config = SamatNextConfig.from_json(config_path)
     model = SamatNextForCausalLM(config)
     model.to(device)
@@ -105,7 +117,7 @@ def main():
     # Optionally use GradScaler if using float16
     scaler = torch.cuda.amp.GradScaler(enabled=(dtype == torch.float16))
     
-    grad_accum_steps = 32
+    grad_accum_steps = args.grad_accum_steps
     epochs = 2
     
     model.train()
@@ -165,15 +177,16 @@ def main():
                     running_loss = 0.0
                     
                 if step_count % 500 == 0:
-                    ckpt_path = os.path.join(ROOT, "checkpoints", f"samat_next_350m_stage2a_step_{step_count}.pt")
+                    ckpt_path = os.path.join(ROOT, "checkpoints", f"{args.output_checkpoint_prefix}_step_{step_count}.pt")
                     torch.save(model.state_dict(), ckpt_path)
                     print(f"Saved intermediate checkpoint to {ckpt_path}")
                     
-    final_path = os.path.join(ROOT, "checkpoints", "samat_next_350m_stage2a.pt")
+    final_path = os.path.join(ROOT, "checkpoints", f"{args.output_checkpoint_prefix}.pt")
     torch.save(model.state_dict(), final_path)
     print(f"Saved final checkpoint to {final_path}")
     
-    with open(os.path.join(ROOT, "results", "stage2a_log.json"), "w") as f:
+    log_file = os.path.join(ROOT, "results", f"{args.output_checkpoint_prefix}_log.json")
+    with open(log_file, "w") as f:
         json.dump(log_data, f, indent=4)
         
     print("Training complete.")
