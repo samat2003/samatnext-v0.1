@@ -1,15 +1,15 @@
-# Model Card: SamatNext-v0.1
+# Model Card: SamatNext v0.2-B
 
 ## Model Details
-- **Architecture:** Hybrid Decoder alternating Differential Attention layers and linear-state mixers (DeltaNet-inspired).
-- **Parameters:** ~356 Million (exact parameter matched to Transformer baseline within 8 parameters).
+- **Architecture:** Hybrid Decoder alternating Differential Attention layers and linear-state mixers (DeltaNet-inspired) with LSM RMSNorm and Scale Calibration.
+- **Parameters:** 356,083,208 (exact parameter matched to Transformer baseline within 776 parameters).
 - **Context Length:** 8,192 (trained on 512 context size for curriculum steps).
 - **Vocabulary Size:** 151,936 (configured to match standard Qwen2.5-Coder embedding dimensions; the tokenizer itself has 151,665 active tokens, with 271 reserved/unused).
 - **Language:** Python source code.
 - **License:** Model source code is licensed under Apache-2.0. Model checkpoint weights are separately licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) (see [CHECKPOINT_LICENSE.md](CHECKPOINT_LICENSE.md)).
 
 ## Intended Use & Research Scope
-SamatNext-v0.1 is an experimental research model intended to study whether hybrid sequence-mixing architectures improve retention under staged Python code curricula. It is not intended as a production coding assistant, not claimed to be SOTA, and not claimed to outperform Transformers universally.
+SamatNext v0.2-B is an experimental research model intended to study whether hybrid sequence-mixing architectures improve retention under staged Python code curricula. It is not intended as a production coding assistant, not claimed to be SOTA, and not claimed to outperform Transformers universally.
 
 ## Known Limitations
 - **Scale Limits:** Under 400M parameter model scale; findings may not extrapolate to 7B+ scales.

@@ -22,7 +22,7 @@ def audit_parameters():
     
     # Audit values
     expected = {
-        "samat_total": 356082440,
+        "samat_total": 356083208,
         "trans_total": 356082432,
         "samat_attn": 9437192,
         "samat_mixer": 47185928,
@@ -63,7 +63,7 @@ def audit_parameters():
     
     for k, v in checks.items():
         if not v:
-            print(f"FAIL: parameter check '{k}' failed (expected {expected[k]})")
+            print(f"FAIL: parameter check '{k}' failed (expected {expected[k]}, got samat={samat.get(k)} trans={trans.get(k)})")
             return "FAIL"
             
     print("PASS: Parameter counts and model configuration audited successfully")
@@ -74,9 +74,9 @@ def audit_layer_pattern():
     from models.samat_next.config import SamatNextConfig
     from models.samat_next.layers import SamatNextBlock
     
-    config_path = os.path.join(ROOT, "configs", "samatnext_350m.json")
+    config_path = os.path.join(ROOT, "configs", "ablations", "samat_next_v0_2b_official.json")
     if not os.path.exists(config_path):
-        print("FAIL: samatnext_350m.json config not found")
+        print(f"FAIL: {config_path} config not found")
         return "FAIL"
         
     config = SamatNextConfig.from_json(config_path)
@@ -107,12 +107,9 @@ def audit_results_table():
     content = open(main_tex_path, "r", encoding="utf-8").read()
     
     expected_rows = [
-        r"Transformer & Scratch $\rightarrow$ Stage5 & 97.6\% & 0.8\% & 3.3\% \\",
-        r"SamatNext & Scratch $\rightarrow$ Stage5 & 97.6\% & 0.8\% & 1.3\% \\",
-        r"Transformer & Curriculum LR=3e-6 & 49.4\% & 4.0\% & 0.0\% \\",
-        r"Transformer & Curriculum LR=1e-5 & 97.6\% & 6.0\% & 3.0\% \\",
-        r"Transformer & Curriculum LR=3e-5 & 97.6\% & 3.2\% & 2.0\% \\",
-        r"SamatNext & Curriculum LR=3e-6 & 83.0\% & 70.2\% & 4.3\% \\"
+        r"Transformer & Curriculum lr=3e-6 & 49.4\% & 3.8\% & 0.0\% \\",
+        r"Transformer & Curriculum Rescue lr=1e-5 & 97.6\% & 6.0\% & 3.0\% \\",
+        r"SamatNext v0.2-B & Curriculum lr=3e-6 & \textbf{100.0\%} & \textbf{98.8\%} & \textbf{12.0\%} \\"
     ]
     
     for row in expected_rows:

@@ -60,7 +60,7 @@ The headline experiment asks: after training through the final stage, how much S
 | **Transformer** | Curriculum Rescue lr=1e-5 | 97.6% | 6.0% | 3.0% |
 | **SamatNext v0.2-B** | Curriculum lr=3e-6 | 100.0% | **98.8%** | **12.0%** |
 
-Full per-example artifacts are stored locally under `results/runs/` and are gitignored because they may be large. To reproduce them, run `make reproduce-main-table-fresh`. External artifact archive: pending.
+Full per-example artifacts are stored locally under `results/runs/` and are gitignored because they may be large. To reproduce them, run `make reproduce-main-table-fresh`. External artifact archive: GitHub Release v0.1.0-reproducibility.
 
 
 ### Interpretation

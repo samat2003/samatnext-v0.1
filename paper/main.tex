@@ -12,7 +12,7 @@
 \usepackage{geometry}
 \geometry{margin=1in}
 
-\title{\textbf{SamatNext v0.2-B: RMS-Normalized Hybrid Decoders Solve Adjacent Curriculum Forgetting in Small Code Models}}
+\title{\textbf{SamatNext v0.2-B: RMS-Normalized Hybrid Decoders Improve Adjacent Curriculum Forgetting in Small Code Models}}
 \author{\textbf{Samat Zharassov} \\ \url{https://github.com/samat2003/samatnext-v0.1}}
 \date{June 2026}
 
@@ -148,6 +148,30 @@ To study retention and plasticity, we compare direct training from scratch on th
 \end{enumerate}
 The key metric is the execution-based pass@1 rate. We measure Stage 3 semantic retention and Stage 2E syntactic pass rates after the models complete Stage 5 training. This sequential evaluation reveals the extent to which earlier capabilities are overwritten by specialization.
 
+\subsection{Prompt Templates and Decoding Settings}
+To ensure structured and reproducible generation across curriculum stages, all models are evaluated using explicit chat templates matching the ChatML format of the tokenizer.
+\begin{itemize}
+    \item \textbf{Curriculum and Retention Tasks (Stages 2E, 3, 5):} Prompts are wrapped using the standard formatting:
+    \begin{verbatim}
+    <|im_start|>user
+    {prompt}
+    <|im_end|>
+    <|im_start|>assistant
+    \end{verbatim}
+    \item \textbf{Out-of-Distribution Code Completion (HumanEval):} Evaluated using a structured instruction instruction-wrapper:
+    \begin{verbatim}
+    <|im_start|>user
+    Write the complete Python function for the following task.
+
+    {prompt}
+
+    Return only Python code. No markdown. No explanation.
+    <|im_end|>
+    <|im_start|>assistant
+    \end{verbatim}
+\end{itemize}
+During inference, generation is performed using deterministic greedy decoding (argmax logit selection at each step). The maximum generation sequence length is limited to $192$ new tokens. Generation is immediately halted upon emitting either of the end-of-sequence delimiters: the ChatML assistant end token `<|im_end|>` (token ID 151645) or the base end-of-text token `<|endoftext|>`.
+
 \subsection{Dynamic Execution Safety and Subprocess Isolation}
 Measuring functional correctness requires executing generated Python code. To prevent arbitrary code execution on host machines, all evaluations are executed inside a subprocess environment with CPU execution timeouts (5 seconds) and resource limitations. This subprocess isolation acts as a basic boundary and is a key safety limitation. It does not constitute a secure sandbox; therefore, execution-based evaluations should only be run inside isolated containers or virtual machines.
 
@@ -171,7 +195,7 @@ SamatNext v0.2-B & Curriculum lr=3e-6 & \textbf{100.0\%} & \textbf{98.8\%} & \te
 \end{table}
 
 \subsection{The Retention/Plasticity Tradeoff}
-The results in Table~\ref{tab:main_results_tex} provide strong evidence of the hybrid sequence mixer's capacity to alter the retention/plasticity tradeoff. Under the sequential curriculum learning path, the parameter-matched Transformer baseline trained with a learning rate of $3\times 10^{-6}$ fails to adapt to the final stage, resulting in a Stage 5 pass rate of 49.4\% and a Stage 3 retention of only 3.8\%. Rescuing the Transformer baseline using a higher learning rate of $1\times 10^{-5}$ achieves a high Stage 5 pass rate of 97.6\%, but its Stage 3 retention drops to 6.0\%, showing severe catastrophic forgetting of the intermediate semantic distribution. 
+The results in Table~\ref{tab:main_results_tex} provide evidence under this controlled setting of the hybrid sequence mixer's capacity to alter the retention/plasticity tradeoff. Under the sequential curriculum learning path, the parameter-matched Transformer baseline trained with a learning rate of $3\times 10^{-6}$ fails to adapt to the final stage, resulting in a Stage 5 pass rate of 49.4\% and a Stage 3 retention of only 3.8\%. Rescuing the Transformer baseline using a higher learning rate of $1\times 10^{-5}$ achieves a high Stage 5 pass rate of 97.6\%, but its Stage 3 retention drops to 6.0\%, showing severe catastrophic forgetting of the intermediate semantic distribution. 
 
 In comparison, SamatNext v0.2-B trained under the curriculum with the base learning rate of $3\times 10^{-6}$ achieves a perfect 100.0\% Stage 5 pass rate and retains 98.8\% of its Stage 3 performance. This demonstrates that the hybrid architecture preserves near-perfect intermediate semantic capabilities while maintaining high plasticity and adapting to the final curriculum stage.
 
@@ -180,6 +204,11 @@ The current release evaluates multiple Transformer curriculum learning rates but
 
 \subsection{Stage 2E Syntax Collapse}
 While SamatNext v0.2-B retains intermediate semantic behavior (Stage 3), both models show relatively low retention on the early-stage adversarial syntax dataset (Stage 2E) compared to adjacent semantic layers. After training on Stage 5, the Stage 2E pass rate is 12.0\% for SamatNext v0.2-B, which is a notable improvement over the 0.0\% to 3.0\% pass rates of the Transformer baseline, but still indicates that neither architecture preserves long-horizon syntactic features perfectly under this sequential training setup.
+
+\subsection{Out-of-Distribution Coding Smoke Test}
+To evaluate whether the models acquire generalizable Python programming structures that extend beyond the template variations in our curriculum, we perform an out-of-distribution code generation smoke test. Both models are evaluated on a decontaminated subset of the standard HumanEval benchmark (using the HumanEval instruction wrapper described in Section 5). 
+
+Due to the small scale of the models ($\sim 356$M parameters) and the limited curriculum sequence lengths, out-of-distribution functional correctness is expectedly weak for both models. However, the evaluation serves as a sanity check of functional code composition. Under greedy decoding, SamatNext v0.2-B achieves a pass@1 rate of 12.0\% on the HumanEval subset, compared to 8.0\% achieved by the curriculum-trained Transformer baseline. This indicates that both architectures maintain a baseline level of coherence on unseen coding problems, with the hybrid sequence mixer showing a slight performance advantage under identical curriculum conditions.
 
 \section{Discussion and Future Directions}
 \subsection{Inductive Biases in Hybrid Mixers}
@@ -195,6 +224,14 @@ Due to resource constraints and the focus on reproducibility, several architectu
     \item \textbf{Positional Encoding Impact:} Evaluating the impact of removing RoPE from the Differential-Attention-style layers or incorporating positional encodings into the linear-state mixers.
     \item \textbf{Verifier Head Presence:} Analyzing whether incorporating a secondary verifier projection head helps stabilize semantic weights during fine-tuning.
     \item \textbf{Continual Learning Baselines:} Comparing hybrid mixers against standard continual learning algorithms such as experience replay, elastic weight consolidation, and parameter-isolated adapters.
+\end{itemize}
+
+\subsection{Threats to Validity}
+Several limitations and methodology constraints present threats to the external validity and generalization of our findings:
+\begin{itemize}
+    \item \textbf{Synthetic and Template-Generated SFT Dataset:} The Stage 5 evaluation and training subsets are generated programmatically using predefined template variations. While this allows precise control over semantic alignment and deterministic testing, it represents a synthetic distribution. The model's 100.0\% Stage 5 pass rate should be interpreted as mastering a bounded, structured template space rather than expressing general-purpose programming synthesis capabilities.
+    \item \textbf{Curriculum Generalization:} The staged curriculum is narrow, focusing strictly on basic Python constructs and instruction formatting. It remains unclear if the altered retention/plasticity profile shown by the hybrid sequence mixer translates to large-scale pre-training distributions, complex multi-step reasoning, or diverse natural language domains.
+    \item \textbf{Evaluation Scale:} Our models are evaluated at a relatively small scale ($\sim 356$M parameters) for short context sizes ($512$ active tokens during training). The inductive biases observed here may evolve or exhibit different scaling behaviors when model size is increased to multi-billion parameter scales.
 \end{itemize}
 
 \section{Reproducibility}

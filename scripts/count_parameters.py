@@ -90,7 +90,7 @@ def main():
     tokenizer_len = len(tok)
     
     # Load configs
-    samat_config_path = os.path.join(ROOT, "configs", "samatnext_350m.json")
+    samat_config_path = os.path.join(ROOT, "configs", "ablations", "samat_next_v0_2b_official.json")
     trans_config_path = os.path.join(ROOT, "configs", "transformer_350m_matched.json")
     
     samat_config = SamatNextConfig.from_json(samat_config_path)
@@ -150,7 +150,7 @@ def main():
     md_path = os.path.join(ROOT, "results", "tables", "parameter_counts.md")
     with open(md_path, "w", encoding="utf-8") as f:
         f.write("# Model Parameter Count and Structural Specifications\n\n")
-        f.write("| Specification / Parameter Type | SamatNext-v0.1 | Matched Transformer Baseline |\n")
+        f.write("| Specification / Parameter Type | SamatNext v0.2-B | Matched Transformer Baseline |\n")
         f.write("| :--- | :---: | :---: |\n")
         f.write(f"| **Total Parameters** | {samat_report['total_parameters']:,} | {trans_report['total_parameters']:,} |\n")
         f.write(f"| **Trainable Parameters** | {samat_report['trainable_parameters']:,} | {trans_report['trainable_parameters']:,} |\n")

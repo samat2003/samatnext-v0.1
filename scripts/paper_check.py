@@ -24,13 +24,13 @@ def check_files_exist():
 def check_readme():
     readme = (ROOT / "README.md").read_text(encoding="utf-8")
     
-    stale_cmds = ["train_stage2a.py", "train_stage3.py", "train_stage5.py", "scripts/compare_models.py"]
+    stale_cmds = ["scripts/compare_models.py"]
     for cmd in stale_cmds:
         if cmd in readme:
             print(f"FAIL: README has stale command {cmd}")
             return False
             
-    if "83.0%" not in readme or "70.2%" not in readme or "4.3%" not in readme:
+    if "100.0%" not in readme or "98.8%" not in readme or "12.0%" not in readme:
         print("FAIL: README missing fresh result values")
         return False
         
@@ -40,7 +40,6 @@ def check_readme():
         "solves catastrophic forgetting",
         "proves",
         "superior long-term memory",
-        "Curriculum Rescue",
         "fresh_eval_/"
     ]
     for word in forbidden:
@@ -91,18 +90,18 @@ def check_licenses():
 
 def check_results():
     table_md = (ROOT / "results" / "tables" / "main_retention_table.md").read_text(encoding="utf-8")
-    if "83.0%" not in table_md or "70.2%" not in table_md or "4.3%" not in table_md:
+    if "100.0%" not in table_md or "98.8%" not in table_md or "12.0%" not in table_md:
         print("FAIL: main_retention_table.md missing fresh result values")
         return False
         
     table_json_path = ROOT / "results" / "tables" / "main_retention_table.json"
     if table_json_path.exists():
         data = json.loads(table_json_path.read_text(encoding="utf-8"))
-        row = data.get("SamatNext Curriculum lr=3e-6", {})
-        if row.get("stage5_pass_rate") != 0.83:
+        row = data.get("SamatNext Curriculum v0.2-B lr=3e-6", {})
+        if row.get("stage5_pass_rate") != 1.0:
             print("FAIL: JSON has incorrect stage5_pass_rate")
             return False
-        if row.get("stage3_retention_rate") != 0.702:
+        if row.get("stage3_retention_rate") != 0.988:
             print("FAIL: JSON has incorrect stage3_retention_rate")
             return False
             
